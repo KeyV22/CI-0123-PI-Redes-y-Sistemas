@@ -11,11 +11,11 @@
   *
  **/
 
-#include <sys/socket.h>
-#include <arpa/inet.h>		// ntohs, htons
+#include <sys/socket.h>    //Para los sockets
+#include <arpa/inet.h>		// ntohs, htons .... direcciones IP
 #include <stdexcept>            // runtime_error
 #include <cstring>		// memset
-#include <netdb.h>		// getaddrinfo, freeaddrinfo
+#include <netdb.h>		// getaddrinfo, freeaddrinfo ... nombres de host y servicios
 #include <unistd.h>		// close
 /*
 #include <cstddef>
@@ -36,11 +36,30 @@
   *  @param     bool ipv6: if we need a IPv6 socket
   *
  **/
-void VSocket::Init( char t, bool IPv6 ){
+void VSocket::Init( char t, bool ipv6 ){
 
-   int st = -1;
+   type=t;
+   IPv6=ipv6;
+   port=0;
+   sockId=-1;
 
-   if ( -1 == st ) {
+   int domain;
+   if(ipv6){
+      domain = AF_INET6;
+   } else {
+      domain = AF_INET; //ipv4
+   }
+
+   int sockType;
+   if ('s' == t) {
+      sockType = SOCK_STREAM; // usa rotocolo [TCP] datos viajan de forma segura, ordenada y sin pérdidas en forma de un flujo continuo de bytes
+   } else {
+      sockType = SOCK_DGRAM; //d utiliza paquetes independientes llamados datagramas (normalmente con el protocolo UDP)
+   }
+
+   sockId=socket(domain, sockType,0); //Esto devuelve un numer
+
+   if ( -1 == this->sockId ) {
       throw std::runtime_error( "VSocket::Init, (reason)" );
    }
 
@@ -52,9 +71,7 @@ void VSocket::Init( char t, bool IPv6 ){
   *
  **/
 VSocket::~VSocket() {
-
-   this->Close();
-
+   Close(); //Frijol this->
 }
 
 
@@ -64,7 +81,12 @@ VSocket::~VSocket() {
   *
  **/
 void VSocket::Close(){
-   int st = -1;
+   int st = 0;
+
+   if(this->sockId>=0){
+      st=close(this->sockId);
+      this->sockId=-1;
+   }
 
    if ( -1 == st ) {
       throw std::runtime_error( "VSocket::Close()" );
@@ -85,12 +107,38 @@ int VSocket::TryToConnect( const char * hostip, int port ) {
 
    int st = -1;
 
+   this->port=port;
+
+   if(this->IPv6){
+      struct sockaddr_in6 host6; //contiene información necesaria para representar una dirección IPv6
+      memset((char *)&host6,0,sizeof(host6));//Todo en 0 para evitar basura
+      host6.sin6_family=AF_INET6; //Direccio ip ivp6
+
+      st=inet_pton(AF_INET6,hostip,&host6.sin6_addr); //convierte una dirección IP en texto a binaria
+      if(1!=st){
+         throw std::runtime_error( "VSocket::TryToConnect, inet_pton" );
+      }
+
+      host6.sin6_port=htons(port); //Convierte el número del puerto al formato de bytes utilizado por la red.
+      st=connect(this->sockId,(sockaddr *)&host6,sizeof(host6));
+   }else{
+      struct sockaddr_in host4;
+      memset((char *)&host4,0,sizeof(host4));
+      host4.sin_family=AF_INET;
+
+      st=inet_pton(AF_INET,hostip,&host4.sin_addr);
+      if(1!=st){
+         throw std::runtime_error( "VSocket::TryToConnect, inet_pton" );
+      }
+
+      host4.sin_port=htons(port);
+      st=connect(this->sockId,(sockaddr *)&host4,sizeof(host4));
+   } 
    if ( -1 == st ) {
-      throw std::runtime_error( "VSocket::TryToConnect" );
+      throw std::runtime_error( "VSocket::TryToConnect, connect" );
    }
 
-   return st;
-
+   return st;//0
 }
 
 
@@ -104,8 +152,40 @@ int VSocket::TryToConnect( const char * hostip, int port ) {
  **/
 int VSocket::TryToConnect( const char *host, const char *service ) {
    int st = -1;
+   struct addrinfo hints;
+   struct addrinfo * result=nullptr;
+   struct addrinfo * rp=nullptr;
 
-   throw std::runtime_error( "VSocket::TryToConnect" );
+   memset(&hints,0,sizeof(hints)); //Limpiar
+
+   if (this->IPv6) {
+      hints.ai_family = AF_INET6;
+   } else {
+      hints.ai_family = AF_INET;
+   }
+
+   if('s'==this->type){
+      hints.ai_socktype= SOCK_STREAM;
+   }else{
+      hints.ai_socktype= SOCK_DGRAM;
+   }
+
+   st=getaddrinfo(host,service,&hints,&result); //Devuelve las direcciones para conectarse
+   if(0!=st){
+      throw std::runtime_error( "VSocket::TryToConnect, getaddrinfo" );
+   }
+
+   for(rp=result; nullptr!=rp; rp= rp->ai_next){ //addr 1, addr 2, addr3 ..... 
+      st= connect(this-> sockId, rp->ai_addr, rp->ai_addrlen);
+      if(0==st){ //Si se conecta a alguna es un exito
+         break;
+      }
+   }
+   freeaddrinfo(result); //para liberar lo que getaddrinfo reservo
+
+   if(-1==st){
+      throw std::runtime_error( "VSocket::TryToConnect,connect" );
+   }
 
    return st;
 

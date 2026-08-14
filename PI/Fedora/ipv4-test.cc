@@ -26,7 +26,7 @@ int main( int argc, char * argv[] ) {
    char a[512];
 
    s = new Socket( 's' );
-   s->Connect( osi, 80 );	// usar "osi" en la ECCI, "ose" de sus casas
+   s->Connect( ose, 80 );	// usar "osi" en la ECCI, "ose" de sus casas
    s->Write( alimentos );
    s->Read( a, 512 );		// usar un ciclo para completar la lectura
    printf( "%s\n", a);
