@@ -133,9 +133,11 @@ size_t Socket::Write( const char * text ) {
 
 }
 
-
+//const void * buffer: El puntero a los datos a enviar
+//size_t size: Cuántos bytes se envian
+//void * addr: La dirección del destinatario (quién va a recibir los datos)
 size_t Socket::sendTo(const void * buffer, size_t size, void * addr){
-   ssize_t st=sendto(this->sockId,buffer,size,0,(struct sockaddr *) addr, sizeof(struct sockaddr_in));
+   ssize_t st=sendto(this->sockId,buffer,size,0,(struct sockaddr *) addr, sizeof(struct sockaddr_in)); //funcion sendto de UDP
 
    if(-1==st){
       throw std::runtime_error("Socket::sendTo(void *,size_t, void *)");
@@ -144,10 +146,14 @@ size_t Socket::sendTo(const void * buffer, size_t size, void * addr){
    return (size_t)st;
 }
 
+//vois * buffer: Dónde se guardan los datos recibidos
+//size_t size: Capacidad máxima del buffer 
+//void * addr: Donde se va a guardar la dirección del remitente
 size_t Socket::recvFrom(vois * buffer, size_t size, void * addr){
-   socklen_t addrLen=sizeof(struct sockaddr_in);
+   socklen_t addrLen=sizeof(struct sockaddr_in); //scktlen es para tama;os de direcciones de socket
+                                                //Tama;o de la estructure IPv4
 
-   ssize_t st= recvfrom(this->sockId,buffer,size,0,(struct sockaddr *) addr, &addrLen);
+   ssize_t st= recvfrom(this->sockId,buffer,size,0,(struct sockaddr *) addr, &addrLen);//Para recibir datos
 
    if(-1==st){
       throw std::runtime_error("Socket::recvFrom(void *, size_t, void *)");
