@@ -1,0 +1,11 @@
+# Archivos compilados
+
+*.o
+*.out
+*.exe
+
+# Configuración de editores
+
+.vscode/
+.idea/
+
