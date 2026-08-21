@@ -5,22 +5,18 @@
   *  2026-ii
   *  Grupos: 2 y 5
   *
-  ****** UDP IPv4 test
-  *
   * (Fedora version)
   *
-  *   Client side implementation of UDP client-server model 
+  *   Client side implementation of IPv6 UDP client-server model 
   *
  **/
 
 #include <stdio.h> 
-#include <string.h>
-#include <stdlib.h>
+#include <string.h> 
 #include <sys/socket.h> 
 #include <arpa/inet.h> 
 #include <netinet/in.h>
 
-#include "VSocket.h"
 #include "Socket.h"
 
 #define PORT    1234 
@@ -31,22 +27,17 @@ int main() {
    int sockfd; 
    int n, len; 
    char buffer[MAXLINE]; 
-   char *hello = (char *) "Hello 2026-ii from CI0123 client"; 
+   char *hello = (char *) "Hello from client 2026-ii"; 
    struct sockaddr_in6 other;
 
-   client = new Socket( 'd' );	// Creates an UDP socket: datagram
+   client = new Socket( 'd', true );
 
    memset( &other, 0, sizeof( other ) ); 
    
    other.sin6_family = AF_INET6; 
-   other.sin6_port = htons( PORT ); 
-   n = inet_pton( AF_INET6, "10.1.35.50", &other.sin6_addr );	// IP address to test our client with a Python server on lab 3-5
-   //n = inet_pton( AF_INET6, "127.0.0.1", &other.sin6_addr );
-   if ( 1 != n ) {
-      printf( "Error converting from IP address\n" );
-      exit( 23 );
-   }
-
+   other.sin6_port = htons(PORT); 
+   other.sin6_addr = in6addr_any; 
+   
    n = client->sendTo( (void *) hello, strlen( hello ), (void *) & other ); 
    printf("Client: Hello message sent.\n"); 
    

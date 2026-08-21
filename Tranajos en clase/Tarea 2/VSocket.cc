@@ -71,7 +71,7 @@ void VSocket::Init( char t, bool ipv6 ){
   *
  **/
 VSocket::~VSocket() {
-   Close(); 
+   Close(); //Frijol this->
 }
 
 
@@ -92,47 +92,6 @@ void VSocket::Close(){
       throw std::runtime_error( "VSocket::Close()" );
    }
 
-}//Frijol
-
-
-//Es para asignar un puerto especifico al socket
-int VSocket::Bind(int port){
-   int st=-1;
-
-   this->port=port;
-   
-   //IPv4
-   if(this->IPv6){
-      struct sockaddr_in6 host6; //el struct contenia direc ip, puerto y familia
-      memset((char *)&host6,0,sizeof(host6));
-      host6.sin6_family= AF_INET6;//Esto era establecer la familia
-
-      //INADDR_ANY = para aceptar conexiones desde Wifi, Ethernet...
-      //htonl() = "Host TO Network Long" - convierte el número al formato de red
-      //s_addr = La dirección IP en formato binario
-      host6.sin6_addr=in6addr_any; 
-      host6.sin6_port=htons(port);//Establece el puerto
-
-      st=bind(this->sockId,(struct sockaddr *)&host6, sizeof(host6));
-   }else{
-      struct sockaddr_in host4; //el struct contenia direc ip, puerto y familia
-      memset((char *)&host4,0,sizeof(host4));
-      host4.sin_family= AF_INET;//Esto era establecer la familia
-
-      //INADDR_ANY = para aceptar conexiones desde Wifi, Ethernet...
-      //htonl() = "Host TO Network Long" - convierte el número al formato de red
-      //s_addr = La dirección IP en formato binario
-      host4.sin_addr.s_addr=htonl(INADDR_ANY); 
-      host4.sin_port=htons(port);//Establece el puerto
-      memset(host4.sin_zero, '\0',sizeof(host4.sin_zero));//Todo a caracter nulo
-
-      st=bind(this->sockId,(struct sockaddr *)&host4, sizeof(host4));//Adignar direccion y puerto al socket
-   }
-
-   if(-1==st){
-      throw std::runtime_error("VSocket::Bind,bind");
-   }
-   return st;
 }
 
 

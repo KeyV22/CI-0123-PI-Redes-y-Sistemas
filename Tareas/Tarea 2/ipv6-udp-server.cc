@@ -5,11 +5,9 @@
   *  2026-ii
   *  Grupos: 2 y 5
   *
-  ****** Socket class interface
-  *
   * (Fedora version)
   *
-  *  Server-side implementation of UDP client-server model	
+  *  Server-side implementation of UDP client-server model for IPv6	
   *
  **/
 
@@ -19,7 +17,6 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
-#include "VSocket.h" 
 #include "Socket.h" 
 
 #define PORT	1234 
@@ -29,9 +26,9 @@ int main() {
    VSocket * server;
    int len, n; 
    int sockfd;
-   struct sockaddr_in6 other;
+   struct sockaddr other;
    char buffer[MAXLINE]; 
-   char *hello = (char *) "Hello 2026-ii from CI0123 server"; 
+   char *hello = (char *) "Hello from CI0123 server 2026-ii"; 
 	
    server = new Socket( 'd', true );
    server->Bind( PORT );
