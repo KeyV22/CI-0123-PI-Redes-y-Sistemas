@@ -103,7 +103,7 @@ int VSocket::Bind(int port){
 
    //IPv4
    struct sockaddr_in host4; //el struct contenia direc ip, puerto y familia
-   memset((char *)&host4,0,size_t(host4));
+   memset((char *)&host4,0,sizeof(host4));
    host4.sin_family= AF_INET;//Esto era establecer la familia
 
    //INADDR_ANY = para aceptar conexiones desde Wifi, Ethernet...
