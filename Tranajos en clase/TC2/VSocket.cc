@@ -103,7 +103,7 @@ int VSocket::Bind(int port){
 
    //IPv4
    struct sockaddr_in host4;
-   memset((char *)&host4,0,size_t(host4));
+   memset((char *)&host4,0,sizeof(host4));
    host4.sin_family= AF_INET;
    host4.sin_addr.s_addr=htonl(INADDR_ANY);
    host4.sin_port=htons(port);

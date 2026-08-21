@@ -144,7 +144,7 @@ size_t Socket::sendTo(const void * buffer, size_t size, void * addr){
    return (size_t)st;
 }
 
-size_t Socket::recvFrom(vois * buffer, size_t size, void * addr){
+size_t Socket::recvFrom(void * buffer, size_t size, void * addr){
    socklen_t addrLen=sizeof(struct sockaddr_in);
 
    ssize_t st= recvfrom(this->sockId,buffer,size,0,(struct sockaddr *) addr, &addrLen);
