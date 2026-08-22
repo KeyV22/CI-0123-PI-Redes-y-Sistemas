@@ -80,7 +80,7 @@ int Socket::Connect( const char *host, const char *service ) {
 
 /**
   * Read method
-  *   use "read" Unix system call (man 2 read)
+  *   use "read" Unix system call (man 3 read)
   *
   * @param      void * buffer: buffer to store data read from socket
   * @param      int size: buffer capacity, read will stop if buffer is full
@@ -88,21 +88,20 @@ int Socket::Connect( const char *host, const char *service ) {
  **/
 size_t Socket::Read( void * buffer, size_t size ) {
 
-   ssize_t st= read(this-> sockId, buffer, size);
-   //Si read() devuelve -1, significa error 
-   //Si read() devuelve >0, es la cantidad de bytes leídos
+   int st = -1;
+
    if ( -1 == st ) {
       throw std::runtime_error( "Socket::Read( void *, size_t )" );
    }
 
-   return (size_t)st;
+   return st;
 
 }
 
 
 /**
   * Write method
-  *   use "write" Unix system call (man 2 write)
+  *   use "write" Unix system call (man 3 write)
   *
   * @param      void * buffer: buffer to store data write to socket
   * @param      size_t size: buffer capacity, number of bytes to write
@@ -110,25 +109,33 @@ size_t Socket::Read( void * buffer, size_t size ) {
  **/
 size_t Socket::Write( const void * buffer, size_t size ) {
 
-   ssize_t st= write(this->sockId,buffer,size);
+   int st = -1;
 
    if ( -1 == st ) {
       throw std::runtime_error( "Socket::Write( void *, size_t )" );
    }
 
-   return (size_t) st;
+   return st;
 
 }
 
 
 /**
   * Write method
-  *   use "write" Unix system call (man 2 write)
+  *   use "write" Unix system call (man 3 write)
   *
   * @param      char * text: text to write to socket
   *
  **/
 size_t Socket::Write( const char * text ) {
-   return this->Write((const void*)text, strlen(text));
+
+   int st = -1;
+
+   if ( -1 == st ) {
+      throw std::runtime_error( "Socket::Write( char * )" );
+   }
+
+   return st;
+
 }
 

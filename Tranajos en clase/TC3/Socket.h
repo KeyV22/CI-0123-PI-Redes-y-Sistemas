@@ -5,7 +5,7 @@
   *  2026-ii
   *  Grupos: 2 y 5
   *
-  ****** Socket derived class interface
+  ****** Socket class interface
   *
   * (Fedora version)
   *
