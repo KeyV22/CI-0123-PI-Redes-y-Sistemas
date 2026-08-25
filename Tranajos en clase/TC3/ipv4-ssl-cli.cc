@@ -39,7 +39,7 @@ int main( int argc, char * argv[] ) {
    }
 
    memset( a, 0 , MAXBUF );
-   client->MakeConnection( os, port );
+   client->Connect( os, port );
    client->Write(  (char * ) orchid, strlen( orchid ) );
    st = client->Read( a, MAXBUF );
    printf( "Bytes read %d\n%s\n", st, a);

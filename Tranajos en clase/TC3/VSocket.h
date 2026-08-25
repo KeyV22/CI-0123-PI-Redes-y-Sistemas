@@ -13,10 +13,12 @@
 
 #ifndef VSocket_h
 #define VSocket_h
- 
+
+#include <cstddef> //size_t
 class VSocket {
    public:
        void Init( char, bool = false );
+       void Init(int); // Frijol
       ~VSocket();
 
       void Close();
