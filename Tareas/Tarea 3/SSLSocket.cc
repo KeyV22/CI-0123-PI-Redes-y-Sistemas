@@ -33,14 +33,14 @@
   *  @param     bool ipv6: if we need a IPv6 socket
   *
  **/
-SSLSocket::SSLSocket( bool IPv6 ) {
+SSLSocket::SSLSocket( bool ipv6){
 
-   this->Init( 's', IPv6 );
+   this->Init('s',IPv6);
 
-   this->Context = nullptr;
-   this->BIO = nullptr;
+   this->Context=nullptr;
+   this->BIO=nullptr;
 
-   this->InitSSL();					// Initializes to client context
+   this->InitSSL();
 
 }
 
@@ -250,9 +250,15 @@ int SSLSocket::Connect( const char * host, const char * service ) {
   *
  **/
 size_t SSLSocket::Read( void * buffer, size_t size ) {
-   int st = SSL_read(reinterpret_cast<SSL *>(this->BIO), buffer,(int)size);
+   SSL * ssl= reinterpret_cast<SSL *>(this->BIO);
+   int st = SSL_read(ssl, buffer,(int)size);
 
-   if ( 0 == st ) {
+   if ( 0>= st ) {
+      int sslErr=SSL_get_error(ssl,st);
+
+      if(SSL_ERROR_ZERO_RETURN == sslErr|| SSL_ERROR_SYSCALL==sslErr){
+         return 0;
+      }
       throw std::runtime_error( "SSLSocket::Read( void *, size_t )" );
    }
 
@@ -294,7 +300,7 @@ size_t SSLSocket::Write( const char * string ) {
 size_t SSLSocket::Write( const void * buffer, size_t size ) {
    int st = SSL_write(reinterpret_cast<SSL *>(this->BIO), buffer,(int)size);
 
-   if ( 0 == st ) {
+   if ( 0 >= st ) {
       throw std::runtime_error( "SSLSocket::Write( void *, size_t )" );
    }
 
