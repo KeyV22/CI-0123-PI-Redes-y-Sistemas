@@ -23,7 +23,7 @@ $(info $$TARGETS = $(TARGETS))
 ipv4-ssl-cli.out: ipv4-ssl-cli.o VSocket.o Socket.o SSLSocket.o
 	$(CXX) ipv4-ssl-cli.o VSocket.o Socket.o SSLSocket.o $(LDFLAGS) -o $@
 tcp-cli.out: tcp-cli.o VSocket.o Socket.o SSLSocket.o
-	$(CXX) ipv6-ssl-cli.o VSocket.o Socket.o SSLSocket.o $(LDFLAGS) -o $@
+	$(CXX) tcp-cli.o VSocket.o Socket.o SSLSocket.o $(LDFLAGS) -o $@
 
 clean:
 	@rm -f *.o *.out
