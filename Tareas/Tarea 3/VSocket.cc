@@ -214,7 +214,7 @@ int VSocket::TryToConnect( const char * hostip, int port ) {
  **/
 int VSocket::TryToConnect( const char *host, const char *service ) {
    int st = -1;
-   struct addrinfo hints;
+   struct addrinfo hints{};
    struct addrinfo * result=nullptr;
    struct addrinfo * rp=nullptr;
 

@@ -35,7 +35,7 @@
  **/
 SSLSocket::SSLSocket( bool ipv6){
 
-   this->Init('s',IPv6);
+   this->Init('s',ipv6);
 
    this->Context=nullptr;
    this->BIO=nullptr;

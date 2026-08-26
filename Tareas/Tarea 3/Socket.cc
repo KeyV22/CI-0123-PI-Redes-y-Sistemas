@@ -88,7 +88,7 @@ int Socket::Connect( const char *host, const char *service ) {
  **/
 size_t Socket::Read( void * buffer, size_t size ) {
 
-   int st = -1;
+   int st = read(this->sockId,buffer,size);
 
    if ( -1 == st ) {
       throw std::runtime_error( "Socket::Read( void *, size_t )" );
@@ -109,7 +109,7 @@ size_t Socket::Read( void * buffer, size_t size ) {
  **/
 size_t Socket::Write( const void * buffer, size_t size ) {
 
-   int st = -1;
+   int st = write(this->sockId,buffer,size);
 
    if ( -1 == st ) {
       throw std::runtime_error( "Socket::Write( void *, size_t )" );
