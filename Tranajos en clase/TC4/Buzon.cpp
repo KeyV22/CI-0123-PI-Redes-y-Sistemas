@@ -1,7 +1,7 @@
 #include "Buzon.hpp"
 
 Buzon::Buzon(){
-    key_t key= 0xC4849
+    key_t key= 0xC4849;
     this->id=msgget(key, IPC_CREAT|0600); //Devolver id
     if(this->id<0){ 
         throw std::runtime_error("ERROR, SE RECIBIO UN NEGATIVO");
@@ -25,7 +25,7 @@ ssize_t Buzon::Enviar(const myMessage& msg){
     if(result<0){
         throw std::runtime_error("Error con el envio del mensaje");
     }
-    return result
+    return result;
 }
 
 ssize_t Buzon::Recibir(myMessage& msg, long tipo=0){

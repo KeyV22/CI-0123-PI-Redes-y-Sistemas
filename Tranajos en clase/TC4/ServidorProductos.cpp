@@ -9,6 +9,10 @@ ServidorProductos::ServidorProductos(Buzon* b){
     buzon=b;
 }
 
+ServidorProductos::~ServidorProductos(){
+
+}
+
 void ServidorProductos::waiting(){
     myMessage msg;
     while(running){
@@ -27,7 +31,7 @@ void ServidorProductos::procesarSolicitud(myMessage msg){
     std::string productos;
     std:: string cadena=msg.message;
 
-    if(strcmp(msg.message, "see_categories")==0){
+    if(strcmp(msg.message, "categorias")==0){
         std::string categorias =
         "Categorias disponibles en TicAmazon :)\n"
         "- enlatados \n"
