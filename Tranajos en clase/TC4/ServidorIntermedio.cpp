@@ -7,12 +7,16 @@
 ServidorIntermedio::ServidorIntermedio(Buzon* b) {
     this->buzon = b;
 }
+
+ServidorIntermedio::~ServidorIntermedio(){
+    
+}
 void ServidorIntermedio::connect(ServidorProductos* servp) {
     this->serv = servp;
 }
 
 
-void ServidorIntermedio::listen() {
+void ServidorIntermedio::waiting() {
     myMessage msg;
     while(true) {
         buzon->Recibir(msg, SERVIDOR_INTERMEDIO);

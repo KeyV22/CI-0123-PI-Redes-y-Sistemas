@@ -30,10 +30,10 @@ int main() {
 
     myMessage msg;
     bool running = true;
-    std::string op;
+    std::string entrada;
 
     std::cout << "=== TicAmazon - Cliente de simulacion ===\n";
-    std::cout << "Use: see_categories\n";
+    std::cout << "Use: categorias\n";
     std::cout << "Use: GET nombre_categoria\n";
     std::cout << "Use: Exit\n";
     while (running) {
@@ -55,5 +55,8 @@ int main() {
             break;
         }
     }
+    //Cerrar los procesos hijos
+    waitpid(pid1, NULL, 0);
+    waitpid(pid2, NULL, 0);
     return 0;
 }
