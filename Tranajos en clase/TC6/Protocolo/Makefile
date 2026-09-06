@@ -1,7 +1,7 @@
 # TicAmazon - Simulacion del protocolo cliente <-> intermediario <-> productos
 
 CXX := g++
-CXXFLAGS := -g -Wall
+CXXFLAGS := -g -Wall -std=c++17 -pthread
 TARGETS := simulacion.out
 
 all: $(TARGETS)

@@ -29,10 +29,11 @@ class Buzon{
         Buzon();
         ~Buzon();
 
-        ssize_t Enviar(const myMessage& msg);
-        ssize_t Recibir(myMessage& msg, long type);
+        void Enviar(const myMessage& msg);
+        void Recibir(myMessage& msg, long type);
     
     private:
-        int id;
-        pid_t owner; //pROCESS IDENTIFIER
+        std::map<long, std::queue<myMessage>> buzones; // un sub-buzon por cada "type" destinatario
+        std::mutex mtx;
+        std::condition_variable cv;
 };

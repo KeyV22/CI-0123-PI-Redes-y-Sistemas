@@ -14,29 +14,23 @@ int main() {
     ServidorIntermedio intermediario(&buzon);
     ServidorProductos productos(&buzon);
 
-    pid_t pid1 = fork(); //crear proceso
-
-    if (pid1 == 0) { //encargado de ejecutar el servidor de productod
-        productos.waiting();
-        return 0;
-    }
-
-    pid_t pid2 = fork();
-
-    if (pid2 == 0) {//encargado del intermediario
-        intermediario.waiting();
-        return 0;
-    }
+    std::thread hiloProductos(&ServidorProductos::waiting, &productos);
+    std::thread hiloIntermedio(&ServidorIntermedio::waiting, &intermediario);
 
     myMessage msg;
     bool running = true;
     std::string entrada;
 
     std::cout << "=== TicAmazon - Cliente de simulacion ===\n";
-    std::cout << "Use: categorias\n";
-    std::cout << "Use: GET nombre_categoria\n";
-    std::cout << "Use: Exit\n";
+    std::cout << "Comandos disponibles:\n";
+    std::cout << "  PEDIR:CAT\n";
+    std::cout << "  PEDIR:PROD:<categoria>        (ej. PEDIR:PROD:enlatados)\n";
+    std::cout << "  AGREGAR:<producto>:<cantidad> (ej. AGREGAR:Lata de refresco:2)\n";
+    std::cout << "  PEDIR:FACTURA\n";
+    std::cout << "  Exit\n\n";
+
     while (running) {
+        std::cout << "> ";
         std::getline(std::cin, entrada);
         if (entrada == "Exit") {
             msg.st = CLOSE;
@@ -47,16 +41,21 @@ int main() {
 
         msg.type = SERVIDOR_INTERMEDIO;
         strncpy(msg.message, entrada.c_str(), sizeof(msg.message) - 1);
-        msg.message[sizeof(msg.message) - 1] = '\0'; //termina con caracter vacio
+        msg.message[sizeof(msg.message) - 1] = '\0'; // termina con caracter vacio
 
         buzon.Enviar(msg);
 
         if (msg.st == CLOSE) {
             break;
         }
+
+        // Espera la respuesta dirigida al cliente antes de pedir el siguiente comando
+        myMessage resp;
+        buzon.Recibir(resp, CLIENTE);
+        std::cout << "[CLIENTE] respuesta recibida: " << resp.message << std::endl;
     }
-    //Cerrar los procesos hijos
-    waitpid(pid1, NULL, 0);
-    waitpid(pid2, NULL, 0);
+
+    hiloIntermedio.join();
+    hiloProductos.join();
     return 0;
 }
