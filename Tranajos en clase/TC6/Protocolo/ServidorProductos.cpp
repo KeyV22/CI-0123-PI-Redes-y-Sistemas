@@ -107,7 +107,7 @@ void ServidorProductos::procesarSolicitud(myMessage msg){
     myMessage resp;//Nuevo mensaje para respuesta del servidpr
     resp.type=SERVIDOR_INTERMEDIO; //Para el intermediarip
     resp.st=RESPONSE; //el mensaje es una respuesta
-    strncpy(resp.message, productos.c_str(), sizeof(resp.message) - 1); //copiatr al arreglo
+    strncpy(resp.message, respuesta.c_str(), sizeof(resp.message) - 1); //copiatr al arreglo
     resp.message[sizeof(resp.message)-1] = '\0';//tama;o del arreglo
     buzon->Enviar(resp);
     std::cout << "[SERVIDOR] Enviando informacion al intermediario" << std::endl;

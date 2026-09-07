@@ -1,11 +1,13 @@
-#include <sys/msg.h>
+#pragma once
 #include <string.h>
 #include <cstring>
-#include <unistd.h> //pid_t
+#include <unistd.h>
 #include <sys/types.h>
 #include <iostream>
-#include <sys/types.h>
-#include <sys/ipc.h>
+#include <queue>
+#include <map>
+#include <mutex>
+#include <condition_variable>
 
 #define MaxParticipantes 100
 

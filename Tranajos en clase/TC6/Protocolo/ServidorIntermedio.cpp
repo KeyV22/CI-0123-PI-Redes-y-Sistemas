@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstring>
 #include "Buzon.hpp"
+#include <sstream> 
 
 ServidorIntermedio::ServidorIntermedio(Buzon* b) {
     this->buzon = b;
@@ -72,7 +73,7 @@ void ServidorIntermedio::waiting() {
             std::string respuestaCliente = respuestaBodega;
 
             if (respuestaBodega.rfind("PROD:", 0) == 0) {
-                cachearPrecios(respuestaBodega.substr(5));
+                agarrarPrecios(respuestaBodega.substr(5));
 
             } else if (ultimoComandoCliente == "AGREGAR") {
                 if (respuestaBodega == "OK") {

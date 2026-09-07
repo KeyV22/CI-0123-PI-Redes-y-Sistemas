@@ -6,8 +6,8 @@ TARGETS := demo
 
 all: $(TARGETS)
 
-demo: main.cpp FileSystemTicAmazon.cpp FileSystemTicAmazon.hpp
-	$(CXX) $(CXXFLAGS) main.cpp FileSystemTicAmazon.cpp -o $@
+demo: main.cpp FileSystem.cpp FileSystem.hpp
+	$(CXX) $(CXXFLAGS) main.cpp FileSystem.cpp -o $@
 
 run: demo
 	./demo
