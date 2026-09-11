@@ -50,7 +50,7 @@ Socket::Socket( int id ) {
   *
  **/
 Socket::~Socket() {
-
+   this->Close();
 }
 
 
