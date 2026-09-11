@@ -13,7 +13,7 @@
 #include <iostream>
 #include <thread>
 
-#include "Socket.h"
+#include "Socket.hpp"
 
 #define PORT 2026
 #define BUFSIZE 512

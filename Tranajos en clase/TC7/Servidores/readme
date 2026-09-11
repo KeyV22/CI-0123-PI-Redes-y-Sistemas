@@ -1,0 +1,10 @@
+en una terminal use
+make ThreadMirrorServer.out
+o 
+make ForkMirrorServer.out
+
+en otra terminal ejecute:
+g++ MirrorClient.cpp VSocket.cpp Socket.cpp -o MirrorClient.out
+
+y luego 
+./MirrorClient.out

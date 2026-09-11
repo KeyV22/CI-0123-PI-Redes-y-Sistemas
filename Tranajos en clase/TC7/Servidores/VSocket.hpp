@@ -30,6 +30,7 @@ class VSocket {
       virtual size_t Write( const void *, size_t ) = 0;
       virtual size_t Write( const char * ) = 0;
 
+
       int Bind( int );			// Assign a socket address to a socket descriptor
       int MarkPassive( int );		// Mark a socket passive: will be used to accept connections
       int WaitForConnection( void );	// Wait for a peer connection

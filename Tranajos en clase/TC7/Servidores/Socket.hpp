@@ -13,7 +13,7 @@
 
 #ifndef Socket_h
 #define Socket_h
-#include "VSocket.h"
+#include "VSocket.hpp"
 
 class Socket : public VSocket {
 

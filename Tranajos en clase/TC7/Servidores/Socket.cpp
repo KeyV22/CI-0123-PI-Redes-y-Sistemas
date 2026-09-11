@@ -18,7 +18,7 @@
 #include <stdexcept>
 #include <stdio.h>		// printf
 
-#include "Socket.h"		// Derived class
+#include "Socket.hpp"		// Derived class
 
 /**
   *  Class constructor
