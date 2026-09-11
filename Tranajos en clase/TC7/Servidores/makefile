@@ -6,12 +6,12 @@ CXX := g++
 CFLAGS := -g -c
 CXXFLAGS := -g -c -std=c++11
 LDFLAGS := -pthread
-DEPS := Socket.h VSocket.h
+DEPS := Socket.hpp VSocket.hpp
 TARGETS := ForkMirrorServer.out MirrorClient.out ThreadMirrorServer.out
 
 all: $(TARGETS)
 
-%.o: %.cc $(DEPS)
+%.o: %.cpp $(DEPS)
 	$(CXX) $(CXXFLAGS) $<
 
 ForkMirrorServer.out:	ForkMirrorServer.o VSocket.o Socket.o

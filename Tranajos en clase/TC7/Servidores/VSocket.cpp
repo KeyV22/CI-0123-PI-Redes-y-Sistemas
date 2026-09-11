@@ -1,9 +1,10 @@
+
 /**
   *  Universidad de Costa Rica
   *  ECCI
   *  CI0123 Proyecto integrador de redes y sistemas operativos
-  *  2026-i
-  *  Grupos: 2 y 3
+  *  2025-i
+  *  Grupos: 1 y 3
   *
   ****** VSocket base class implementation
   *
@@ -17,9 +18,9 @@
 #include <cstring>		// memset
 #include <netdb.h>		// getaddrinfo, freeaddrinfo
 #include <unistd.h>		// close
-#include <cerrno>		// errno, strerror
+#include <cerrno>
+#include <cstdio>
 #include <string>
-
 /*
 #include <cstddef>
 #include <cstdio>
@@ -39,45 +40,23 @@
   *  @param     bool ipv6: if we need a IPv6 socket
   *
  **/
-void VSocket::Init( char t, bool IPv6 ){
-   this->type  = t;
-   this->IPv6  = IPv6;
-   this->port  = 0;
-   this->sockId = -1;              // por si socket() falla, Close() no intenta cerrar basura
+void VSocket::init( char t, bool IPv6 ){
+   int st = -1;
+   this->IPv6 = IPv6;
+   int domain = this->IPv6 ? AF_INET6 : AF_INET;
+   int type;
 
-   int domain   = IPv6 ? AF_INET6 : AF_INET;
-   int sockType = ( 's' == t ) ? SOCK_STREAM : SOCK_DGRAM;
-
-   this->sockId = socket( domain, sockType, 0 );
-
-   if ( -1 == this->sockId ) {
-      throw std::runtime_error( "VSocket::Init, socket" );
-   }
-}
-
-
-/**
-  *  Class creator (constructor)
-  *     use Unix socket system call
-  *
-  *  @param     int id: socket identifier
-  *
- **/
-void VSocket::Init( int id  ){
-   this->sockId = id;
-   this->port   = 0;
-   this->type   = 's';                 // accept() solo aplica a sockets stream (TCP)
-
-   // Se consulta al kernel la familia real de direcciones del descriptor recibido
-   struct sockaddr_storage addr;
-   socklen_t addrLen = sizeof( addr );
-
-   if ( 0 == getsockname( id, (struct sockaddr *) &addr, &addrLen ) ) {
-      this->IPv6 = ( AF_INET6 == addr.ss_family );
+   if (t == 's' || t == ' ') {
+      type = SOCK_STREAM;
+   } else if (t == 'd') {
+      type = SOCK_DGRAM;
    } else {
-      this->IPv6 = false;
+      throw std::invalid_argument("Invalid socket type");
    }
-   
+   st = this->idSocket = socket(domain, type, 0);
+    if ( -1 == st ) {
+      throw std::runtime_error( "VSocket::BuildSocket, (reason)" );
+   }
 }
 
 
@@ -98,21 +77,15 @@ VSocket::~VSocket() {
   *
  **/
 void VSocket::Close(){
-   int st = 0;
-
-   if ( this->sockId >= 0 ) {
-      st = close( this->sockId );
-      this->sockId = -1;           // evita un doble close
-      if ( -1 == st ) {
-         throw std::runtime_error( "VSocket::Close()" );
-      }
+  if (this->idSocket >= 0) {
+      close(this->idSocket);
+      this->idSocket = -1;
    }
-
 }
 
 
 /**
-  * TryToConnect method
+  * EstablishConnection method
   *   use "connect" Unix system call
   *
   * @param      char * host: host address in dot notation, example "10.84.166.62"
@@ -120,43 +93,36 @@ void VSocket::Close(){
   *
  **/
 int VSocket::TryToConnect( const char * hostip, int port ) {
-
-   int st = -1;
-
-   this->port = port;
-
-   if ( this->IPv6 ) {
-
-      struct sockaddr_in6 host6;
-      memset( (char *) &host6, 0, sizeof( host6 ) );
-      host6.sin6_family = AF_INET6;
-
-      st = inet_pton( AF_INET6, hostip, &host6.sin6_addr );
-      if ( 1 != st ) {
-         throw std::runtime_error( "VSocket::TryToConnect, inet_pton" );
-      }
-
-      host6.sin6_port = htons( port );
-      st = connect( this->sockId, (sockaddr *) &host6, sizeof( host6 ) );
-
-   } else {
-
-      struct sockaddr_in host4;
+   int st;
+   if (!IPv6) {
+      struct sockaddr_in  host4;
       memset( (char *) &host4, 0, sizeof( host4 ) );
       host4.sin_family = AF_INET;
-
       st = inet_pton( AF_INET, hostip, &host4.sin_addr );
-      if ( 1 != st ) {
-         throw std::runtime_error( "VSocket::TryToConnect, inet_pton" );
+      if (st <= 0 ) {
+         throw( std::runtime_error( "VSocket::TryToConnect, inet_pton" ));
       }
-
       host4.sin_port = htons( port );
-      st = connect( this->sockId, (sockaddr *) &host4, sizeof( host4 ) );
-
+      st = connect(idSocket, (sockaddr *) &host4, sizeof( host4 ) );
+      if ( -1 == st ) {
+         throw( std::runtime_error( "VSocket::TryToConnect, connect" ));
+      }
+   } else {
+      struct sockaddr_in6  host6;
+      memset( (char *) &host6, 0, sizeof( host6 ) );
+      host6.sin6_family = AF_INET6;
+      st = inet_pton( AF_INET6, hostip, &host6.sin6_addr );
+      if (st <= 0 ) {
+         throw( std::runtime_error( "VSocket::TryToConnect, inet_pton" ));
+      }
+      host6.sin6_port = htons( port );
+      st = connect(this->idSocket, (sockaddr *) &host6, sizeof( host6 ) );
+      if ( -1 == st ) {
+         throw( std::runtime_error( "VSocket::TryToConnect, connect" ));
+      }
    }
-
    if ( -1 == st ) {
-      throw std::runtime_error( "VSocket::TryToConnect, connect" );
+      throw std::runtime_error( "VSocket::TryToConnect" );
    }
 
    return st;
@@ -165,7 +131,7 @@ int VSocket::TryToConnect( const char * hostip, int port ) {
 
 
 /**
-  * TryToConnect method
+  * EstablishConnection method
   *   use "connect" Unix system call
   *
   * @param      char * host: host address in dns notation, example "os.ecci.ucr.ac.cr"
@@ -173,35 +139,27 @@ int VSocket::TryToConnect( const char * hostip, int port ) {
   *
  **/
 int VSocket::TryToConnect( const char *host, const char *service ) {
-   int st = -1;
-   struct addrinfo hints;
-   struct addrinfo * result = nullptr;
-   struct addrinfo * rp = nullptr;
-
-   memset( &hints, 0, sizeof( hints ) );
-   hints.ai_family   = this->IPv6 ? AF_INET6 : AF_INET;
-   hints.ai_socktype = ( 's' == this->type ) ? SOCK_STREAM : SOCK_DGRAM;
+   int st;
+   struct addrinfo hints, *result, *rp;
+   memset(&hints, 0, sizeof(struct addrinfo));
+   hints.ai_family = AF_UNSPEC;    /* Allow IPv4 or IPv6 */
+   hints.ai_socktype = SOCK_STREAM;
+   hints.ai_flags = 0;
+   hints.ai_protocol = 0;          /* Any protocol */
 
    st = getaddrinfo( host, service, &hints, &result );
-   if ( 0 != st ) {
-      throw std::runtime_error( std::string( "VSocket::TryToConnect, getaddrinfo: " ) + gai_strerror( st ) );
-   }
 
-   for ( rp = result; nullptr != rp; rp = rp->ai_next ) {
-      st = connect( this->sockId, rp->ai_addr, rp->ai_addrlen );
-      if ( 0 == st ) {
-         break;
-      }
+   for ( rp = result; rp; rp = rp->ai_next ) {
+   st = connect(this->idSocket, rp->ai_addr, rp->ai_addrlen );
+   if ( 0 == st )
+      break;
    }
 
    freeaddrinfo( result );
-
-   if ( -1 == st ) {
-      throw std::runtime_error( "VSocket::TryToConnect, connect" );
+   if (rp == NULL) {
+      throw std::runtime_error("VSocket::TryToConnect connect");
    }
-
    return st;
-
 }
 
 
@@ -215,45 +173,25 @@ int VSocket::TryToConnect( const char *host, const char *service ) {
   *
  **/
 int VSocket::Bind( int port ) {
-   int st = -1;
-
-   this->port = port;
+   struct sockaddr_in my_addr;
 
    // Permite reutilizar el puerto inmediatamente al reiniciar el servidor,
-   // evitando el clasico error "Address already in use" mientras el kernel
-   // todavia tiene el socket anterior en estado TIME_WAIT
+   // evitando el error "Address already in use" mientras el kernel todavia
+   // tiene el socket anterior en estado TIME_WAIT
    int reuse = 1;
-   setsockopt( this->sockId, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof( reuse ) );
+   setsockopt( this->idSocket, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof( reuse ) );
 
-   if ( this->IPv6 ) {
-
-      struct sockaddr_in6 host6;
-      memset( (char *) &host6, 0, sizeof( host6 ) );
-      host6.sin6_family = AF_INET6;
-      host6.sin6_addr   = in6addr_any;         // equivalente IPv6 de INADDR_ANY
-      host6.sin6_port   = htons( port );
-
-      st = bind( this->sockId, (struct sockaddr *) &host6, sizeof( host6 ) );
-
-   } else {
-
-      struct sockaddr_in host4;
-      memset( (char *) &host4, 0, sizeof( host4 ) );
-      host4.sin_family      = AF_INET;
-      host4.sin_addr.s_addr = htonl( INADDR_ANY );
-      host4.sin_port        = htons( port );
-
-      st = bind( this->sockId, (struct sockaddr *) &host4, sizeof( host4 ) );
-
+   memset(&my_addr, 0, sizeof(my_addr));
+   my_addr.sin_family = AF_INET;
+   my_addr.sin_port = htons(port);
+   my_addr.sin_addr.s_addr = INADDR_ANY;
+   int st = bind(this->idSocket, (struct sockaddr*)&my_addr, sizeof(my_addr));
+   if ( st == -1) {
+      throw std::runtime_error( std::string("VSocket::Bind, bind: ") + strerror(errno) );
    }
-
-   if ( -1 == st ) {
-      throw std::runtime_error( std::string( "VSocket::Bind, bind: " ) + strerror( errno ) );
-   }
-
    return st;
-
 }
+
 
 
 /**
@@ -266,15 +204,11 @@ int VSocket::Bind( int port ) {
   *
  **/
 int VSocket::MarkPassive( int backlog ) {
-   int st = listen( this->sockId, backlog );
-
-   if ( -1 == st ) {
-      throw std::runtime_error( std::string( "VSocket::MarkPassive, listen: " ) + strerror( errno ) );
+   int st = listen(this->idSocket, backlog);
+   if (st < 0) {
+      throw std::runtime_error( "VSocket::MarkPassive" );
    }
-
    return st;
-
-
 }
 
 
@@ -287,13 +221,15 @@ int VSocket::MarkPassive( int backlog ) {
   *
  **/
 int VSocket::WaitForConnection( void ) {
-   int newSockId = accept( this->sockId, nullptr, nullptr );
-
-   if ( -1 == newSockId ) {
-      throw std::runtime_error( std::string( "VSocket::WaitForConnection, accept: " ) + strerror( errno ) );
+   struct sockaddr_storage peer_addr;
+   socklen_t addrlen = sizeof(peer_addr);
+   int st = accept(this->idSocket, (struct sockaddr*)&peer_addr, &addrlen);
+   if (st < 0) {
+      throw std::runtime_error( "VSocket::WaitForConnection" );
    }
 
-   return newSockId;
+   return st;
+
 }
 
 
@@ -306,12 +242,10 @@ int VSocket::WaitForConnection( void ) {
   *
  **/
 int VSocket::Shutdown( int mode ) {
-   int st = shutdown( this->sockId, mode );
-
-   if ( -1 == st ) {
-      throw std::runtime_error( std::string( "VSocket::Shutdown, shutdown: " ) + strerror( errno ) );
+   int st = shutdown(this->idSocket, mode);
+   if (st < 0) {
+      throw std::runtime_error( "VSocket::Shutdown" );
    }
-
    return st;
 }
 
@@ -328,16 +262,12 @@ int VSocket::Shutdown( int mode ) {
   *  Send data to another network point (addr) without connection (Datagram)
   *
  **/
-size_t VSocket::sendTo( const void * buffer, size_t size, void * addr ) {
-   socklen_t addrLen = this->IPv6 ? sizeof( struct sockaddr_in6 ) : sizeof( struct sockaddr_in );
-
-   ssize_t st = sendto( this->sockId, buffer, size, 0, (struct sockaddr *) addr, addrLen );
-
-   if ( -1 == st ) {
-      throw std::runtime_error( "VSocket::sendTo( void *, size_t, void * )" );
+size_t VSocket::sendTo( const void * buffer, size_t size, void * addr) {
+   int st = sendto(this->idSocket, buffer, size, 0,(struct sockaddr*) addr,sizeof(struct sockaddr_in));   
+   if (st == -1) {
+      throw std::runtime_error("ERROR sendTo()");   
    }
-
-   return (size_t) st;
+   return st;
 }
 
 
@@ -354,14 +284,12 @@ size_t VSocket::sendTo( const void * buffer, size_t size, void * addr ) {
   *
  **/
 size_t VSocket::recvFrom( void * buffer, size_t size, void * addr ) {
-   socklen_t addrLen = this->IPv6 ? sizeof( struct sockaddr_in6 ) : sizeof( struct sockaddr_in );
-
-   ssize_t st = recvfrom( this->sockId, buffer, size, 0, (struct sockaddr *) addr, &addrLen );
-
-   if ( -1 == st ) {
-      throw std::runtime_error( "VSocket::recvFrom( void *, size_t, void * )" );
+   socklen_t addrlen = sizeof(struct sockaddr_in);
+   int st = recvfrom(this->idSocket, buffer, size, 0, (struct sockaddr*) addr, &addrlen);
+   if (st == -1) {
+      throw std::runtime_error("ERROR recvFrom()");   
    }
-
-   return (size_t) st;
+   return st;
 
 }
+

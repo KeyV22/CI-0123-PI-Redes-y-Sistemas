@@ -1,0 +1,37 @@
+# TicAmazon — Servidor de productos + Cliente
+
+## Compilar
+
+```bash
+make clean
+make
+```
+
+## Ejecutar
+
+Necesitás **dos terminales**.
+
+**Terminal 1 — servidor:**
+```bash
+./ServidorProductos.out
+```
+
+**Terminal 2 — cliente:**
+```bash
+./Cliente.out
+```
+
+Menú del cliente:
+```
+1) Listar categorias
+2) Ver productos de una categoria
+3) Agregar producto al carrito
+4) Pedir factura proforma
+5) Salir
+```
+
+## Reiniciar la bodega desde cero
+
+```bash
+make clean
+```

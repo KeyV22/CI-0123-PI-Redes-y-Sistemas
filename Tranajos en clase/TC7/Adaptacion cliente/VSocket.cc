@@ -12,20 +12,14 @@
  **/
 
 #include <sys/socket.h>
-#include <arpa/inet.h>		// ntohs, htons
+#include <arpa/inet.h>		// ntohs, htons, inet_pton
 #include <stdexcept>            // runtime_error
 #include <cstring>		// memset
-#include <netdb.h>		// getaddrinfo, freeaddrinfo
+#include <netdb.h>		// getaddrinfo, freeaddrinfo, gai_strerror
 #include <unistd.h>		// close
 #include <cerrno>		// errno, strerror
 #include <string>
 
-/*
-#include <cstddef>
-#include <cstdio>
-
-//#include <sys/types.h>
-*/
 #include "VSocket.h"
 
 
@@ -40,6 +34,7 @@
   *
  **/
 void VSocket::Init( char t, bool IPv6 ){
+
    this->type  = t;
    this->IPv6  = IPv6;
    this->port  = 0;
@@ -53,17 +48,21 @@ void VSocket::Init( char t, bool IPv6 ){
    if ( -1 == this->sockId ) {
       throw std::runtime_error( "VSocket::Init, socket" );
    }
+
 }
 
 
 /**
-  *  Class creator (constructor)
-  *     use Unix socket system call
+  *  Class creator (constructor) - version alterna
+  *     envuelve un descriptor de socket que ya existe (el que devuelve
+  *     "accept()" en el servidor). Se usa para construir la instancia que
+  *     representa la conexion con un cliente ya aceptado.
   *
-  *  @param     int id: socket identifier
+  *  @param     int id: descriptor de socket ya creado y conectado
   *
  **/
-void VSocket::Init( int id  ){
+void VSocket::Init( int id ){
+
    this->sockId = id;
    this->port   = 0;
    this->type   = 's';                 // accept() solo aplica a sockets stream (TCP)
@@ -77,7 +76,7 @@ void VSocket::Init( int id  ){
    } else {
       this->IPv6 = false;
    }
-   
+
 }
 
 
@@ -98,6 +97,7 @@ VSocket::~VSocket() {
   *
  **/
 void VSocket::Close(){
+
    int st = 0;
 
    if ( this->sockId >= 0 ) {
@@ -173,6 +173,7 @@ int VSocket::TryToConnect( const char * hostip, int port ) {
   *
  **/
 int VSocket::TryToConnect( const char *host, const char *service ) {
+
    int st = -1;
    struct addrinfo hints;
    struct addrinfo * result = nullptr;
@@ -215,6 +216,7 @@ int VSocket::TryToConnect( const char *host, const char *service ) {
   *
  **/
 int VSocket::Bind( int port ) {
+
    int st = -1;
 
    this->port = port;
@@ -266,6 +268,7 @@ int VSocket::Bind( int port ) {
   *
  **/
 int VSocket::MarkPassive( int backlog ) {
+
    int st = listen( this->sockId, backlog );
 
    if ( -1 == st ) {
@@ -273,7 +276,6 @@ int VSocket::MarkPassive( int backlog ) {
    }
 
    return st;
-
 
 }
 
@@ -287,6 +289,7 @@ int VSocket::MarkPassive( int backlog ) {
   *
  **/
 int VSocket::WaitForConnection( void ) {
+
    int newSockId = accept( this->sockId, nullptr, nullptr );
 
    if ( -1 == newSockId ) {
@@ -294,6 +297,7 @@ int VSocket::WaitForConnection( void ) {
    }
 
    return newSockId;
+
 }
 
 
@@ -306,6 +310,7 @@ int VSocket::WaitForConnection( void ) {
   *
  **/
 int VSocket::Shutdown( int mode ) {
+
    int st = shutdown( this->sockId, mode );
 
    if ( -1 == st ) {
@@ -313,10 +318,11 @@ int VSocket::Shutdown( int mode ) {
    }
 
    return st;
+
 }
 
 
-// UDP methods 2025
+// UDP methods
 
 /**
   *  sendTo method
@@ -329,6 +335,7 @@ int VSocket::Shutdown( int mode ) {
   *
  **/
 size_t VSocket::sendTo( const void * buffer, size_t size, void * addr ) {
+
    socklen_t addrLen = this->IPv6 ? sizeof( struct sockaddr_in6 ) : sizeof( struct sockaddr_in );
 
    ssize_t st = sendto( this->sockId, buffer, size, 0, (struct sockaddr *) addr, addrLen );
@@ -338,6 +345,7 @@ size_t VSocket::sendTo( const void * buffer, size_t size, void * addr ) {
    }
 
    return (size_t) st;
+
 }
 
 
@@ -354,6 +362,7 @@ size_t VSocket::sendTo( const void * buffer, size_t size, void * addr ) {
   *
  **/
 size_t VSocket::recvFrom( void * buffer, size_t size, void * addr ) {
+
    socklen_t addrLen = this->IPv6 ? sizeof( struct sockaddr_in6 ) : sizeof( struct sockaddr_in );
 
    ssize_t st = recvfrom( this->sockId, buffer, size, 0, (struct sockaddr *) addr, &addrLen );

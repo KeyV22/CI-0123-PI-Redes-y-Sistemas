@@ -1,9 +1,11 @@
+
+
 /**
   *  Universidad de Costa Rica
   *  ECCI
   *  CI0123 Proyecto integrador de redes y sistemas operativos
-  *  2026-i
-  *  Grupos: 2 y 3
+  *  2025-i
+  *  Grupos: 1 y 3
   *
   *  ******   Socket class implementation
   *
@@ -31,18 +33,11 @@
   *
  **/
 Socket::Socket( char t, bool IPv6 ){
-
-   this->Init( t, IPv6 );      // Call base class constructor
-
+   this->init( t, IPv6 );      // Call base class constructor
 }
-
-
-Socket::Socket( int id ) {
-
-   this->Init( id );      // Call base class constructor (alternate version)
-
+Socket::Socket(int id) {
+   this->idSocket = id;
 }
-
 /**
   *  Class destructor
   *
@@ -55,32 +50,28 @@ Socket::~Socket() {
 
 
 /**
-  * Connect method
-  *   use "TryToConnect" in base class
+  * MakeConnection method
+  *   use "EstablishConnection" in base class
   *
   * @param      char * host: host address in dot notation, example "10.1.166.62"
   * @param      int port: process address, example 80
   *
  **/
 int Socket::Connect( const char * hostip, int port ) {
-
    return this->TryToConnect( hostip, port );
-
 }
 
 
 /**
-  * Connect method
-  *   use "TryToConnect" in base class
+  * MakeConnection method
+  *   use "EstablishConnection" in base class
   *
   * @param      char * host: host address in dns notation, example "os.ecci.ucr.ac.cr"
   * @param      char * service: process address, example "http"
   *
  **/
 int Socket::Connect( const char *host, const char *service ) {
-
    return this->TryToConnect( host, service );
-
 }
 
 
@@ -93,15 +84,11 @@ int Socket::Connect( const char *host, const char *service ) {
   *
  **/
 size_t Socket::Read( void * buffer, size_t size ) {
-
-   ssize_t st = read( this->sockId, buffer, size );
-
+   ssize_t st = read(this->idSocket, buffer, size);
    if ( -1 == st ) {
       throw std::runtime_error( "Socket::Read( void *, size_t )" );
    }
-
-   return (size_t) st;         // 0 es EOF/conexion cerrada por el peer, no un error
-
+   return st;
 }
 
 
@@ -114,16 +101,11 @@ size_t Socket::Read( void * buffer, size_t size ) {
   *
  **/
 size_t Socket::Write( const void * buffer, size_t size ) {
-
-   ssize_t st = write( this->sockId, buffer, size );
-
+   ssize_t st = write(this->idSocket, buffer, size);
    if ( -1 == st ) {
       throw std::runtime_error( "Socket::Write( void *, size_t )" );
    }
-
-   
-   return (size_t) st;
-
+   return st;
 }
 
 
@@ -135,14 +117,15 @@ size_t Socket::Write( const void * buffer, size_t size ) {
   *
  **/
 size_t Socket::Write( const char * text ) {
-
-  return this->Write( (const void *) text, strlen( text ) );
-
+   ssize_t st = write(this->idSocket, text, strlen(text));
+   if ( -1 == st ) {
+      throw std::runtime_error( "Socket::Write( char * )" );
+   }
+   return st;
 }
 
-
 /**
-  * AcceptConnection method
+  * AcceptiConnection method
   *    use base class to accept connections
   *
   *  @returns   a new class instance
@@ -161,3 +144,6 @@ VSocket * Socket::AcceptConnection(){
    return peer;
 
 }
+
+
+

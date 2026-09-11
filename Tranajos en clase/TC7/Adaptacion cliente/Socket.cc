@@ -37,20 +37,28 @@ Socket::Socket( char t, bool IPv6 ){
 }
 
 
+/**
+  *  Class constructor - version alterna
+  *     construye una instancia sobre un socket que ya fue creado (abierto).
+  *     Se usa en AcceptConnection() para envolver el descriptor que devuelve
+  *     "accept()" y representar la conexion con ese cliente en particular.
+  *
+  *  @param     int id: socket descriptor ya existente
+  *
+ **/
 Socket::Socket( int id ) {
 
    this->Init( id );      // Call base class constructor (alternate version)
 
 }
 
+
 /**
   *  Class destructor
   *
-  *  @param     int id: socket descriptor
-  *
  **/
 Socket::~Socket() {
-   this->Close();
+
 }
 
 
@@ -121,7 +129,6 @@ size_t Socket::Write( const void * buffer, size_t size ) {
       throw std::runtime_error( "Socket::Write( void *, size_t )" );
    }
 
-   
    return (size_t) st;
 
 }
@@ -136,7 +143,7 @@ size_t Socket::Write( const void * buffer, size_t size ) {
  **/
 size_t Socket::Write( const char * text ) {
 
-  return this->Write( (const void *) text, strlen( text ) );
+   return this->Write( (const void *) text, strlen( text ) );
 
 }
 

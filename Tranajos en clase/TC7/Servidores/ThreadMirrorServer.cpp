@@ -2,11 +2,12 @@
   *  Universidad de Costa Rica
   *  ECCI
   *  CI0123 Proyecto integrador de redes y sistemas operativos
-  *  2026-i
-  *  Grupos: 2 y 3
+  *  2025-i
+  *  Grupos: 1 y 3
   *
   *   Socket client/server example with threads
   *
+  * (Fedora version)
   *
  **/
  
@@ -15,7 +16,7 @@
 
 #include "Socket.hpp"
 
-#define PORT 2026
+#define PORT 1234
 #define BUFSIZE 512
 
 
@@ -27,14 +28,11 @@
  **/
 void task( VSocket * client ) {
    char a[ BUFSIZE ];
-
    client->Read( a, BUFSIZE );	// Read a string from client, data will be limited by BUFSIZE bytes
    std::cout << "Server received: " << a << std::endl;
    client->Write( a );		// Write it back to client, this is the mirror function
    client->Close();		// Close socket in parent
-
 }
-
 
 /**
  *   Create server code
@@ -58,3 +56,5 @@ int main( int argc, char ** argv ) {
    }
 
 }
+
+

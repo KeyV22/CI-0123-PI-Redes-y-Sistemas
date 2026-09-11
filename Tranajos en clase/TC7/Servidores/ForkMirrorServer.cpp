@@ -2,8 +2,8 @@
   *  Universidad de Costa Rica
   *  ECCI
   *  CI0123 Proyecto integrador de redes y sistemas operativos
-  *  2026-i
-  *  Grupos: 2 y 3
+  *  2025-i
+  *  Grupos: 1 y 3
   *
   *   Socket client/server example
   *
@@ -19,7 +19,7 @@
 
 #include "Socket.hpp"
 
-#define PORT 2026
+#define PORT 1234
 #define BUFSIZE 512
 
 int main( int argc, char ** argv ) {
@@ -46,9 +46,9 @@ int main( int argc, char ** argv ) {
             exit( 0 );			// Exit, finish child work
          }
       }
-
       s2->Close();			// Close socket s2 in parent, then go wait for a new conection
-
    }
 
 }
+
+
