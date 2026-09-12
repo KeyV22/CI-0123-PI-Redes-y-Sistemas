@@ -1,4 +1,41 @@
+# Compilación y ejecución
+
+Para compilar el proyecto, ejecute:
+
+```bash
 make clean && make
-./ServidorProductos.out     # terminal 1 — bodega, puerto 9090
-./Intermediario.out         # terminal 2 — intermediario, puerto 8080
-./Cliente.out                # terminal 3 — cliente interactivo
+```
+
+Luego, abra **tres terminales** y ejecute los programas en el siguiente orden:
+
+### Terminal 1 — Servidor de Productos
+
+```bash
+./ServidorProductos.out
+```
+
+El servidor de productos representa la **bodega** y utiliza el puerto **9090**.
+
+### Terminal 2 — Intermediario
+
+```bash
+./Intermediario.out
+```
+
+El intermediario utiliza el puerto **8080**.
+
+### Terminal 3 — Cliente
+
+```bash
+./Cliente.out
+```
+
+El cliente permite interactuar con el sistema.
+
+## Resumen
+
+```text
+Terminal 1: ./ServidorProductos.out
+Terminal 2: ./Intermediario.out
+Terminal 3: ./Cliente.out
+```
