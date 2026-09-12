@@ -1,0 +1,4 @@
+make clean && make
+./ServidorProductos.out     # terminal 1 — bodega, puerto 9090
+./Intermediario.out         # terminal 2 — intermediario, puerto 8080
+./Cliente.out                # terminal 3 — cliente interactivo
