@@ -1,0 +1,44 @@
+# FileSystem TicAmazon + GestionBodega
+
+## Compilar
+
+```bash
+make clean
+make
+```
+
+Esto genera dos programas:
+- `demo` — la prueba original del file system.
+- `GestionBodega.out` — CLI para administrar la bodega.
+
+## Ejecutar
+
+```bash
+./demo
+```
+
+```bash
+./GestionBodega.out
+```
+
+Menú de `GestionBodega.out`:
+```
+1) Listar categorias
+2) Listar productos de una categoria
+3) Insertar producto nuevo
+4) Actualizar stock (reabastecer / corregir)
+5) Eliminar producto (extraer)
+6) Ver estado del bitmap
+7) Salir
+```
+
+Por defecto usa el archivo `bodega_ticamazon.dat`. Si querés usar otro:
+```bash
+./GestionBodega.out otro_archivo.dat
+```
+
+## Reiniciar desde cero
+
+```bash
+make clean
+```
