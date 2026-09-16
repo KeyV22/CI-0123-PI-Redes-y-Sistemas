@@ -1,0 +1,27 @@
+# SimulacionHilos — Simulación del protocolo (hilos)
+
+## Compilar
+
+```bash
+make clean
+make
+```
+
+## Ejecutar
+
+```bash
+./SimulacionProtocolo.out
+```
+
+Corre sola (no necesita terminales aparte ni servidor levantado): simula
+Cliente, Intermediario y ServidorProductos como 3 hilos dentro del mismo
+programa.
+
+Al terminar, revisá `bitacora_simulacion.log` para ver el detalle línea por
+línea de cada mensaje del protocolo.
+
+## Reiniciar desde cero
+
+```bash
+make clean
+```
