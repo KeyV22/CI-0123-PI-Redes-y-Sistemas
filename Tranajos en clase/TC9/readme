@@ -1,0 +1,25 @@
+# SSL Servidor (fork / hilos) + Cliente
+
+## Compilar
+
+```bash
+make clean
+make
+```
+
+## Ejecutar
+
+Necesitás **dos terminales**.
+
+**Terminal 1 — servidor** (usá uno de los dos):
+```bash
+./SSLForkMirrorServer.out
+```
+```bash
+./SSLThreadMirrorServer.out
+```
+
+**Terminal 2 — cliente:**
+```bash
+./SSLMirrorClient.out "tu mensaje"
+```

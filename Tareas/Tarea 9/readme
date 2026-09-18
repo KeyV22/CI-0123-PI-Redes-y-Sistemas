@@ -1,0 +1,40 @@
+# SSL Servidor (fork / hilos) + Cliente — con IPv6
+
+## Compilar
+
+```bash
+make clean
+make
+```
+
+## Ejecutar en IPv4
+
+Necesitás **dos terminales**.
+
+**Terminal 1 — servidor** (usá uno de los dos):
+```bash
+./SSLForkMirrorServer.out
+```
+```bash
+./SSLThreadMirrorServer.out
+```
+
+**Terminal 2 — cliente:**
+```bash
+./SSLMirrorClient.out "tu mensaje"
+```
+
+## Ejecutar en IPv6 (solo en el laboratorio)
+
+**Terminal 1 — servidor:**
+```bash
+./SSLThreadMirrorServer.out 6
+```
+```bash
+./SSLForkMirrorServer.out 6
+```
+
+**Terminal 2 — cliente:**
+```bash
+./SSLMirrorClient.out 6 fe80::xxxx%interfaz "tu mensaje"
+```
