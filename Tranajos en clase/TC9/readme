@@ -9,9 +9,9 @@ make
 
 ## Ejecutar
 
-Necesitás **dos terminales**.
+Necesitas **dos terminales**.
 
-**Terminal 1 — servidor** (usá uno de los dos):
+**Terminal 1 — servidor** (usa uno de los dos):
 ```bash
 ./SSLForkMirrorServer.out
 ```

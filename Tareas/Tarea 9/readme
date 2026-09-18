@@ -37,4 +37,6 @@ Necesitás **dos terminales**.
 **Terminal 2 — cliente:**
 ```bash
 ./SSLMirrorClient.out 6 fe80::xxxx%interfaz "tu mensaje"
+
+ejemplo ./SSLMirrorClient.out 6 ::1 "HolA"
 ```
