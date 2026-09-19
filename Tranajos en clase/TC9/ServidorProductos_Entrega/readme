@@ -1,0 +1,33 @@
+# ServidorProductos — Compilación
+
+## Compilar
+
+```bash
+make clean
+make
+```
+
+## Ejecutar
+
+Necesitás **tres terminales**.
+
+**Terminal 1 — bodega:**
+```bash
+./ServidorProductos.out
+```
+
+**Terminal 2 — intermediario:**
+```bash
+./Intermediario.out
+```
+
+**Terminal 3 — cliente:**
+```bash
+./Cliente.out
+```
+
+## Gestión de bodega (aparte, sin red)
+
+```bash
+./GestionBodega.out
+```
