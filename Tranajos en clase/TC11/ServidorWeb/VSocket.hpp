@@ -19,7 +19,7 @@
 class VSocket {
    public:
        void init( char, bool = false );
-      ~VSocket();
+      virtual ~VSocket();
 
       void Close();
       int TryToConnect( const char *, int );

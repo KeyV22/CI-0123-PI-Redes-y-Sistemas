@@ -37,6 +37,16 @@ Socket::Socket( char t, bool IPv6 ){
 }
 Socket::Socket(int id) {
    this->idSocket = id;
+   this->port = 0;
+   this->type = 's';
+
+   struct sockaddr_storage addr;
+   socklen_t addrLen = sizeof( addr );
+   if ( 0 == getsockname( id, (struct sockaddr *) &addr, &addrLen ) ) {
+      this->IPv6 = ( AF_INET6 == addr.ss_family );
+   } else {
+      this->IPv6 = false;
+   }
 }
 /**
   *  Class destructor
