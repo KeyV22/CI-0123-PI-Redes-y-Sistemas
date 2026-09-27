@@ -1,0 +1,42 @@
+# TicAmazon - ServidorWeb (sin simulacion de hilos)
+
+## Compilar
+
+make
+
+Esto genera dos ejecutables: ServidorProductos.out e Intermediario.out.
+
+Requiere libssl-dev instalado (para SSL). En Ubuntu/Debian:
+
+sudo apt install libssl-dev
+
+## Ejecutar
+
+### 1. Bodega (ServidorProductos)
+
+./ServidorProductos.out [puerto] [archivo] [puertoMulticast] [ssl]
+
+Ejemplo normal:
+./ServidorProductos.out 9091 almacenamiento.data 5000
+
+Ejemplo con SSL:
+./ServidorProductos.out 9091 almacenamiento.data 5000 ssl
+
+### 2. Intermediario (servidor web)
+
+./Intermediario.out [id] [puertoHTTP] [puertoMulticast] [ssl] [bodega_ssl]
+
+Ejemplo normal:
+./Intermediario.out INT_04 8080 5000
+
+Ejemplo con HTTPS hacia el navegador y SSL hacia la bodega:
+./Intermediario.out INT_04 8080 5000 ssl bodega_ssl
+
+Luego abrir en el navegador: http://127.0.0.1:8080/ (o https:// si se uso ssl).
+
+Importante: levantar primero la Bodega y esperar unos segundos antes del Intermediario, para que el descubrimiento por multicast alcance a anunciarse.
+
+## Limpiar
+
+make clean
+
