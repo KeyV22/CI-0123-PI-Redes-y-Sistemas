@@ -12,8 +12,8 @@ all: $(TARGETS)
 %.o: %.cpp $(DEPS)
 	$(CXX) $(CXXFLAGS) -c $<
 
-ServidorProductos.out: ServidorProductos.o VSocket.o Socket.o almacenamiento.o Logger.o Protocolo.o Descubrimiento.o
-	$(CXX) ServidorProductos.o VSocket.o Socket.o almacenamiento.o Logger.o Protocolo.o Descubrimiento.o $(LDFLAGS) -o $@
+ServidorProductos.out: ServidorProductos.o VSocket.o Socket.o SSLSocket.o almacenamiento.o Logger.o Protocolo.o Descubrimiento.o
+	$(CXX) ServidorProductos.o VSocket.o Socket.o SSLSocket.o almacenamiento.o Logger.o Protocolo.o Descubrimiento.o $(LDFLAGS_SSL) -o $@
 
 Intermediario.out: Intermediario.o VSocket.o Socket.o SSLSocket.o Logger.o Protocolo.o Descubrimiento.o
 	$(CXX) Intermediario.o VSocket.o Socket.o SSLSocket.o Logger.o Protocolo.o Descubrimiento.o $(LDFLAGS_SSL) -o $@

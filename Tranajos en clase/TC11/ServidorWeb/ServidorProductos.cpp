@@ -1,39 +1,3 @@
-/**
-  *  Universidad de Costa Rica
-  *  ECCI
-  *  CI0123 Proyecto integrador de redes y sistemas operativos
-  *  2026-ii
-  *
-  *  TicAmazon - Bodega (ServidorProductos), sobre el Almacenamiento nuevo
-  *
-  *  Reemplaza el FileSystem anterior (superbloque/bitmap/indices binarios)
-  *  por el Almacenamiento nuevo (un solo archivo, bloques de 256 bytes,
-  *  bloque de control + directorio de bodegas + bloques de datos con
-  *  registros de texto separados por comas). Sigue hablando exactamente el
-  *  mismo protocolo mancomunado con el Intermediario (PEDIR:CAT, etc. --
-  *  ORIGEN|DESTINO/TIPO/campos); lo unico que cambia es el contenedor.
-  *
-  *  Diferencia de diseno importante: como el Almacenamiento identifica todo
-  *  por NOMBRE (bodega, categoria, producto -- todo string), ya no hace
-  *  falta la tabla catalogoIds (nombre de categoria -> id numerico) que
-  *  usabamos para traducir hacia el FileSystem anterior. Se simplifica.
-  *
-  *  "Al menos dos bodegas": un solo proceso, un solo archivo
-  *  (almacenamiento.data), con DOS bodegas nombradas adentro
-  *  ("Bodega-1", "Bodega-2"), cada una con sus propias categorias y
-  *  productos. Las solicitudes de categoria/producto se resuelven
-  *  recorriendo TODAS las bodegas del archivo (asi el Intermediario ve un
-  *  catalogo unificado sin necesitar saber en cual bodega esta cada cosa).
-  *
-  *  Nota de alcance: el Almacenamiento nuevo no tiene un indice de ordenes
-  *  (a diferencia del FileSystem anterior, que si persistia cada factura
-  *  con crearOrden/leerOrden). La factura se sigue armando correctamente
-  *  -- el Intermediario ya la arma en memoria con los items confirmados
-  *  via RESERVE_STOCK -- pero esta version no la vuelve a guardar en disco
-  *  como un registro de orden permanente.
-  *
- **/
-
 #include <iostream>
 #include <sstream>
 #include <thread>
@@ -44,6 +8,7 @@
 #include <chrono>
 
 #include "Socket.hpp"
+#include "SSLSocket.hpp"
 #include "almacenamiento.hpp"
 #include "Logger.hpp"
 #include "Protocolo.hpp"
@@ -70,12 +35,12 @@ void SembrarSiEsNueva( bool archivoEraNuevo ) {
    if ( !archivoEraNuevo ) return;
 
    almacen.crear_bodega( "Bodega-1" );
-   almacen.insertar_producto( "Bodega-1", "Alimentos", "CafeFrio", "40", "3.25" );
-   almacen.insertar_producto( "Bodega-1", "Alimentos", "Tresleches", "15", "3.80" );
-   almacen.insertar_producto( "Bodega-1", "Bloques", "BloqueRojo", "120", "3.00" );
+   almacen.insertar_producto( "Bodega-1", "Alimentos", "CafeNiFrioNiCaliente", "40", "3.25" );
+   almacen.insertar_producto( "Bodega-1", "Alimentos", "Cuatroleches", "15", "3.80" );
+   almacen.insertar_producto( "Bodega-1", "Bebidas", "Leche argia", "120", "3.00" );
 
    almacen.crear_bodega( "Bodega-2" );
-   almacen.insertar_producto( "Bodega-2", "Vehiculos", "RuedaChica", "60", "4.00" );
+   almacen.insertar_producto( "Bodega-2", "Delicias", "RatonFrito", "60", "4.00" );
    almacen.insertar_producto( "Bodega-2", "Reposteria", "PastelChoco", "12", "8.50" );
    almacen.insertar_producto( "Bodega-2", "Reposteria", "FlanCaramelo", "20", "3.00" );
 
@@ -181,14 +146,32 @@ std::string ManejarReservar( const std::string & nombreProducto, const std::stri
       return construirMensaje( "SERV", origen, TipoMensaje::PRODUCT_NOT_FOUND, { nombreProducto } );
    }
 
-   int cantidad = std::stoi( cantidadStr );
+   // La cantidad de una reserva debe ser un entero positivo valido.
+   if ( !ValidarStock( cantidadStr ) ) {
+      return construirError90( "SERV", origen, TipoMensaje::RESERVE_STOCK, "stock", cantidadStr );
+   }
+
+   int cantidad = 0;
+   try {
+      cantidad = std::stoi( cantidadStr );
+   } catch ( ... ) {
+      return construirError90( "SERV", origen, TipoMensaje::RESERVE_STOCK, "stock", cantidadStr );
+   }
+
+   if ( cantidad <= 0 ) {
+      return construirError90( "SERV", origen, TipoMensaje::RESERVE_STOCK, "stock", cantidadStr );
+   }
+
    std::string error;
    if ( !almacen.actualizar_cantidad( bodega, nombreProducto, -cantidad, &error ) ) {
+      if ( "STOCK_INSUFICIENTE" == error ) {
+         return construirMensaje( "SERV", origen, TipoMensaje::CART_NO_STOCK,
+                                  { nombreProducto, p.cantidad, cantidadStr } );
+      }
       return construirMensaje( "SERV", origen, TipoMensaje::PRODUCT_NOT_FOUND, { nombreProducto } );
    }
 
    return construirMensaje( "SERV", origen, TipoMensaje::PRODUCT_DETAIL, { nombreProducto, "reservado", cantidadStr } );
-
 }
 
 
@@ -266,6 +249,7 @@ int main( int argc, char ** argv ) {
    int puertoTCP = ( argc > 1 ) ? atoi( argv[ 1 ] ) : 9091;
    std::string archivoData = ( argc > 2 ) ? argv[ 2 ] : "almacenamiento.data";
    int puertoMulticast = ( argc > 3 ) ? atoi( argv[ 3 ] ) : 5000;
+   bool usarSSL = ( argc > 4 && 0 == strcmp( argv[ 4 ], "ssl" ) );
 
    bitacora = new Logger( "./bitacora_bodega_" + std::to_string( puertoTCP ) + ".log" );
 
@@ -281,7 +265,12 @@ int main( int argc, char ** argv ) {
 
    SembrarSiEsNueva( archivoEraNuevo );
 
-   VSocket * s1 = new Socket( 's' );
+   VSocket * s1;
+   if ( usarSSL ) {
+      s1 = new SSLSocket( (char *) "ci0123.pem", (char *) "key0123.pem" );
+   } else {
+      s1 = new Socket( 's' );
+   }
    s1Global = s1;
    s1->Bind( puertoTCP );
    s1->MarkPassive( 10 );
@@ -299,7 +288,7 @@ int main( int argc, char ** argv ) {
 
    signal( SIGINT, ManejarCierre );
 
-   std::cout << "[BODEGA] Escuchando en puerto " << puertoTCP << " (archivo: " << archivoData << ")\n";
+   std::cout << "[BODEGA] Escuchando en puerto " << puertoTCP << " (archivo: " << archivoData << ")" << ( usarSSL ? " [SSL]" : "" ) << "\n";
    std::cout << "[BODEGA] Bodegas en el archivo: ";
    for ( auto & b : almacen.listar_bodegas() ) std::cout << b << " ";
    std::cout << "\n";

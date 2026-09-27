@@ -49,6 +49,7 @@
 static std::string MI_ID = "INT_04";
 static int PUERTO_HTTP = 8080;
 static int PUERTO_MULTICAST = 5000;
+static bool BODEGA_SSL= false;
 
 static Logger * bitacora = nullptr;
 static Descubrimiento * descubrimiento = nullptr;
@@ -66,8 +67,16 @@ static std::mutex cacheMutex;
 
 std::string EnviarABodega( const InfoPeer & bodega, const std::string & mensaje ) {
 
-   Socket * conexion = new Socket( 's' );
-   conexion->Connect( bodega.ip.c_str(), std::to_string( bodega.puerto ).c_str() );
+   VSocket * conexion;
+   if ( BODEGA_SSL ) {
+      SSLSocket * ssl = new SSLSocket();
+      ssl->Connect( bodega.ip.c_str(), std::to_string( bodega.puerto ).c_str() );
+      conexion = ssl;
+   } else {
+      Socket * tcp = new Socket( 's' );
+      tcp->Connect( bodega.ip.c_str(), std::to_string( bodega.puerto ).c_str() );
+      conexion = tcp;
+   }
 
    conexion->Write( mensaje.c_str() );
 
@@ -78,6 +87,7 @@ std::string EnviarABodega( const InfoPeer & bodega, const std::string & mensaje 
    delete conexion;
 
    return std::string( buffer );
+
 
 }
 
@@ -258,15 +268,36 @@ std::string PaginaProductos( const std::string & categoria, const std::string & 
 }
 
 std::string PaginaAgregar( const std::string & producto, const std::string & cantidadStr, const std::string & cli ) {
+   // Nunca confiar en la cantidad recibida desde la URL.
+   int cantidadPedida = 0;
+   try {
+      size_t usados = 0;
+      cantidadPedida = std::stoi( cantidadStr, &usados );
+      if ( usados != cantidadStr.size() || cantidadPedida <= 0 ) throw std::invalid_argument( "cantidad" );
+   } catch ( ... ) {
+      return HtmlPagina( "Cantidad invalida", "<p class=\"err\">La cantidad debe ser un numero entero mayor que cero.</p>"
+                        "<p><a href=\"/categorias?cli=" + UrlEncode( cli ) + "\">Volver a categorias</a></p>" );
+   }
 
    InfoPeer bodega;
+   bool encontradaEnCache = false;
    {
       std::lock_guard<std::mutex> guard( cacheMutex );
       auto it = productoEnBodega.find( producto );
-      if ( productoEnBodega.end() == it ) {
-         return HtmlPagina( "No encontrado", "<p class=\"err\">Primero visita la categoria de \"" + producto + "\".</p>" );
-      }
-      bodega = it->second;
+      if ( productoEnBodega.end() != it ) { bodega = it->second; encontradaEnCache = true; }
+   }
+
+   // Si el usuario llega directo a /agregar, localizar el producto sin depender del cache.
+   if ( !encontradaEnCache ) {
+      std::string resp;
+      bool ok = ConsultarTodasLasBodegas(
+         construirMensaje( MI_ID, "SERV", TipoMensaje::REQUEST_DETAIL_B, { producto } ),
+         &resp, &bodega,
+         []( const MensajeV2 & r ) { return TipoMensaje::PRODUCT_DETAIL == r.tipo; }
+      );
+      if ( !ok ) return HtmlPagina( "No encontrado", "<p class=\"err\">Producto \"" + producto + "\" no existe o ninguna bodega respondio.</p>" );
+      std::lock_guard<std::mutex> guard( cacheMutex );
+      productoEnBodega[ producto ] = bodega;
    }
 
    std::string respDetalle;
@@ -277,13 +308,14 @@ std::string PaginaAgregar( const std::string & producto, const std::string & can
    }
 
    MensajeV2 detalle = parsearMensaje( respDetalle );
-   if ( TipoMensaje::PRODUCT_NOT_FOUND == detalle.tipo ) {
+   if ( TipoMensaje::PRODUCT_DETAIL != detalle.tipo || detalle.campos.size() < 3 ) {
       return HtmlPagina( "No encontrado", "<p class=\"err\">Producto \"" + producto + "\" no existe.</p>" );
    }
 
-   std::string precio = detalle.campos.size() > 1 ? detalle.campos[ 1 ] : "0";
-   int stock = detalle.campos.size() > 2 ? std::stoi( detalle.campos[ 2 ] ) : 0;
-   int cantidadPedida = std::stoi( cantidadStr );
+   std::string precio = detalle.campos[ 1 ];
+   int stock = 0;
+   try { stock = std::stoi( detalle.campos[ 2 ] ); }
+   catch ( ... ) { return HtmlPagina( "Error", "<p class=\"err\">La bodega devolvio un stock invalido.</p>" ); }
 
    if ( cantidadPedida > stock ) {
       return HtmlPagina( "Sin stock", "<p class=\"err\">Solo hay " + std::to_string( stock ) + " unidad(es) de \"" + producto + "\".</p>" );
@@ -296,9 +328,28 @@ std::string PaginaAgregar( const std::string & producto, const std::string & can
       return HtmlPagina( "Error", "<p class=\"err\">No se pudo reservar el producto.</p>" );
    }
 
+   // Solo agregar al carrito cuando la bodega confirma la reserva.
+   MensajeV2 reserva = parsearMensaje( respReserva );
+   if ( TipoMensaje::CART_NO_STOCK == reserva.tipo ) {
+      std::string disponible = reserva.campos.size() > 1 ? reserva.campos[ 1 ] : "0";
+      return HtmlPagina( "Sin stock", "<p class=\"err\">La reserva fue rechazada. Stock disponible: " + disponible + ".</p>" );
+   }
+   if ( TipoMensaje::PRODUCT_DETAIL != reserva.tipo || reserva.campos.size() < 3 || reserva.campos[ 1 ] != "reservado" ) {
+      return HtmlPagina( "Reserva rechazada", "<p class=\"err\">La bodega no confirmo la reserva; el carrito no fue modificado.</p>" );
+   }
+
    {
       std::lock_guard<std::mutex> guard( carritosMutex );
-      carritos[ cli ].push_back( { producto, precio, cantidadPedida } );
+      auto & carrito = carritos[ cli ];
+      bool acumulado = false;
+      for ( auto & item : carrito ) {
+         if ( item.nombre == producto && item.precio == precio ) {
+            item.cantidad += cantidadPedida;
+            acumulado = true;
+            break;
+         }
+      }
+      if ( !acumulado ) carrito.push_back( { producto, precio, cantidadPedida } );
    }
 
    std::string cuerpo =
@@ -307,6 +358,7 @@ std::string PaginaAgregar( const std::string & producto, const std::string & can
       "<a href=\"/factura?cli=" + UrlEncode( cli ) + "\">Ver factura</a></p>";
 
    return HtmlPagina( "Producto agregado", cuerpo );
+
 
 }
 
@@ -443,7 +495,8 @@ int main( int argc, char ** argv ) {
    if ( argc > 1 ) MI_ID = argv[ 1 ];
    if ( argc > 2 ) PUERTO_HTTP = atoi( argv[ 2 ] );
    if ( argc > 3 ) PUERTO_MULTICAST = atoi( argv[ 3 ] );
-   bool usarSSL = ( argc > 4 && 0 == strcmp( argv[ 4 ], "ssl" ) );
+   bool usarSSL=(argc>4 && 0==strcmp(argv[4],"ssl"));
+   BODEGA_SSL = ( argc > 5 && 0 == strcmp( argv[ 5 ], "bodega_ssl" ) );
 
    bitacora = new Logger( "./bitacora_intermediario_web_" + MI_ID + ".log" );
 
