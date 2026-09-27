@@ -1,0 +1,57 @@
+# TicAmazon - ServidorWeb (con Cliente funcional)
+
+## Compilar
+
+make
+
+Esto genera tres ejecutables: ServidorProductos.out, Intermediario.out y Cliente.out.
+
+Requiere libssl-dev instalado (para SSL). En Ubuntu/Debian:
+
+sudo apt install libssl-dev
+
+## Ejecutar
+
+### 1. Bodega (ServidorProductos)
+
+./ServidorProductos.out [puerto] [archivo] [puertoMulticast] [ssl]
+
+Ejemplo normal:
+./ServidorProductos.out 9091 almacenamiento.data 5000
+
+Ejemplo con SSL:
+./ServidorProductos.out 9091 almacenamiento.data 5000 ssl
+
+### 2. Intermediario (servidor web)
+
+./Intermediario.out [id] [puertoHTTP] [puertoMulticast] [ssl] [bodega_ssl]
+
+Ejemplo normal:
+./Intermediario.out INT_04 8080 5000
+
+Ejemplo con HTTPS hacia el cliente y SSL hacia la bodega:
+./Intermediario.out INT_04 8443 5000 ssl bodega_ssl
+
+Importante: levantar primero la Bodega y esperar unos segundos antes del Intermediario, para que el descubrimiento por multicast alcance a anunciarse.
+
+### 3. Cliente (consola)
+
+./Cliente.out [host] [puerto] [ssl] [idCliente]
+
+Ejemplo normal (contra Intermediario en 127.0.0.1:8080):
+./Cliente.out
+
+Ejemplo apuntando a otro host/puerto:
+./Cliente.out 127.0.0.1 8080
+
+Ejemplo con HTTPS:
+./Cliente.out 127.0.0.1 8443 ssl
+
+Ejemplo con un id de cliente propio (para mantener su propio carrito):
+./Cliente.out 127.0.0.1 8080 "" CLI_09
+
+Tambien se puede usar un navegador normal en vez de Cliente.out, abriendo http://127.0.0.1:8080/ (o https:// si se uso ssl). El Cliente.out hace lo mismo pero desde la terminal, con un menu: ver categorias, ver productos de una categoria, agregar al carrito, ver factura, salir.
+
+## Limpiar
+
+make clean
