@@ -233,6 +233,42 @@ bool Almacenamiento::crear_bodega(const std::string& nombre_bodega) {
     return true;
 }
 
+bool Almacenamiento::extraer_bodega(const std::string& nombre_bodega) {
+    int32_t bloque_dir; int pos; int32_t primer_datos;
+    if (!buscar_entrada_bodega(nombre_bodega, bloque_dir, pos, primer_datos)) {
+        std::cerr << "No existe la bodega " << nombre_bodega << "\n";
+        return false;
+    }
+
+    // liberar toda la cadena de bloques de datos de la bodega
+    int32_t indice_actual = primer_datos;
+    while (indice_actual != -1) {
+        Bloque b;
+        leer_bloque(indice_actual, b);
+        int32_t siguiente = b.datos.encabezado.bloque_siguiente;
+        liberar_bloque(indice_actual);
+        indice_actual = siguiente;
+    }
+
+    // quitar la entrada del bloque de directorio, corriendo el resto
+    // una posicion hacia la izquierda para no dejar huecos
+    Bloque b_dir;
+    leer_bloque(bloque_dir, b_dir);
+    int32_t cantidad = b_dir.directorio.encabezado.cantidad_usada;
+    for (int i = pos; i < cantidad - 1; i++) {
+        b_dir.directorio.entradas[i] = b_dir.directorio.entradas[i + 1];
+    }
+    std::memset(&b_dir.directorio.entradas[cantidad - 1], 0, sizeof(EntradaDirectorio));
+    b_dir.directorio.encabezado.cantidad_usada--;
+    escribir_bloque(bloque_dir, b_dir);
+
+    BloqueControl control = leer_control();
+    control.cantidad_bodegas--;
+    escribir_control(control);
+
+    return true;
+}
+
 // ---------------------------------------------------------------------
 // Registros de producto (texto delimitado por ':' dentro del bloque)
 // ---------------------------------------------------------------------

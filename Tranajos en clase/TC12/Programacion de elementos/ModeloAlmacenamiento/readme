@@ -1,0 +1,68 @@
+# TicAmazon - Modelo de Almacenamiento
+
+## Compilar
+
+make
+
+Genera tres binarios: `bodegas`, `agregar_bodega`, `extraer_bodega`.
+
+Requiere g++ con soporte C++17 y make.
+
+## Ejecutar
+
+### Demo del contenedor (crea bodegas de ejemplo, lista e extrae un producto)
+
+./bodegas
+
+## Salida esperada
+
+```
+Bodegas en el archivo:
+  Bodega-1
+  Bodega-2
+
+Productos en Bodega-1:
+  banano (Alimentos y bebidas) cant=100 precio=10
+  manzana (Alimentos y bebidas) cant=10 precio=300
+  perfume (Salud y belleza) cant=33 precio=44
+
+Productos en Bodega-2:
+  shampoo (Salud y belleza) cant=22 precio=11
+  pantalla (Islas) cant=5 precio=150
+
+Extrayendo 'manzana' de Bodega-1...
+
+Productos en Bodega-1:
+  banano (Alimentos y bebidas) cant=100 precio=10
+  perfume (Salud y belleza) cant=33 precio=44
+
+Productos en Bodega-2:
+  shampoo (Salud y belleza) cant=22 precio=11
+  pantalla (Islas) cant=5 precio=150
+
+```
+
+### Agregar una bodega (programa independiente)
+
+./agregar_bodega <archivo> <nombre_bodega>
+
+Ejemplo:
+./agregar_bodega bodegas.data Bodega-3
+
+Si el archivo no existe, lo crea. Si ya existe, lo abre y le agrega la bodega.
+
+### Extraer una bodega (programa independiente)
+
+./extraer_bodega <archivo> <nombre_bodega>
+
+Ejemplo:
+./extraer_bodega bodegas.data Bodega-3
+
+El archivo debe existir ya. Elimina la bodega completa (libera sus bloques y
+quita su entrada del directorio).
+
+## Limpiar
+
+make clean
+
+Borra los .o, los tres binarios y el archivo bodegas.data generado.
