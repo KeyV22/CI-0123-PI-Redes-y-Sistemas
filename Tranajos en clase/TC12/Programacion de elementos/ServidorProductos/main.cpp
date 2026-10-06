@@ -4,6 +4,7 @@
 #include <string>
 #include "almacenamiento.hpp"
 #include "Inventario.hpp"
+#include "ServicioProductosLocal.hpp"
 #include "ServicioProductos.hpp"
 #include "Servidor.hpp"
 
@@ -62,8 +63,8 @@ int main( int argc, char * argv[] ) {
       std::cerr << "No se pudo preparar " << ruta << "\n";
       return 1;
    }
-
    Inventario inventario( almacen );
+   ServicioProductosLocal servicio( inventario );
    ServicioProductos servicio( inventario );
 
    Servidor servidor( puerto );

@@ -11,7 +11,7 @@ BIN_SERVIDOR := servidor
 FUENTES_SERVIDOR := main.cpp \
                      Servidor.cpp Manejadorconexion.cpp Router.cpp \
                      Httprequest.cpp Httpresponse.cpp Parserproforma.cpp \
-                     Inventario.cpp ServicioProductos.cpp PaginasHtml.cpp \
+                     Inventario.cpp ServicioProductos.cpp ServicioProductosLocal.cpp PaginasHtml.cpp \
                      Vsocket.cpp Socket.cpp \
                      almacenamiento.cpp
 
