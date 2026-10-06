@@ -1,0 +1,30 @@
+# TicAmazon - Simulador del protocolo intragrupo
+
+Simula Cliente, Intermediario y Servidor de productos como entidades
+separadas que se comunican por buzones en memoria, sobre un sistema de
+archivos real. No usa red.
+
+## Compilar
+
+```bash
+make
+```
+
+Genera el binario `Simulador.out`. Requiere g++ y make.
+
+## Ejecutar
+
+```bash
+./Simulador.out
+```
+
+Corre una serie de casos (buscar producto, listar categorías, listar
+productos, etc.) e imprime la respuesta de cada uno. El registro queda en
+`bitacora/Bitacora.txt` y las bodegas en `bodegas/Bodegas.data`. Las
+carpetas `bitacora/` y `bodegas/` deben existir.
+
+## Limpiar
+
+```bash
+make limpiar
+```
