@@ -1,20 +1,31 @@
 # TicAmazon - Modelo de Almacenamiento
 
+Contenedor de almacenamiento en disco usado por el servidor de productos.
+Todo el inventario se guarda en un único archivo binario dividido en bloques
+de 256 bytes.
+
 ## Compilar
 
+```bash
 make
+```
 
-Genera tres binarios: `bodegas`, `agregar_bodega`, `extraer_bodega`.
+Genera tres binarios: `bodegas`, `agregar_bodega` y `extraer_bodega`.
 
 Requiere g++ con soporte C++17 y make.
 
 ## Ejecutar
 
-### Demo del contenedor (crea bodegas de ejemplo, lista e extrae un producto)
+### 1. Demo del contenedor
 
+Crea `bodegas.data`, siembra dos bodegas con productos, las lista, extrae un
+producto y vuelve a listar.
+
+```bash
 ./bodegas
+```
 
-## Salida esperada
+Salida esperada:
 
 ```
 Bodegas en el archivo:
@@ -39,30 +50,39 @@ Productos en Bodega-1:
 Productos en Bodega-2:
   shampoo (Salud y belleza) cant=22 precio=11
   pantalla (Islas) cant=5 precio=150
-
 ```
 
-### Agregar una bodega (programa independiente)
+### 2. Agregar una bodega (programa independiente)
 
+```bash
 ./agregar_bodega <archivo> <nombre_bodega>
+```
 
 Ejemplo:
+
+```bash
 ./agregar_bodega bodegas.data Bodega-3
+```
 
 Si el archivo no existe, lo crea. Si ya existe, lo abre y le agrega la bodega.
 
-### Extraer una bodega (programa independiente)
+### 3. Extraer una bodega (programa independiente)
 
+```bash
 ./extraer_bodega <archivo> <nombre_bodega>
+```
 
 Ejemplo:
-./extraer_bodega bodegas.data Bodega-3
 
-El archivo debe existir ya. Elimina la bodega completa (libera sus bloques y
-quita su entrada del directorio).
+```bash
+./extraer_bodega bodegas.data Bodega-3
+```
+
+El archivo debe existir ya. Elimina la bodega completa: libera todos sus
+bloques de datos y quita su entrada del directorio.
 
 ## Limpiar
 
+```bash
 make clean
-
-Borra los .o, los tres binarios y el archivo bodegas.data generado.
+```

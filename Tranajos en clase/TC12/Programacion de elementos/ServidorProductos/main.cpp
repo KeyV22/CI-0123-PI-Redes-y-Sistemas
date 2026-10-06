@@ -65,7 +65,6 @@ int main( int argc, char * argv[] ) {
    }
    Inventario inventario( almacen );
    ServicioProductosLocal servicio( inventario );
-   ServicioProductos servicio( inventario );
 
    Servidor servidor( puerto );
    if ( !servidor.Iniciar() ) {
