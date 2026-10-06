@@ -1,0 +1,35 @@
+# TicAmazon - Programación de elementos
+
+## Carpetas
+
+- `ClienteServidor/`: cliente de consola (conecta al Intermediario).
+- `Intermediario/`: atiende al cliente y reenvía al servidor de productos.
+- `ServidorProductos/`: atiende al intermediario y usa el almacenamiento.
+- `ModeloAlmacenamiento/`: sistema de archivos y programas para agregar/extraer bodegas.
+- `Simulador/`: simulación del protocolo intragrupo con buzones.
+- `PacketTracer/`: laboratorio de red (no se compila).
+
+Cada carpeta tiene su propio `Makefile`: entrar a la carpeta y correr `make`.
+
+## Ejecutar el sistema completo (tres terminales, en este orden)
+
+```bash
+cd ServidorProductos && make && ./servidor 9090
+cd Intermediario     && make && ./intermediario 8080 127.0.0.1 9090
+cd ClienteServidor   && make && ./cliente 127.0.0.1 8080
+```
+
+En computadoras distintas: el intermediario apunta a la IP del servidor de
+productos, y el cliente a la IP del intermediario (`ip addr show` muestra la IP).
+
+## Programas independientes
+
+```bash
+cd ModeloAlmacenamiento && make
+./agregar_bodega bodegas.data Bodega-3
+./extraer_bodega bodegas.data Bodega-3
+```
+
+```bash
+cd Simulador && make && ./Simulador.out
+```
