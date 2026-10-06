@@ -6,8 +6,9 @@ BIN = bodegas
 
 OBJS_AGREGAR = AgregarBodega.o almacenamiento.o
 OBJS_EXTRAER = ExtraerBodega.o almacenamiento.o
+OBJS_VERIFICAR = VerificarSistemaArchivos.o almacenamiento.o
 
-all: $(BIN) agregar_bodega extraer_bodega
+all: $(BIN) agregar_bodega extraer_bodega verificar
 
 $(BIN): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(BIN) $(OBJS)
@@ -17,6 +18,9 @@ agregar_bodega: $(OBJS_AGREGAR)
 
 extraer_bodega: $(OBJS_EXTRAER)
 	$(CXX) $(CXXFLAGS) -o extraer_bodega $(OBJS_EXTRAER)
+
+verificar: $(OBJS_VERIFICAR)
+	$(CXX) $(CXXFLAGS) -o verificar $(OBJS_VERIFICAR)
 
 main.o: main.cpp Headers/almacenamiento.hpp Headers/bloques.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
@@ -30,8 +34,11 @@ AgregarBodega.o: AgregarBodega.cpp Headers/almacenamiento.hpp Headers/bloques.hp
 ExtraerBodega.o: ExtraerBodega.cpp Headers/almacenamiento.hpp Headers/bloques.hpp
 	$(CXX) $(CXXFLAGS) -c ExtraerBodega.cpp
 
+VerificarSistemaArchivos.o: VerificarSistemaArchivos.cpp Headers/almacenamiento.hpp Headers/bloques.hpp
+	$(CXX) $(CXXFLAGS) -c VerificarSistemaArchivos.cpp
+
 clean:
-	rm -f $(OBJS) $(BIN) AgregarBodega.o ExtraerBodega.o agregar_bodega extraer_bodega bodegas.data
+	rm -f $(OBJS) $(BIN) AgregarBodega.o ExtraerBodega.o VerificarSistemaArchivos.o agregar_bodega extraer_bodega verificar bodegas.data verificacion.data
 
 run: $(BIN)
 	./$(BIN)

@@ -81,6 +81,16 @@ Ejemplo:
 El archivo debe existir ya. Elimina la bodega completa: libera todos sus
 bloques de datos y quita su entrada del directorio.
 
+### 4. Verificación del sistema de archivos
+
+```bash
+./verificar [archivo]
+```
+
+Comprueba que los bloques miden 256 bytes, que pueden existir varias bodegas,
+que una bodega puede ocupar más de un bloque y que extraer una no afecta a las
+demás. Cada chequeo imprime `[OK]` o `[FALLO]`.
+
 ## Limpiar
 
 ```bash
