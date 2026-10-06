@@ -1,1 +1,7 @@
 [2026-10-06 16:27:56] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-06 16:50:32] GET / -> 404 Not Found
+[2026-10-06 16:50:32] GET /favicon.ico -> 404 Not Found
+[2026-10-06 16:51:35] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-06 16:51:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-06 16:51:41] GET /TicAmazon/list.php | categoria: 'Salud y belleza' -> 200 OK
+[2026-10-06 16:51:51] Error atendiendo conexion: read error
