@@ -12,6 +12,7 @@ class PaginasHtml {
       static std::string PaginaProductos( const std::string & categoria,const std::vector<Producto> & productos );
       static std::string PaginaProforma( const Proforma & pf );
       static std::string PaginaError( int codigo, const std::string & detalle );
+      static std::string PaginaCerrado();
 
       static std::string Escapar( const std::string & texto );
       static std::string CodificarUrl( const std::string & texto );

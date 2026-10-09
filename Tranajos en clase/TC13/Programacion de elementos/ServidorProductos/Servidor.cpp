@@ -3,6 +3,8 @@
 #include "Servidor.hpp"
 #include "Manejadorconexion.hpp"
 
+std::atomic<bool> Servidor::apagar( false );
+int Servidor::puertoEscucha = 0;
 // El constructor de Socket ya crea el descriptor (socket() se llama
 // dentro de VSocket::Init, invocado desde el constructor de Socket).
 // 's' = stream (TCP), false = IPv4.
@@ -18,17 +20,19 @@ bool Servidor::Iniciar() {
    }
 
    corriendo = true;
+   puertoEscucha = puerto;
    std::cout << "Servidor escuchando en el puerto " << puerto << "\n";
    return true;
 }
 
 void Servidor::Ejecutar( ServicioProductos & servicio ) {
-   while ( corriendo ) {
+   while ( corriendo && !apagar) {
       try {
          // Copy-initialization desde el valor devuelto por Accept():
          // usa el move constructor de Socket (no hace falta un Socket
          // "vacio" previo, y no se crea ningun descriptor de mas).
          Socket cliente = escucha.Accept();
+         if ( apagar ) break;   // conexion de despertar: no se atiende
 
          // Un hilo por conexion: no bloquea el Accept() siguiente mientras
          // se atiende esta. Se separa (detach) porque cada hilo termina y
@@ -40,6 +44,16 @@ void Servidor::Ejecutar( ServicioProductos & servicio ) {
          // tumbar el servidor completo: se loguea y se sigue esperando.
          std::cerr << "[Servidor] Accept() fallo: " << e.what() << "\n";
       }
+   }
+}
+
+void Servidor::SolicitarApagado() {
+   apagar = true;
+   try {
+      Socket despertar( 's', false );
+      despertar.Connect( "127.0.0.1", puertoEscucha );
+   } catch ( const std::exception & ) {
+      // si no conecta, el servidor termina en el proximo Accept()
    }
 }
 

@@ -73,5 +73,6 @@ int main( int argc, char * argv[] ) {
    servidor.Ejecutar( servicio );   
 
    almacen.cerrar_archivo();
+   std::cout << "Servidor cerrado.\n";
    return 0;
 }

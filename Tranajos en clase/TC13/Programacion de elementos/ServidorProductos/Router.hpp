@@ -18,6 +18,7 @@ class Router {
    private:
       static const std::string RUTA_LISTADO;
       static const std::string RUTA_PROFORMA;
+      static const std::string RUTA_SALIR;
 };
 
 #endif

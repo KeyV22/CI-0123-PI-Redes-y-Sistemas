@@ -1,8 +1,10 @@
 #include "Router.hpp"
 #include "Parserproforma.hpp"
+#include "PaginasHtml.hpp"
 
 const std::string Router::RUTA_LISTADO = "/TicAmazon/list.php";
 const std::string Router::RUTA_PROFORMA = "/TicAmazon/proforma.php";
+const std::string Router::RUTA_SALIR = "/TicAmazon/salir";
 
 RespuestaServicio Router::Despachar( const HttpRequest & req, ServicioProductos & servicio ) {
    if ( !req.valido ) {
@@ -24,8 +26,16 @@ RespuestaServicio Router::Despachar( const HttpRequest & req, ServicioProductos 
       return servicio.GenerarProforma( items );
    }
 
+   if ( req.metodo == "POST" && req.ruta == RUTA_SALIR ) {
+      RespuestaServicio r;
+      r.codigo = 200;
+      r.frase = "OK";
+      r.tipoContenido = "text/html; charset=utf-8";
+      r.cuerpo = PaginasHtml::PaginaCerrado();
+      return r;   // el cierre real lo dispara ManejadorConexion despues de responder
+   }
    // Ruta conocida pero metodo incorrecto (ej. POST a list.php)
-   if ( req.ruta == RUTA_LISTADO || req.ruta == RUTA_PROFORMA ) {
+   if ( req.ruta == RUTA_LISTADO || req.ruta == RUTA_PROFORMA || req.ruta == RUTA_SALIR) {
       return servicio.Error( 405, "Metodo '" + req.metodo + "' no soportado en " + req.ruta );
    }
 

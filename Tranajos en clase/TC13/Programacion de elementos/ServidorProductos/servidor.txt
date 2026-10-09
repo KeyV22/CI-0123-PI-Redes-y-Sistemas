@@ -31,3 +31,62 @@
 [2026-10-09 09:04:29] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
 [2026-10-09 09:04:32] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
 [2026-10-09 09:04:42] Error atendiendo conexion: read error
+[2026-10-09 09:21:16] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:21:21] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 09:21:26] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:21:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:21:31] GET /TicAmazon/list.php | categoria: 'Salud' -> 200 OK
+[2026-10-09 09:21:32] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:21:33] GET /TicAmazon/list.php | categoria: 'Electronica' -> 200 OK
+[2026-10-09 09:21:37] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:21:47] Error atendiendo conexion: read error
+[2026-10-09 09:22:25] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:22:30] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:22:40] Error atendiendo conexion: read error
+[2026-10-09 09:23:57] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:23:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:24:09] Error atendiendo conexion: read error
+[2026-10-09 09:24:23] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:24:33] Error atendiendo conexion: read error
+[2026-10-09 09:29:20] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:29:21] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:29:22] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:29:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:29:24] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:29:34] Error atendiendo conexion: read error
+[2026-10-09 09:30:11] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:30:21] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 09:30:26] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:30:30] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:38:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:38:24] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 09:38:34] Error atendiendo conexion: read error
+[2026-10-09 09:38:52] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 09:39:00] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:39:02] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:39:04] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:39:05] GET /TicAmazon/list.php | categoria: 'Salud' -> 200 OK
+[2026-10-09 09:39:06] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:39:16] Error atendiendo conexion: read error
+[2026-10-09 09:54:51] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:55:01] Error atendiendo conexion: read error
+[2026-10-09 09:55:13] POST /TicAmazon/salir -> 200 OK
+[2026-10-09 09:55:13] Cierre del servidor solicitado desde el navegador
+[2026-10-09 09:56:47] POST /TicAmazon/salir -> 200 OK
+[2026-10-09 09:56:47] Cierre del servidor solicitado desde el navegador
+[2026-10-09 09:57:16] GET /TicAmazon -> 404 Not Found
+[2026-10-09 09:57:26] GET /TicAmazon -> 404 Not Found
+[2026-10-09 09:57:36] Error atendiendo conexion: read error
+[2026-10-09 09:59:36] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:59:44] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 09:59:47] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:59:48] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:59:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:59:49] GET /TicAmazon/list.php | categoria: 'Salud' -> 200 OK
+[2026-10-09 09:59:51] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:59:52] GET /TicAmazon/list.php | categoria: 'Electronica' -> 200 OK
+[2026-10-09 09:59:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:59:54] GET /TicAmazon/list.php | categoria: 'Hogar' -> 200 OK
+[2026-10-09 09:59:55] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:59:59] POST /TicAmazon/salir -> 200 OK
+[2026-10-09 09:59:59] Cierre del servidor solicitado desde el navegador

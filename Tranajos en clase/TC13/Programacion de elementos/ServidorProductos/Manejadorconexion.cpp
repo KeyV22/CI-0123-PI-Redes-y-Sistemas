@@ -6,6 +6,7 @@
 #include <sstream>
 #include "Bitacora.hpp"
 #include "Parserproforma.hpp"
+#include "Servidor.hpp"
 
 std::string ManejadorConexion::LeerRequestCompleto( Socket & cliente ) {
    std::string acumulado;
@@ -89,10 +90,14 @@ void ManejadorConexion::Atender( Socket cliente, ServicioProductos & servicio ) 
       std::string respuestaCruda = HttpResponse::Construir( resp );
 
       EscribirCompleto( cliente, respuestaCruda );
-   if ( req.valido ) {
+      if ( req.valido ) {
          Bitacora::Registrar( DescribirSolicitud( req ) + " -> " + std::to_string( resp.codigo )+ " " + resp.frase );
       } else {
          Bitacora::Registrar( "Solicitud invalida (" + req.error + ") -> "+ std::to_string( resp.codigo ) );
+      }
+      if ( req.valido && req.metodo == "POST" && req.ruta == "/TicAmazon/salir" ) {
+         Bitacora::Registrar( "Cierre del servidor solicitado desde el navegador" );
+         Servidor::SolicitarApagado();
       }
    } catch ( const std::exception & e ) {
       Bitacora::Registrar( std::string( "Error atendiendo conexion: " ) + e.what() );

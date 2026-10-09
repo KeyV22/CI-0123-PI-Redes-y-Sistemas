@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <exception>
 #include <iostream>
 #include "Inventario.hpp"
@@ -60,11 +61,8 @@ std::vector<Producto> Inventario::ListarProductos( const std::string & categoria
 }
 
 Proforma Inventario::GenerarProforma( const std::vector<SolicitudItem> & items ) const {
-   std::vector<Producto> todos;
-   {
-      std::lock_guard<std::mutex> lock( mtx );
-      todos = LeerTodoSinBloqueo();
-   }
+   std::lock_guard<std::mutex> lock( mtx );
+   std::vector<Producto> todos = LeerTodoSinBloqueo();
 
    Proforma pf;
 
@@ -116,6 +114,21 @@ Proforma Inventario::GenerarProforma( const std::vector<SolicitudItem> & items )
       linea.cantidad = it.cantidad;
       linea.precioUnitario = prod->Precio();
       pf.AgregarLinea( linea );
+   }
+   // Compra valida: descontar del almacenamiento lo que se vendio
+   if ( pf.EsValida() ) {
+      for ( const LineaProforma & l : pf.Lineas() ) {
+         int actual = -1;
+         for ( const ProductoTexto & t : almacen.listar_productos( l.bodega ) ) {
+            if ( t.producto == l.descripcion ) { actual = std::stoi( t.cantidad ); break; }
+         }
+         if ( actual < 0 ) continue;
+         char precio[64];
+         snprintf( precio, sizeof( precio ), "%.2f", l.precioUnitario );
+         almacen.extraer_producto( l.bodega, l.descripcion );
+         almacen.insertar_producto( l.bodega, l.categoria, l.descripcion,
+                                    std::to_string( actual - l.cantidad ), precio );
+      }
    }
    return pf;
 }

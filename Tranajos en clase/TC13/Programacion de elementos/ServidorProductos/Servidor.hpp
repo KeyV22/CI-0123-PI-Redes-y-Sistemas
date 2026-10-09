@@ -23,10 +23,16 @@ class Servidor {
       // Permite pedirle al servidor que termine el loop (ej. para pruebas).
       void Detener();
 
+      // Pide que el servidor termine: marca la bandera y se conecta a si
+      // mismo para despertar el Accept() bloqueado. Se puede llamar desde
+      // cualquier hilo.
+      static void SolicitarApagado();
    private:
       int puerto;
       Socket escucha;             // socket de tipo 's' (stream/TCP)
       std::atomic<bool> corriendo;
+      static std::atomic<bool> apagar;
+      static int puertoEscucha;
 };
 
 #endif
