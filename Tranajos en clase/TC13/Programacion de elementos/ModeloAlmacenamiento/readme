@@ -1,0 +1,107 @@
+# TicAmazon - Modelo de Almacenamiento
+
+Contenedor de almacenamiento en disco usado por el servidor de productos.
+Todo el inventario se guarda en un único archivo binario dividido en bloques
+de 256 bytes.
+
+## Compilar
+
+```bash
+make
+```
+
+Genera tres binarios: `bodegas`, `agregar_bodega` y `extraer_bodega`.
+
+Requiere g++ con soporte C++17 y make.
+
+## Ejecutar
+
+### 1. Demo del contenedor
+
+Crea `bodegas.data`, siembra dos bodegas con productos, las lista, extrae un
+producto y vuelve a listar.
+
+```bash
+./bodegas
+```
+
+Salida esperada:
+
+```
+Bodegas en el archivo:
+  Bodega-1
+  Bodega-2
+
+Productos en Bodega-1:
+  banano (Alimentos y bebidas) cant=100 precio=10
+  manzana (Alimentos y bebidas) cant=10 precio=300
+  perfume (Salud y belleza) cant=33 precio=44
+
+Productos en Bodega-2:
+  shampoo (Salud y belleza) cant=22 precio=11
+  pantalla (Islas) cant=5 precio=150
+
+Extrayendo 'manzana' de Bodega-1...
+
+Productos en Bodega-1:
+  banano (Alimentos y bebidas) cant=100 precio=10
+  perfume (Salud y belleza) cant=33 precio=44
+
+Productos en Bodega-2:
+  shampoo (Salud y belleza) cant=22 precio=11
+  pantalla (Islas) cant=5 precio=150
+```
+
+### 2. Agregar una bodega (programa independiente)
+
+```bash
+./agregar_bodega <archivo> <nombre_bodega>
+```
+
+Ejemplo:
+
+```bash
+./agregar_bodega bodegas.data Bodega-3
+```
+
+Si el archivo no existe, lo crea. Si ya existe, lo abre y le agrega la bodega.
+
+### 3. Extraer una bodega (programa independiente)
+
+```bash
+./extraer_bodega <archivo> <nombre_bodega>
+```
+
+Ejemplo:
+
+```bash
+./extraer_bodega bodegas.data Bodega-3
+```
+
+El archivo debe existir ya. Elimina la bodega completa: libera todos sus
+bloques de datos y quita su entrada del directorio.
+
+### 4. Verificación del sistema de archivos
+
+```bash
+./verificar [archivo]
+```
+
+Comprueba que los bloques miden 256 bytes, que pueden existir varias bodegas,
+que una bodega puede ocupar más de un bloque y que extraer una no afecta a las
+demás. Cada chequeo imprime `[OK]` o `[FALLO]`.
+
+
+### 5. Cargar 100 productos en 2 bodegas
+
+```bash
+./cargar [archivo]
+```
+
+Crea un archivo con 2 bodegas de 50 productos cada una (100 en total) y
+verifica el total. Por defecto genera `bodegas100.data`.
+## Limpiar
+
+```bash
+make clean
+```
