@@ -10,7 +10,7 @@ de 256 bytes.
 make
 ```
 
-Genera tres binarios: `bodegas`, `agregar_bodega` y `extraer_bodega`.
+Genera 5 binarios: `bodegas`, `agregar_bodega`  `extraer_bodega`. `verificar` y `cargar`
 
 Requiere g++ con soporte C++17 y make.
 
