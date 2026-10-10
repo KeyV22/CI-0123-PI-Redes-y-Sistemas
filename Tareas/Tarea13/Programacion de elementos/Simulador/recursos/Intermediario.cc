@@ -44,7 +44,9 @@ Mensaje Intermediario::procesarSolicitud(const Mensaje &mensaje) {
   // Variable local donde se arma el texto final que verá el cliente
   std::string textoFinal;
   // Se traduce el comando de resultado del Servidor al formato textual del protocolo
-  if (mensaje.comando == Comando::Ok)
+  if (mensaje.comando == Comando::RespuestaProtocolo)
+    textoFinal = mensaje.contenido;
+  else if (mensaje.comando == Comando::Ok)
     textoFinal = "OK " + reemplazarSeparador(mensaje.contenido, ':');
   else if (mensaje.comando == Comando::OkCatalogo)
     textoFinal = "OK_CATALOGO";

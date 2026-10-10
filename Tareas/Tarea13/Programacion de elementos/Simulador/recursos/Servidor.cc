@@ -5,6 +5,7 @@ Servidor::Servidor(Buzon &buzonHaciaIntermediario, Buzon &buzonDesdeIntermediari
     buzonDesdeIntermediario(buzonDesdeIntermediario),
     sistemaArchivos(sistemaArchivos),
     bitacora(bitacora),
+    protocolo(sistemaArchivos, bitacora),
     estado(Estado::Esperando) {}
 
 Servidor::~Servidor() {}
@@ -14,6 +15,10 @@ void Servidor::iniciar() {
   this->bitacora.registrarAccion("Servidor", "inicialización");
   // Inicializa y ejecuta el hilo del servidor
   this->hilo = std::thread(&Servidor::ejecutar, this);
+}
+
+void Servidor::fijarVigenciaReserva(int segundos) {
+  this->protocolo.fijarVigenciaReserva(segundos);
 }
 
 void Servidor::detener() {
@@ -326,6 +331,18 @@ Mensaje Servidor::atenderEliminarProducto(const Mensaje &solicitud) {
   return respuesta;
 }
 
+Mensaje Servidor::atenderProtocolo(const Mensaje &solicitud) {
+  Mensaje respuesta;
+  respuesta.idCliente = solicitud.idCliente;
+  respuesta.comando = Comando::RespuestaProtocolo;
+  // El contenido de la solicitud es el texto del mensaje del protocolo
+  std::string texto = this->protocolo.procesar(solicitud.contenido);
+  // Se copia la respuesta sin desbordar el búfer del mensaje
+  std::strncpy(respuesta.contenido, texto.c_str(), TAMANIO_MAXIMO - 1);
+  respuesta.contenido[TAMANIO_MAXIMO - 1] = '\0';
+  return respuesta;
+}
+
 Mensaje Servidor::procesarSolicitud(const Mensaje &solicitud) {
   // Se evalúa el comando de la solicitud y se delega al método correspondiente
   if (solicitud.comando == Comando::BuscarProducto)
@@ -344,6 +361,8 @@ Mensaje Servidor::procesarSolicitud(const Mensaje &solicitud) {
     return atenderActualizarProducto(solicitud);
   else if (solicitud.comando == Comando::EliminarProducto)
     return atenderEliminarProducto(solicitud);
+  else if (solicitud.comando == Comando::Protocolo)
+    return atenderProtocolo(solicitud);
   else
     return mensajeInvalido(solicitud);
 }

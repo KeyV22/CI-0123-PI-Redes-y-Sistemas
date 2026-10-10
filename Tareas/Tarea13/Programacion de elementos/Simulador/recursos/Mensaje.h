@@ -42,6 +42,8 @@ enum class Comando {
   CrearProducto,
   ActualizarProducto,
   EliminarProducto,
+  // Protocolo entre islas: el contenido trae el texto del mensaje (60, 61, 10, 20, 50, 40)
+  Protocolo,
   // Comandos Intermediario / Servidor
   BuscarProducto,
   Disponible,
@@ -56,6 +58,8 @@ enum class Comando {
   Coincidencia,
   SinCoincidencia,
   Bloqueado,
+  // Respuesta del protocolo entre islas: el contenido trae el texto de la respuesta (01, 02, 03)
+  RespuestaProtocolo,
   // Resultados de error
   ErrorFormatoInvalido,
   ErrorSesionInvalida,

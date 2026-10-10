@@ -41,8 +41,14 @@ void Cliente::ejecutar(const Mensaje &solicitud) {
   Mensaje respuesta = this->centralBuzones.desencolar(solicitud.idCliente);
   // Registro de bitácora: desencolamiento de mensaje
   this->bitacora.registrarAccion("Cliente", "desencolamiento de mensaje");
-  // Reporta el mensaje recibido
-  std::cout << respuesta.contenido << std::endl;
+
+  if (respuesta.comando == Comando::RespuestaProtocolo && respuesta.contenido[0] == '\0') {
+    // Los mensajes UDP (60 y 61) no tienen respuesta
+    std::cout << "(sin respuesta: mensaje UDP)" << std::endl;
+  } else {
+    std::cout << respuesta.contenido << std::endl;
+  }
+  
   // Registro de bitácora: mensaje recibido
   this->bitacora.registrarAccion("Cliente", "mensaje recibido");
   // Detiene la ejecución del cliente

@@ -27,6 +27,10 @@
 
 #include <iostream>
 #include <vector>
+#include <chrono>
+#include <iostream>
+#include <thread>
+#include <vector>
 
 // Método que inicializa las bodegas y productos provisionales para las pruebas
 void inicializarBodegas(SistemaArchivos &sistemaArchivos) {
@@ -35,8 +39,17 @@ void inicializarBodegas(SistemaArchivos &sistemaArchivos) {
   // Carga algunos productos de prueba, organizados por categoría
   sistemaArchivos.insertar_producto("principal", "granos", "garbanzos", "50", "600");
   sistemaArchivos.insertar_producto("principal", "granos", "arroz", "50", "1000");
-  sistemaArchivos.insertar_producto("principal", "condimentos", "aceite vegetal", "25", "1000");
+  sistemaArchivos.insertar_producto("principal", "condimentos", "aceite_vegetal", "25", "1000");
   sistemaArchivos.insertar_producto("principal", "condimentos", "sal", "25", "200");
+}
+
+// Envía un mensaje del protocolo entre islas y muestra el intercambio
+void enviarProtocolo(Cliente &cliente, Mensaje &mensaje, const char *texto) {
+  mensaje.comando = Comando::Protocolo;
+  strcpy(mensaje.contenido, texto);
+  std::cout << "--> " << texto << std::endl;
+  cliente.iniciar(mensaje);
+  cliente.detener();
 }
 
 // Método que testeará el proyecto
@@ -64,6 +77,9 @@ void test() {
   Cliente cliente(buzonHaciaIntermediario, centralBuzones, bitacora);
   Intermediario intermediario(buzonHaciaIntermediario, buzonHaciaServidor, buzonDesdeServidor, centralBuzones, bitacora);
   Servidor servidor(buzonDesdeServidor, buzonHaciaServidor, sistemaArchivos, bitacora);
+
+  // Las reservas del protocolo duran 2 s en la prueba, para poder ver el vencimiento
+  servidor.fijarVigenciaReserva(2);
 
   // Comienza la ejecución
   intermediario.iniciar();
@@ -171,6 +187,50 @@ void test() {
   cliente.iniciar(mensaje);
   cliente.detener();
 
+    // ---- Protocolo mancomunado entre islas ----
+  std::cout << "\n=== Protocolo entre islas ===" << std::endl;
+
+  // Caso 18: ANNOUNCE (UDP, sin respuesta)
+  enviarProtocolo(cliente, mensaje, "60/0001/INT_04/172.16.123.68/9090");
+  // Caso 19: ANNOUNCE con ID_MSG repetido (se descarta)
+  enviarProtocolo(cliente, mensaje, "60/0001/INT_04/172.16.123.68/9090");
+  // Caso 20: GET_CATEGORIES
+  enviarProtocolo(cliente, mensaje, "10");
+  // Caso 21: GET_PRODUCTS (la isla pasa la categoría a minúsculas)
+  enviarProtocolo(cliente, mensaje, "20/GRANOS");
+  // Caso 22: GET_PRODUCTS con categoría inexistente
+  enviarProtocolo(cliente, mensaje, "20/libros");
+  // Caso 23: RESERVE correcto
+  enviarProtocolo(cliente, mensaje, "50/arroz/5");
+  // Caso 24: el stock informado ya descuenta lo reservado
+  enviarProtocolo(cliente, mensaje, "20/granos");
+  // Caso 25: RESERVE con stock insuficiente
+  enviarProtocolo(cliente, mensaje, "50/arroz/999");
+  // Caso 26: BUY con reserva vigente
+  enviarProtocolo(cliente, mensaje, "40/1/arroz,5");
+  // Caso 27: BUY repetido, la reserva ya se gastó
+  enviarProtocolo(cliente, mensaje, "40/1/arroz,5");
+  // Caso 28: BUY de un producto que no existe
+  enviarProtocolo(cliente, mensaje, "40/1/leche,1");
+  // Caso 29: BUY de dos productos con sus reservas
+  enviarProtocolo(cliente, mensaje, "50/garbanzos/2");
+  enviarProtocolo(cliente, mensaje, "50/frijoles/3");
+  enviarProtocolo(cliente, mensaje, "40/2/garbanzos,2;frijoles,3");
+  // Caso 30: la reserva vence y el BUY falla con 104
+  enviarProtocolo(cliente, mensaje, "50/sal/10");
+  std::this_thread::sleep_for(std::chrono::seconds(3));
+  enviarProtocolo(cliente, mensaje, "40/1/sal,10");
+  // Caso 31: valor inválido
+  enviarProtocolo(cliente, mensaje, "50/sal/abc");
+  // Caso 32: tipo no soportado
+  enviarProtocolo(cliente, mensaje, "99");
+  // Caso 33: mensaje mal formado
+  enviarProtocolo(cliente, mensaje, "abc");
+  // Caso 34: BUY cuyo n no coincide con la lista
+  enviarProtocolo(cliente, mensaje, "40/2/garbanzos,1");
+  // Caso 35: ANNOUNCE_BYE (UDP, sin respuesta)
+  enviarProtocolo(cliente, mensaje, "61/INT_04");
+  
   // Se detienen las entidades
   servidor.detener();
   intermediario.detener();

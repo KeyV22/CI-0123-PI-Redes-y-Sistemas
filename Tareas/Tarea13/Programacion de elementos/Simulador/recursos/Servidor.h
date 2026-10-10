@@ -19,6 +19,7 @@
 #include "Buzon.h"
 #include "SistemaArchivos.h"
 #include "Utilidades.h"
+#include "ProtocoloIslas.h"
 #include <thread>
 #include <atomic>
 #include <cstring>
@@ -35,6 +36,8 @@ class Servidor {
     void iniciar();
     // Método que permite detener el hilo del servidor
     void detener();
+    // Cambia la vigencia de las reservas del protocolo entre islas (por defecto 60 segundos)
+    void fijarVigenciaReserva(int);
 
   private:
     // Buzón en el que se encuentran las respuestas creadas para el intermediario
@@ -45,6 +48,8 @@ class Servidor {
     SistemaArchivos &sistemaArchivos;
     // Referencia a la bitácora del proyecto
     Bitacora &bitacora;
+    // Lógica del protocolo mancomunado entre islas
+    ProtocoloIslas protocolo;
     // Variable atómica definida para almacenar el estado actual del servidor
     std::atomic<Estado> estado;
     // Hilo definido para ejecutar el servidor
@@ -65,6 +70,8 @@ class Servidor {
     Mensaje atenderCrearProducto(const Mensaje &);
     Mensaje atenderActualizarProducto(const Mensaje &);
     Mensaje atenderEliminarProducto(const Mensaje &);
+    // Atiende un mensaje del protocolo entre islas
+    Mensaje atenderProtocolo(const Mensaje &);
     // Método que ejecuta el hilo del servidor
     void ejecutar();
 };

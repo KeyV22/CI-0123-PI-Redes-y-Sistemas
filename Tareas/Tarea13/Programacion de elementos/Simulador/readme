@@ -1,8 +1,9 @@
-# TicAmazon - Simulador del protocolo intragrupo
+# Simulador de TicAmazon (Isla 3)
 
-Simula Cliente, Intermediario y Servidor de productos como entidades
-separadas que se comunican por buzones en memoria, sobre un sistema de
-archivos real. No usa red.
+Simula el Cliente, el Intermediario y el Servidor como hilos que se
+comunican por buzones en memoria, sobre un sistema de archivos real.
+Incluye el protocolo mancomunado entre islas (60, 61, 10, 20, 50, 40 y
+respuestas 01, 02, 03). No usa red.
 
 ## Compilar
 
@@ -10,7 +11,7 @@ archivos real. No usa red.
 make
 ```
 
-Genera el binario `Simulador.out`. Requiere g++ y make.
+Requiere g++ y make. Crea las carpetas `bitacora/` y `bodegas/` si no existen.
 
 ## Ejecutar
 
@@ -18,10 +19,9 @@ Genera el binario `Simulador.out`. Requiere g++ y make.
 ./Simulador.out
 ```
 
-Corre una serie de casos (buscar producto, listar categorías, listar
-productos, etc.) e imprime la respuesta de cada uno. El registro queda en
-`bitacora/Bitacora.txt` y las bodegas en `bodegas/Bodegas.data`. Las
-carpetas `bitacora/` y `bodegas/` deben existir.
+Corre los casos de productos y luego los del protocolo entre islas. Tarda
+unos 3 segundos porque espera el vencimiento de una reserva. El registro queda
+en `bitacora/Bitacora.txt`.
 
 ## Limpiar
 

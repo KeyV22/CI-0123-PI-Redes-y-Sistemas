@@ -1,51 +1,30 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall
+PROGRAMAS = bodegas agregar_bodega extraer_bodega verificar cargar
+HEADERS = Headers/almacenamiento.hpp Headers/bloques.hpp
 
-OBJS = main.o almacenamiento.o
-BIN = bodegas
+all: $(PROGRAMAS)
 
-OBJS_AGREGAR = AgregarBodega.o almacenamiento.o
-OBJS_EXTRAER = ExtraerBodega.o almacenamiento.o
-OBJS_VERIFICAR = VerificarSistemaArchivos.o almacenamiento.o
-OBJS_CARGAR = CargarProductos.o almacenamiento.o
+bodegas: main.o almacenamiento.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-all: $(BIN) agregar_bodega extraer_bodega verificar cargar
+agregar_bodega: AgregarBodega.o almacenamiento.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(BIN): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(BIN) $(OBJS)
+extraer_bodega: ExtraerBodega.o almacenamiento.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-cargar: $(OBJS_CARGAR)
-	$(CXX) $(CXXFLAGS) -o cargar $(OBJS_CARGAR)
+verificar: VerificarSistemaArchivos.o almacenamiento.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-CargarProductos.o: CargarProductos.cpp Headers/almacenamiento.hpp Headers/bloques.hpp
-	$(CXX) $(CXXFLAGS) -c CargarProductos.cpp
+cargar: CargarProductos.o almacenamiento.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-agregar_bodega: $(OBJS_AGREGAR)
-	$(CXX) $(CXXFLAGS) -o agregar_bodega $(OBJS_AGREGAR)
+%.o: %.cpp $(HEADERS)
+	$(CXX) $(CXXFLAGS) -c $<
 
-extraer_bodega: $(OBJS_EXTRAER)
-	$(CXX) $(CXXFLAGS) -o extraer_bodega $(OBJS_EXTRAER)
-
-verificar: $(OBJS_VERIFICAR)
-	$(CXX) $(CXXFLAGS) -o verificar $(OBJS_VERIFICAR)
-
-main.o: main.cpp Headers/almacenamiento.hpp Headers/bloques.hpp
-	$(CXX) $(CXXFLAGS) -c main.cpp
-
-almacenamiento.o: Code/almacenamiento.cpp Headers/almacenamiento.hpp Headers/bloques.hpp
-	$(CXX) $(CXXFLAGS) -c Code/almacenamiento.cpp
-
-AgregarBodega.o: AgregarBodega.cpp Headers/almacenamiento.hpp Headers/bloques.hpp
-	$(CXX) $(CXXFLAGS) -c AgregarBodega.cpp
-
-ExtraerBodega.o: ExtraerBodega.cpp Headers/almacenamiento.hpp Headers/bloques.hpp
-	$(CXX) $(CXXFLAGS) -c ExtraerBodega.cpp
-
-VerificarSistemaArchivos.o: VerificarSistemaArchivos.cpp Headers/almacenamiento.hpp Headers/bloques.hpp
-	$(CXX) $(CXXFLAGS) -c VerificarSistemaArchivos.cpp
+almacenamiento.o: Code/almacenamiento.cpp $(HEADERS)
+	$(CXX) $(CXXFLAGS) -c $<
 
 clean:
-	rm -f $(OBJS) $(BIN) AgregarBodega.o ExtraerBodega.o VerificarSistemaArchivos.o CargarProductos.o agregar_bodega extraer_bodega verificar cargar bodegas.data verificacion.data bodegas100.data
-	
-run: $(BIN)
-	./$(BIN)
+	rm -f *.o $(PROGRAMAS) *.data
