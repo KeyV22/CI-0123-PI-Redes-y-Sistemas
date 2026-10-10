@@ -45,7 +45,7 @@ VerificarSistemaArchivos.o: VerificarSistemaArchivos.cpp Headers/almacenamiento.
 	$(CXX) $(CXXFLAGS) -c VerificarSistemaArchivos.cpp
 
 clean:
-	rm -f $(OBJS) $(BIN) AgregarBodega.o ExtraerBodega.o VerificarSistemaArchivos.o CargarProductos.o agregar_bodega extraer_bodega verificar bodegas.data verificacion.data
+	rm -f $(OBJS) $(BIN) AgregarBodega.o ExtraerBodega.o VerificarSistemaArchivos.o CargarProductos.o agregar_bodega extraer_bodega verificar cargar bodegas.data verificacion.data bodegas100.data
 
 run: $(BIN)
 	./$(BIN)
