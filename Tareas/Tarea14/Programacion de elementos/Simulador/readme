@@ -1,0 +1,30 @@
+# Simulador de TicAmazon (Isla 3)
+
+Simula el Cliente, el Intermediario y el Servidor como hilos que se
+comunican por buzones en memoria, sobre un sistema de archivos real.
+Incluye el protocolo mancomunado entre islas (60, 61, 10, 20, 50, 40 y
+respuestas 01, 02, 03). No usa red.
+
+## Compilar
+
+```bash
+make
+```
+
+Requiere g++ y make. Crea las carpetas `bitacora/` y `bodegas/` si no existen.
+
+## Ejecutar
+
+```bash
+./Simulador.out
+```
+
+Corre los casos de productos y luego los del protocolo entre islas. Tarda
+unos 3 segundos porque espera el vencimiento de una reserva. El registro queda
+en `bitacora/Bitacora.txt`.
+
+## Limpiar
+
+```bash
+make limpiar
+```
