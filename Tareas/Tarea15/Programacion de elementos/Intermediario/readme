@@ -1,0 +1,36 @@
+# TicAmazon - Intermediario
+
+Atiende al Cliente por HTTP y reenvía cada solicitud a su propio Servidor de
+Productos. No toca el almacenamiento.
+
+## Compilar
+
+```bash
+make
+```
+
+Genera el binario `intermediario`. Requiere g++ (C++17) y make.
+
+## Ejecutar
+
+```bash
+./intermediario [puerto] [host_productos] [puerto_productos]
+```
+
+- `puerto`: puerto donde escucha al cliente (por defecto 8080).
+- `host_productos`: IP del servidor de productos (por defecto 127.0.0.1).
+- `puerto_productos`: puerto del servidor de productos (por defecto 9090).
+
+Ejemplo (todo en la misma computadora):
+
+```bash
+./intermediario 8080 127.0.0.1 9090
+```
+
+Primero debe estar corriendo el servidor de productos.
+
+## Limpiar
+
+```bash
+make clean
+```

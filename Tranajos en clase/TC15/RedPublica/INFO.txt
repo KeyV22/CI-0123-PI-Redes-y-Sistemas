@@ -1,0 +1,2 @@
+DE momento de debe cambiar la linea 54 del archivo Servidor.cpp, ahorita esta en 127.0.0.1 se debe colocar la IP
+de la compu del lab, esto es un punto a mejorar en la siguiente entrega
