@@ -14,10 +14,12 @@ Cada carpeta tiene su propio `Makefile`: entrar a la carpeta y correr `make`.
 ## Ejecutar el sistema completo (tres terminales, en este orden)
 
 ```bash
-cd ServidorProductos && make && ./servidor 9090
-cd Intermediario     && make && ./intermediario 8080 127.0.0.1 9090
+cd ServidorProductos && make && ./servidor 9091 bodegas.data
+cd Intermediario     && make && ./intermediario 8080 127.0.0.1 9091
 cd ClienteServidor   && make && ./cliente 127.0.0.1 8080
 ```
+
+"http://<IP-del-servidor>:9091/TicAmazon/list.php"
 
 En computadoras distintas: el intermediario apunta a la IP del servidor de
 productos, y el cliente a la IP del intermediario (`ip addr show` muestra la IP).

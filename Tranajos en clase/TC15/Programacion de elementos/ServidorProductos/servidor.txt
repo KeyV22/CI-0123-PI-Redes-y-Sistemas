@@ -90,3 +90,21 @@
 [2026-10-09 09:59:55] GET /TicAmazon/list.php | listar categorias -> 200 OK
 [2026-10-09 09:59:59] POST /TicAmazon/salir -> 200 OK
 [2026-10-09 09:59:59] Cierre del servidor solicitado desde el navegador
+[2026-10-14 18:04:55] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:05:07] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:05:32] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:05:36] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:05:40] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-14 18:05:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:05:51] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-14 18:06:04] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-14 18:06:18] POST /TicAmazon/proforma.php | 1 item(s): Arroz x3 (Alimentos) -> 200 OK
+[2026-10-14 18:06:36] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-14 18:06:51] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:22:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:22:41] POST /TicAmazon/salir -> 200 OK
+[2026-10-14 18:22:41] Cierre del servidor solicitado desde el navegador
+[2026-10-14 18:24:17] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:24:27] Error atendiendo conexion: read error
+[2026-10-14 18:27:42] POST /TicAmazon/salir -> 200 OK
+[2026-10-14 18:27:42] Cierre del servidor solicitado desde el navegador
