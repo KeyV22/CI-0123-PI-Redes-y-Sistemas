@@ -30,6 +30,8 @@ class SistemaArchivos {
     // Crea una bodega nueva le agrega su entrada en el directorioy le reserva su primer bloque de datos, vacio
     bool crear_bodega(const std::string& nombre_bodega);
 
+    bool extraer_bodega(const std::string& nombre_bodega);
+
     // Inserta un producto en la cadena de datos de una bodega
     bool insertar_producto(const std::string& nombre_bodega,const std::string& categoria,const std::string& producto,const std::string& cantidad,const std::string& precio);
 
