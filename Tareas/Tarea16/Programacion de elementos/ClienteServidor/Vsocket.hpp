@@ -14,6 +14,7 @@
 #ifndef VSocket_h
 #define VSocket_h
 #include <cstddef>
+#include <string>
  
 class VSocket {
    public:
@@ -28,6 +29,14 @@ class VSocket {
       // Util para no dejar hilos colgados esperando datos que nunca
       // llegan.
       void SetReadTimeout( int segundos );
+
+      // Activa o desactiva SO_BROADCAST: sin esto el SO rechaza (EACCES)
+      // cualquier sendto() hacia una direccion de broadcast.
+      void SetBroadcast( bool activar = true );
+
+      // Calcula la direccion de broadcast dirigido de una red IPv4.
+      // Ejemplo: DireccionBroadcast( "172.16.123.48", 28 ) -> "172.16.123.63"
+      static std::string DireccionBroadcast( const char * ip, int prefijo );
 
       virtual int Connect( const char *, int ) = 0;
       virtual int Connect( const char *, const char * ) = 0;

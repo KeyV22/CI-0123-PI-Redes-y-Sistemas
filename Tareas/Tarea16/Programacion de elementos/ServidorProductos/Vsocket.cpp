@@ -19,6 +19,7 @@
 #include <cstring>		// memset
 #include <netdb.h>		// getaddrinfo, freeaddrinfo
 #include <unistd.h>		// close
+#include <cstdint>
 /*
 #include <cstddef>
 #include <cstdio>
@@ -253,4 +254,26 @@ int VSocket::TryToConnect( const char *host, const char *service ) {
    return st;
 
 
+}
+
+void VSocket::SetBroadcast( bool activar ) {
+   int valor = activar ? 1 : 0;
+   if ( -1 == setsockopt( this->sockId, SOL_SOCKET, SO_BROADCAST, &valor, sizeof( valor ) ) ) {
+      throw std::runtime_error( "VSocket::SetBroadcast : setsockopt" );
+   }
+}
+
+// broadcast dirigido = direccion de red con todos los bits de host en 1
+std::string VSocket::DireccionBroadcast( const char * ip, int prefijo ) {
+   struct in_addr dir;
+   if ( prefijo < 0 || prefijo > 32 || 1 != inet_pton( AF_INET, ip, &dir ) ) {
+      throw std::runtime_error( "VSocket::DireccionBroadcast : argumentos invalidos" );
+   }
+   uint32_t mascara = ( 0 == prefijo ) ? 0 : ( 0xFFFFFFFFu << ( 32 - prefijo ) );
+   uint32_t red = ntohl( dir.s_addr ) & mascara;
+   struct in_addr resultado;
+   resultado.s_addr = htonl( red | ~mascara );
+   char texto[INET_ADDRSTRLEN];
+   inet_ntop( AF_INET, &resultado, texto, sizeof( texto ) );
+   return std::string( texto );
 }
