@@ -1,0 +1,39 @@
+# Modelo de almacenamiento
+
+Sistema de archivos del servidor de productos. Todo se guarda en un solo
+archivo dividido en bloques de 256 bytes.
+
+## Compilar
+
+```bash
+make
+```
+
+Genera: `bodegas`, `agregar_bodega`, `extraer_bodega`, `verificar` y `cargar`.
+Requiere g++ (C++17) y make.
+
+## Programas
+
+| Programa | Qué hace |
+|---|---|
+| `./bodegas` | Demo: crea `bodegas.data` y lista bodegas y productos |
+| `./agregar_bodega <archivo> <bodega>` | Agrega una bodega (crea el archivo si no existe) |
+| `./extraer_bodega <archivo> <bodega>` | Elimina una bodega y libera sus bloques |
+| `./verificar [archivo]` | Comprueba bloques de 256 bytes y varias bodegas |
+| `./cargar [archivo]` | Crea 2 bodegas con 100 productos (`bodegas100.data`) |
+
+## Usar los 100 productos en el servidor
+
+```bash
+./cargar
+cp bodegas100.data ../ServidorProductos/bodegas.data
+```
+
+Después se reinicia el servidor.
+
+## Limpiar
+
+```bash
+make clean
+```
+```
