@@ -1,0 +1,68 @@
+version 12.2
+no service pad
+service timestamps debug uptime
+service timestamps log uptime
+no service password-encryption
+!
+hostname L2-isla3
+!
+!
+no aaa new-model
+system mtu routing 1500
+ip subnet-zero
+ip dhcp excluded-address 172.16.123.49 172.16.123.50
+!
+ip dhcp pool RATATONTA
+   network 172.16.123.48 255.255.255.240
+   default-router 172.16.123.49 
+   dns-server 8.8.8.8 
+!
+!
+!
+no file verify auto
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+interface FastEthernet0/1
+ switchport access vlan 230
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/2
+ switchport access vlan 230
+ switchport mode access
+ spanning-tree portfast
+!
+(... igual para FastEthernet0/3 hasta FastEthernet0/23 ...)
+!
+interface FastEthernet0/24
+ switchport access vlan 230
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/1
+ switchport trunk allowed vlan 230
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ no ip route-cache
+!
+interface Vlan230
+ ip address 172.16.123.50 255.255.255.240
+ no ip route-cache
+!
+ip default-gateway 172.16.123.49
+ip http server
+!
+control-plane
+!
+!
+line con 0
+line vty 5 15
+!
+end
