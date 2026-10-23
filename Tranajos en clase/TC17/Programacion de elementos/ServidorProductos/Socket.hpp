@@ -14,6 +14,7 @@
 #ifndef Socket_h
 #define Socket_h
 #include "Vsocket.hpp"
+#include <string>
 
 class Socket : public VSocket {
 
@@ -25,6 +26,16 @@ class Socket : public VSocket {
       size_t Read( void *, size_t );
       size_t Write( const void *, size_t );
       size_t Write( const char * );
+
+      // --- Extension para datagramas UDP (unicast o broadcast) ---
+      // Envia un datagrama a ip:puerto sin necesidad de connect().
+      size_t SendTo( const void *, size_t, const char * ip, int puerto );
+      size_t SendTo( const char * texto, const char * ip, int puerto );
+      // Espera un datagrama. Devuelve los bytes recibidos y, si se piden,
+      // la IP y el puerto de quien lo envio. Si se configuro
+      // SetReadTimeout() y vence, devuelve 0 en vez de lanzar excepcion.
+      size_t RecvFrom( void *, size_t, std::string * ipOrigen = nullptr, int * puertoOrigen = nullptr );
+
 
       // --- Extension para funcionalidad de SERVIDOR ---
       int Bind( int port );

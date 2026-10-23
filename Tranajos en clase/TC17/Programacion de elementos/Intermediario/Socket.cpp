@@ -16,6 +16,8 @@
 #include <unistd.h>		// write, read
 #include <cstring>
 #include <stdexcept>
+#include <cerrno>
+#include <netinet/in.h>
 #include <stdio.h>		// printf
 
 #include "Socket.hpp"		// Derived class
@@ -219,4 +221,45 @@ Socket Socket::Accept() {
       throw std::runtime_error( "Socket::Accept" );
    }
    return Socket( fdCliente, this->IPv6 );
+}
+
+size_t Socket::SendTo( const void * buffer, size_t size, const char * ip, int puerto ) {
+   struct sockaddr_in destino;
+   memset( &destino, 0, sizeof( destino ) );
+   destino.sin_family = AF_INET;
+   destino.sin_port = htons( puerto );
+   if ( 1 != inet_pton( AF_INET, ip, &destino.sin_addr ) ) {
+      throw std::runtime_error( "Socket::SendTo : inet_pton" );
+   }
+   ssize_t st = sendto( this->sockId, buffer, size, 0, (sockaddr *)&destino, sizeof( destino ) );
+   if ( -1 == st ) {
+      throw std::runtime_error( "Socket::SendTo : sendto" );
+   }
+   return (size_t) st;
+}
+
+size_t Socket::SendTo( const char * texto, const char * ip, int puerto ) {
+   return this->SendTo( (const void *) texto, strlen( texto ), ip, puerto );
+}
+
+size_t Socket::RecvFrom( void * buffer, size_t size, std::string * ipOrigen, int * puertoOrigen ) {
+   struct sockaddr_in origen;
+   socklen_t largo = sizeof( origen );
+   memset( &origen, 0, sizeof( origen ) );
+   ssize_t st = recvfrom( this->sockId, buffer, size, 0, (sockaddr *)&origen, &largo );
+   if ( -1 == st ) {
+      if ( EAGAIN == errno || EWOULDBLOCK == errno ) {
+         return 0;   // vencio SetReadTimeout()
+      }
+      throw std::runtime_error( "Socket::RecvFrom : recvfrom" );
+   }
+   if ( ipOrigen ) {
+      char texto[INET_ADDRSTRLEN];
+      inet_ntop( AF_INET, &origen.sin_addr, texto, sizeof( texto ) );
+      *ipOrigen = texto;
+   }
+   if ( puertoOrigen ) {
+      *puertoOrigen = ntohs( origen.sin_port );
+   }
+   return (size_t) st;
 }

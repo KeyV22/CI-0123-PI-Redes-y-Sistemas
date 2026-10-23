@@ -108,16 +108,3 @@
 [2026-10-14 18:24:27] Error atendiendo conexion: read error
 [2026-10-14 18:27:42] POST /TicAmazon/salir -> 200 OK
 [2026-10-14 18:27:42] Cierre del servidor solicitado desde el navegador
-[2026-10-23 10:59:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
-[2026-10-23 10:59:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
-[2026-10-23 11:00:00] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
-[2026-10-23 11:00:26] GET /TicAmazon/list.php | listar categorias -> 200 OK
-[2026-10-23 11:00:37] GET /TicAmazon/list.php | listar categorias -> 200 OK
-[2026-10-23 11:00:40] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
-[2026-10-23 11:00:50] POST /TicAmazon/proforma.php | 1 item(s): Frijoles x2 (Alimentos) -> 200 OK
-[2026-10-23 11:01:31] GET /TicAmazon/list.php | listar categorias -> 200 OK
-[2026-10-23 11:01:33] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
-[2026-10-23 11:02:21] GET /TicAmazon/list.php | listar categorias -> 200 OK
-[2026-10-23 11:02:24] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
-[2026-10-23 11:02:41] GET /TicAmazon/list.php | listar categorias -> 200 OK
-[2026-10-23 11:02:43] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
