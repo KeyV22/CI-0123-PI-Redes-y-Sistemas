@@ -10,6 +10,7 @@ FUENTES := main.cpp \
            Servidor.cpp Manejadorconexion.cpp Router.cpp \
            Httprequest.cpp Httpresponse.cpp Parserproforma.cpp \
            ServicioProductos.cpp ServicioProductosRemoto.cpp PaginasHtml.cpp \
+		   DescubridorServidor.cpp \
            Vsocket.cpp Socket.cpp
 
 OBJETOS := $(patsubst %.cpp,$(BUILDDIR)/%.o,$(FUENTES))

@@ -108,3 +108,13 @@
 [2026-10-14 18:24:27] Error atendiendo conexion: read error
 [2026-10-14 18:27:42] POST /TicAmazon/salir -> 200 OK
 [2026-10-14 18:27:42] Cierre del servidor solicitado desde el navegador
+[2026-10-27 09:00:35] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 09:00:35] GET /favicon.ico -> 404 Not Found
+[2026-10-27 09:00:51] GET /TicAmazon/list.php | categoria: 'Hogar' -> 200 OK
+[2026-10-27 09:00:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 09:01:06] POST /TicAmazon/salir -> 200 OK
+[2026-10-27 09:01:06] Cierre del servidor solicitado desde el navegador
+[2026-10-27 09:08:04] Descubrimiento: esperando solicitudes UDP en el puerto 9090
+[2026-10-27 09:11:43] Descubrimiento: esperando solicitudes UDP en el puerto 9090
+[2026-10-27 09:16:32] Descubrimiento: 127.0.0.1:48904 -> OFFER/PRODUCTOS/9091
+[2026-10-27 09:17:46] GET /TicAmazon/list.php | listar categorias -> 200 OK

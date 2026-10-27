@@ -7,6 +7,7 @@
 #include "ServicioProductosLocal.hpp"
 #include "ServicioProductos.hpp"
 #include "Servidor.hpp"
+#include "ResponderDescubrimiento.hpp"
 
 // Valida el registro antes de insertarlo "bodega:categoria:producto:cantidad:precio")
 static bool Insertar( Almacenamiento & almacen, const std::string & bodega,const std::string & categoria, const std::string & producto,const std::string & cantidad, const std::string & precio ) {
@@ -70,7 +71,16 @@ int main( int argc, char * argv[] ) {
    if ( !servidor.Iniciar() ) {
       return 1;
    }
-   servidor.Ejecutar( servicio );   
+
+   // Hilo que atiende el descubrimiento por broadcast (UDP).
+   int puertoUDP = ( argc > 3 ) ? std::atoi( argv[3] ) : 9090;
+   ResponderDescubrimiento descubrimiento( puertoUDP, puerto );
+   if ( !descubrimiento.Iniciar() ) {
+      std::cerr << "Aviso: sin descubrimiento; el intermediario debe indicar la IP a mano.\n";
+   }
+
+   servidor.Ejecutar( servicio );
+   descubrimiento.Detener();
 
    almacen.cerrar_archivo();
    std::cout << "Servidor cerrado.\n";
