@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 #include "DescubridorServidor.hpp"
+#include "Islas.hpp"
 #include "Socket.hpp"
 
 static const char * SOLICITUD  = "DISCOVER/INTERMEDIARIO";
@@ -32,7 +33,14 @@ bool DescubridorServidor::Buscar( const std::string & broadcast, int puertoUDP,
       for ( int intento = 1; intento <= intentos; intento++ ) {
          std::cout << "Buscando servidor de productos por broadcast (" << broadcast << ":"
                    << puertoUDP << "), intento " << intento << "/" << intentos << "\n";
-         udp.SendTo( SOLICITUD, broadcast.c_str(), puertoUDP );
+            
+        for ( const std::string & destino : ResolverBroadcast( broadcast ) ) {
+            try {
+               udp.SendTo( SOLICITUD, destino.c_str(), puertoUDP );
+            } catch ( const std::exception & e ) {
+               std::cerr << "  No se pudo enviar a " << destino << ": " << e.what() << "\n";
+            }
+         }
 
          auto limite = std::chrono::steady_clock::now() + std::chrono::seconds( timeoutSeg );
          while ( std::chrono::steady_clock::now() < limite ) {

@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
+#include "Islas.hpp"
 #include "Socket.hpp"
 
 int main( int argc, char * argv[] ) {
@@ -25,8 +26,14 @@ int main( int argc, char * argv[] ) {
       udp.SetReadTimeout( 1 );      // RecvFrom devuelve 0 cada segundo sin datos
 
       std::string solicitud = "DISCOVER/SERVIDOR";
-      std::cout << "Enviando \"" << solicitud << "\" a " << broadcast << ":" << puerto << std::endl;
-      udp.SendTo( solicitud.c_str(), broadcast.c_str(), puerto );
+      for ( const std::string & destino : ResolverBroadcast( broadcast ) ) {
+         std::cout << "Enviando \"" << solicitud << "\" a " << destino << ":" << puerto << std::endl;
+         try {
+            udp.SendTo( solicitud.c_str(), destino.c_str(), puerto );
+         } catch ( const std::exception & e ) {
+            std::cout << "  No se pudo enviar a " << destino << ": " << e.what() << std::endl;
+         }
+      }
 
       int encontrados = 0;
       auto limite = std::chrono::steady_clock::now() + std::chrono::seconds( segundos );

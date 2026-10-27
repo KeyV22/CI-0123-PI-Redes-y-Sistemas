@@ -127,3 +127,21 @@
 [2026-10-27 09:51:51] Descubrimiento: 127.0.0.1:56434 -> OFFER/PRODUCTOS/9091
 [2026-10-27 09:51:53] Descubrimiento: buscando intermediario por broadcast (127.255.255.255:9089), intento 6
 [2026-10-27 09:51:53] Descubrimiento: intermediario encontrado en 127.0.0.1:8080
+[2026-10-27 11:00:19] Descubrimiento: esperando solicitudes UDP en el puerto 9090
+[2026-10-27 11:00:19] Descubrimiento: buscando intermediario por broadcast (isla3:9089), intento 1
+[2026-10-27 11:00:24] Descubrimiento: buscando intermediario por broadcast (isla3:9089), intento 2
+[2026-10-27 11:00:29] Descubrimiento: buscando intermediario por broadcast (isla3:9089), intento 3
+[2026-10-27 11:00:34] Descubrimiento: buscando intermediario por broadcast (isla3:9089), intento 4
+[2026-10-27 11:00:39] Descubrimiento: buscando intermediario por broadcast (isla3:9089), intento 5
+[2026-10-27 11:00:44] Descubrimiento: buscando intermediario por broadcast (isla3:9089), intento 6
+[2026-10-27 11:00:49] Descubrimiento: buscando intermediario por broadcast (isla3:9089), intento 7
+[2026-10-27 11:00:54] Descubrimiento: buscando intermediario por broadcast (isla3:9089), intento 8
+[2026-10-27 11:00:59] Descubrimiento: buscando intermediario por broadcast (isla3:9089), intento 9
+[2026-10-27 11:01:05] Descubrimiento: buscando intermediario por broadcast (isla3:9089), intento 10
+[2026-10-27 11:12:48] Descubrimiento: esperando solicitudes UDP en el puerto 9090
+[2026-10-27 11:14:02] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 11:14:05] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-27 11:14:10] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 11:14:11] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-27 11:14:12] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 11:14:22] Error atendiendo conexion: read error

@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <string>
 #include "BuscadorIntermediario.hpp"
+#include "Islas.hpp"
 #include "Bitacora.hpp"
 #include "Socket.hpp"
 
@@ -53,7 +54,13 @@ void BuscadorIntermediario::Ciclo() {
          intento++;
          Bitacora::Registrar( "Descubrimiento: buscando intermediario por broadcast (" + this->broadcast + ":"
                               + std::to_string( this->puertoUDP ) + "), intento " + std::to_string( intento ) );
-         udp.SendTo( SOLICITUD, this->broadcast.c_str(), this->puertoUDP );
+         for ( const std::string & destino : ResolverBroadcast( this->broadcast ) ) {
+            try {
+               udp.SendTo( SOLICITUD, destino.c_str(), this->puertoUDP );
+            } catch ( const std::exception & e ) {
+               Bitacora::Registrar( "Descubrimiento: no se pudo enviar a " + destino + ": " + e.what() );
+            }
+         }
 
          for ( int espera = 0; espera < 2 && this->activo; espera++ ) {
             char buffer[256];
