@@ -4,6 +4,7 @@
 #include "ServicioProductosRemoto.hpp"
 #include "Servidor.hpp"
 #include "DescubridorServidor.hpp"
+#include "ResponderIntermediario.hpp"
 
 // Uso manual:     ./intermediario [puertoPropio] [hostProductos] [puertoProductos]
 // Uso descubrimiento (el servidor se busca por broadcast):
@@ -36,7 +37,16 @@ int main( int argc, char * argv[] ) {
    if ( !servidor.Iniciar() ) {
       return 1;
    }
+   
+   // Hilo que atiende a los servidores de productos que buscan al intermediario.
+   int puertoUDPPropio = ( argc > 5 ) ? std::atoi( argv[5] ) : 9089;
+   ResponderIntermediario descubrimiento( puertoUDPPropio, puerto );
+   if ( !descubrimiento.Iniciar() ) {
+      std::cerr << "Aviso: los servidores no podran descubrir a este intermediario.\n";
+   }
+
    std::cout << "Intermediario -> servidor de productos en " << hostProductos << ":" << puertoProductos << "\n";
    servidor.Ejecutar( servicio );
+   descubrimiento.Detener();
    return 0;
 }

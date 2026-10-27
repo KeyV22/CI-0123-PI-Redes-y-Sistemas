@@ -12,7 +12,7 @@ FUENTES_SERVIDOR := main.cpp \
                      Servidor.cpp Manejadorconexion.cpp Router.cpp \
                      Httprequest.cpp Httpresponse.cpp Parserproforma.cpp \
                      Inventario.cpp ServicioProductos.cpp ServicioProductosLocal.cpp PaginasHtml.cpp \
-                     Vsocket.cpp Socket.cpp ResponderDescubrimiento.cpp\
+                     Vsocket.cpp Socket.cpp ResponderDescubrimiento.cpp BuscadorIntermediario.cpp\
                      almacenamiento.cpp
 
 OBJETOS_SERVIDOR := $(patsubst %.cpp,$(BUILDDIR)/%.o,$(FUENTES_SERVIDOR))

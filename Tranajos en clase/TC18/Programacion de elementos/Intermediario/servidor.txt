@@ -59440,3 +59440,5 @@
 [2026-10-14 18:20:37] GET /TicAmazon/list.php | listar categorias -> 500 Internal Server Error
 [2026-10-27 09:01:13] GET /TicAmazon/list.php | listar categorias -> 500 Internal Server Error
 [2026-10-27 09:17:46] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 09:51:51] Descubrimiento: esperando servidores en el puerto UDP 9089
+[2026-10-27 09:51:53] Descubrimiento: servidor 127.0.0.1:56229 -> OFFER/INTERMEDIARIO/8080

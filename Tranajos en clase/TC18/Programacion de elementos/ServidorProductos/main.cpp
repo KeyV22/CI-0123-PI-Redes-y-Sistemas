@@ -8,6 +8,7 @@
 #include "ServicioProductos.hpp"
 #include "Servidor.hpp"
 #include "ResponderDescubrimiento.hpp"
+#include "BuscadorIntermediario.hpp"
 
 // Valida el registro antes de insertarlo "bodega:categoria:producto:cantidad:precio")
 static bool Insertar( Almacenamiento & almacen, const std::string & bodega,const std::string & categoria, const std::string & producto,const std::string & cantidad, const std::string & precio ) {
@@ -79,7 +80,14 @@ int main( int argc, char * argv[] ) {
       std::cerr << "Aviso: sin descubrimiento; el intermediario debe indicar la IP a mano.\n";
    }
 
+      // Opcional: buscar al intermediario por broadcast.
+   BuscadorIntermediario buscador( ( argc > 4 ) ? argv[4] : "", ( argc > 5 ) ? std::atoi( argv[5] ) : 9089 );
+   if ( argc > 4 ) {
+      buscador.Iniciar();
+   }
+
    servidor.Ejecutar( servicio );
+   buscador.Detener();
    descubrimiento.Detener();
 
    almacen.cerrar_archivo();

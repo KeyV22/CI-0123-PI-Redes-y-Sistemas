@@ -118,3 +118,12 @@
 [2026-10-27 09:11:43] Descubrimiento: esperando solicitudes UDP en el puerto 9090
 [2026-10-27 09:16:32] Descubrimiento: 127.0.0.1:48904 -> OFFER/PRODUCTOS/9091
 [2026-10-27 09:17:46] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 09:51:28] Descubrimiento: esperando solicitudes UDP en el puerto 9090
+[2026-10-27 09:51:28] Descubrimiento: buscando intermediario por broadcast (127.255.255.255:9089), intento 1
+[2026-10-27 09:51:33] Descubrimiento: buscando intermediario por broadcast (127.255.255.255:9089), intento 2
+[2026-10-27 09:51:38] Descubrimiento: buscando intermediario por broadcast (127.255.255.255:9089), intento 3
+[2026-10-27 09:51:43] Descubrimiento: buscando intermediario por broadcast (127.255.255.255:9089), intento 4
+[2026-10-27 09:51:48] Descubrimiento: buscando intermediario por broadcast (127.255.255.255:9089), intento 5
+[2026-10-27 09:51:51] Descubrimiento: 127.0.0.1:56434 -> OFFER/PRODUCTOS/9091
+[2026-10-27 09:51:53] Descubrimiento: buscando intermediario por broadcast (127.255.255.255:9089), intento 6
+[2026-10-27 09:51:53] Descubrimiento: intermediario encontrado en 127.0.0.1:8080
