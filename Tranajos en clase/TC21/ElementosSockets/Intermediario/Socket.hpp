@@ -28,6 +28,7 @@ class Socket : public VSocket {
 
       // --- Extension para funcionalidad de SERVIDOR ---
       int Bind( int port );
+      int Bind( const char * ip, int port );
       int Listen( int backlog );
       Socket Accept();            // bloquea hasta que llegue una conexion
 

@@ -187,6 +187,24 @@ int VSocket::TryToBind( int port ) {
    return st;
 }
 
+int VSocket::TryToBind( const char * ip, int port ) {
+   int reuse = 1;
+   setsockopt( this->sockId, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof( reuse ) );
+   this->port = port;
+
+   struct sockaddr_in local;
+   memset( &local, 0, sizeof( local ) );
+   local.sin_family = AF_INET;
+   local.sin_port = htons( port );
+   if ( inet_pton( AF_INET, ip, &local.sin_addr ) != 1 ) {
+      throw std::runtime_error( "VSocket::TryToBind( const char *, int ) [inet_pton]" );
+   }
+   int st = bind( this->sockId, (sockaddr *)&local, sizeof( local ) );
+   if ( -1 == st ) {
+      throw std::runtime_error( "VSocket::TryToBind( const char *, int ) [bind]" );
+   }
+   return st;
+}
 
 /**
   * SetReadTimeout method 
