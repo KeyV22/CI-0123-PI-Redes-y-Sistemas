@@ -920,3 +920,11 @@
 [2026-10-28 23:37:54] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
 [2026-10-28 23:37:54] POST /TicAmazon/salir -> 200 OK
 [2026-10-28 23:37:54] Cierre del servidor solicitado desde el navegador
+[2026-11-03 14:27:34] Intermediario encontrado en 127.0.0.1:8080
+[2026-11-03 14:31:35] Intermediario encontrado en 127.0.0.1:8080
+[2026-11-03 14:31:35] Registrado en el intermediario como 'PA'
+[2026-11-03 14:31:44] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-03 14:31:54] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-03 14:32:04] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-03 14:32:14] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-03 14:32:16] Se aviso al intermediario que este servidor se apaga

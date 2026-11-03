@@ -59486,3 +59486,11 @@
 [2026-10-28 22:02:17] [CONSULTA] [cliente] GET /TicAmazon/list.php | listar categorias -> 200 OK
 [2026-10-28 22:02:20] [CONSULTA] [cliente] GET /TicAmazon/list.php | categoria: 'Alimentos y bebidas' -> 200 OK
 [2026-10-28 22:02:26] [CONSULTA] [cliente] GET /TicAmazon/rutas -> 200 OK
+[2026-11-03 14:30:54] [INFO] [intermediario] Descubrimiento UDP activo: escucha en 7071, broadcast a 127.255.255.255
+[2026-11-03 14:31:35] [REGISTRO] [PA] Servidor de productos registrado: PA (127.0.0.1:9301) con 5 categoria(s)
+[2026-11-03 14:31:47] [CONSULTA] [cliente] GET /TicAmazon/servidores -> 200 OK
+[2026-11-03 14:31:57] [ERROR] [intermediario] Error atendiendo conexion: read error
+[2026-11-03 14:32:16] [INACTIVO] [127.0.0.1:9301] Servidor de productos se despidio: 127.0.0.1:9301
+[2026-11-03 14:32:16] [CONSULTA] [cliente] POST /TicAmazon/desregistrar -> 200 OK
+[2026-11-03 14:32:26] [CONSULTA] [cliente] GET /TicAmazon/servidores -> 200 OK
+[2026-11-03 14:32:36] [ERROR] [intermediario] Error atendiendo conexion: read error

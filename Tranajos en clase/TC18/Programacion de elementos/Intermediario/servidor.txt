@@ -59443,3 +59443,14 @@
 [2026-10-27 09:51:51] Descubrimiento: esperando servidores en el puerto UDP 9089
 [2026-10-27 09:51:53] Descubrimiento: servidor 127.0.0.1:56229 -> OFFER/INTERMEDIARIO/8080
 [2026-10-27 11:13:17] Descubrimiento: esperando servidores en el puerto UDP 9089
+[2026-11-03 14:27:22] Descubrimiento: esperando servidores en el puerto UDP 9089
+[2026-11-03 14:27:34] POST /TicAmazon/registrar -> 404 Not Found
+[2026-11-03 14:27:44] POST /TicAmazon/registrar -> 404 Not Found
+[2026-11-03 14:27:54] POST /TicAmazon/registrar -> 404 Not Found
+[2026-11-03 14:28:04] POST /TicAmazon/registrar -> 404 Not Found
+[2026-11-03 14:28:11] GET /TicAmazon/servidores -> 404 Not Found
+[2026-11-03 14:28:11] GET /favicon.ico -> 404 Not Found
+[2026-11-03 14:28:14] POST /TicAmazon/registrar -> 404 Not Found
+[2026-11-03 14:28:24] POST /TicAmazon/registrar -> 404 Not Found
+[2026-11-03 14:28:34] POST /TicAmazon/registrar -> 404 Not Found
+[2026-11-03 14:28:44] POST /TicAmazon/registrar -> 404 Not Found
