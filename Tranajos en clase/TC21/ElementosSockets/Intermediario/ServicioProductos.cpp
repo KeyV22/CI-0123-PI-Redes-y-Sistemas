@@ -8,6 +8,7 @@ std::string ServicioProductos::Frase( int codigo ) {
       case 403: return "Forbidden";
       case 404: return "Not Found";
       case 405: return "Method Not Allowed";
+      case 409: return "Conflict";
       case 422: return "Unprocessable Entity";
       case 500: return "Internal Server Error";
       default:  return "Unknown";

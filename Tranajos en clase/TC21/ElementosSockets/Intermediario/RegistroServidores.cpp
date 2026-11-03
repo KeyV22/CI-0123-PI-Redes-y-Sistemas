@@ -49,6 +49,21 @@ bool RegistroServidores::MarcarInactivo( const std::string & host, int puerto ) 
    return true;
 }
 
+std::string RegistroServidores::Conflicto( const std::string & host, int puerto, const std::vector<std::string> & categorias ) const {
+   std::lock_guard<std::mutex> lock( mtx );
+   for ( const InfoServidor & s : servidores ) {
+      if ( !s.activo || ( s.host == host && s.puerto == puerto ) ) continue;
+      for ( const std::string & nueva : categorias ) {
+         for ( const std::string & existente : s.categorias ) {
+            if ( IgualesSinMayusculas( nueva, existente ) ) {
+               return "la categoria '" + nueva + "' ya la ofrece " + s.nombre;
+            }
+         }
+      }
+   }
+   return "";
+}
+
 std::vector<InfoServidor> RegistroServidores::Todos() const {
    std::lock_guard<std::mutex> lock( mtx );
    return servidores;

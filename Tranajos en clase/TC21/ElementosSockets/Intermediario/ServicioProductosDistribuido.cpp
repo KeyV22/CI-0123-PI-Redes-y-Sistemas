@@ -86,16 +86,38 @@ void ServicioProductosDistribuido::DescubrirServidor( const std::string & host, 
 
    RespuestaHttp r = HttpCliente::Enviar( host, puerto, "GET", "/TicAmazon/list.php", "", 3 );
    if ( r.ok && r.codigo == 200 ) {
-      if ( registro.Registrar( nombre, host, puerto, ParsearCategorias( r.cuerpo ) ) ) {
+            std::vector<std::string> cats = ParsearCategorias( r.cuerpo );
+      std::string detalle;
+      if ( HayConflicto( host, puerto, nombre, cats, detalle ) ) return;
+      if ( registro.Registrar( nombre, host, puerto, cats ) ) {
          Bitacora::Registrar( "REGISTRO", "Servidor de productos descubierto por broadcast: " + nombre+ " (" + host + ":" + std::to_string( puerto ) + ")", nombre );
       }
    }
 }
 
+bool ServicioProductosDistribuido::HayConflicto( const std::string & host, int puerto, const std::string & nombre,const std::vector<std::string> & categorias, std::string & detalle ) const {
+   detalle = registro.Conflicto( host, puerto, categorias );
+   if ( detalle.empty() ) return false;
+   std::string clave = host + ":" + std::to_string( puerto ) + "|" + detalle;
+   bool nuevo;
+   {
+      std::lock_guard<std::mutex> lock( mtxConflictos );
+      nuevo = conflictosAvisados.insert( clave ).second;
+   }
+   if ( nuevo ) {
+      std::string quien = nombre.empty() ? host + ":" + std::to_string( puerto ) : nombre;
+      Bitacora::Registrar( "RECHAZADO", "Servidor de productos rechazado (" + quien + "): " + detalle, quien );
+   }
+   return true;
+}
+
 bool ServicioProductosDistribuido::SondearServidor( const InfoServidor & s ) const {
    RespuestaHttp r = HttpCliente::Enviar( s.host, s.puerto, "GET", "/TicAmazon/list.php", "", 3 );
    if ( r.ok && r.codigo == 200 ) {
-      if ( registro.Registrar( "", s.host, s.puerto, ParsearCategorias( r.cuerpo ) ) ) {
+      std::vector<std::string> cats = ParsearCategorias( r.cuerpo );
+      std::string detalle;
+      if ( HayConflicto( s.host, s.puerto, s.nombre, cats, detalle ) ) return false;
+      if ( registro.Registrar( "", s.host, s.puerto, cats ) ) {
          Bitacora::Registrar( "ACTIVO", "Servidor de productos activo: " + s.nombre, s.nombre );
       }
       return true;
@@ -121,8 +143,13 @@ void ServicioProductosDistribuido::IniciarMonitor( int segundos ) {
 }
 
 RespuestaServicio ServicioProductosDistribuido::RegistrarServidor( const std::string & nombre, const std::string & host,int puerto, const std::vector<std::string> & categorias ) const {
+   std::string detalle;
+   if ( HayConflicto( host, puerto, nombre, categorias, detalle ) ) {
+      return Error( 409, "Registro rechazado: " + detalle + ". Los servidores de una misma isla deben tener categorias distintas" );
+   }
+   
    if ( registro.Registrar( nombre, host, puerto, categorias ) ) {
-Bitacora::Registrar( "REGISTRO", "Servidor de productos registrado: " + ( nombre.empty() ? host : nombre )+ " (" + host + ":" + std::to_string( puerto ) + ") con "+ std::to_string( categorias.size() ) + " categoria(s)",nombre.empty() ? host : nombre );   }
+      Bitacora::Registrar( "REGISTRO", "Servidor de productos registrado: " + ( nombre.empty() ? host : nombre )+ " (" + host + ":" + std::to_string( puerto ) + ") con "+ std::to_string( categorias.size() ) + " categoria(s)",nombre.empty() ? host : nombre );   }
    return Construir( 200, PaginasHtml::PaginaMensaje( "TicAmazon - Registro", "Servidor registrado correctamente" ) );
 }
 

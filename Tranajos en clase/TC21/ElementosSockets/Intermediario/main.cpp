@@ -12,6 +12,7 @@
 #include "Mancomunado.hpp"
 #include "Redes.hpp"
 #include "ServicioRedPrivada.hpp"
+#include "UnicoIntermediario.hpp"
 #include <csignal>
 
 static std::atomic<bool> terminar( false );
@@ -42,6 +43,7 @@ int main( int argc, char * argv[] ) {
    std::string broadcast;
    ConfigMancomunado cfg;
    std::string bcPrueba, ipPublica;
+   bool comprobarUnico = true;
 
    ServicioProductosDistribuido servicio;
    for ( int i = 2; i < argc; i++ ) {
@@ -56,6 +58,7 @@ int main( int argc, char * argv[] ) {
          else if ( clave == "udpislas" ) cfg.puertoUdpIslas = std::atoi( valor.c_str() );
          else if ( clave == "bc" ) bcPrueba = valor;
          else if ( clave == "pub" ) ipPublica = valor;
+         else if ( clave == "unico" ) comprobarUnico = ( valor != "no" && valor != "0" );
          else if ( clave == "seg" ) cfg.segundos = std::atoi( valor.c_str() );
          else { std::cerr << "Opcion desconocida: " << arg << "\n"; return 1; }
          continue;
@@ -83,6 +86,17 @@ int main( int argc, char * argv[] ) {
       if ( Mancomunado::DetectarIsla( ip, n ) ) {
          if ( cfg.ipPrivada.empty() ) cfg.ipPrivada = ip;
          if ( cfg.numeroIsla == 0 ) cfg.numeroIsla = n;
+      }
+   }
+
+   
+   // Solo un intermediario por isla: si ya hay otro contestando por broadcast, este no arranca.
+   // (Solo se comprueba en la red real 172.16.123.x; en pruebas locales se omite.)
+   if ( comprobarUnico && !IpConPrefijo( PREFIJO_RED_PRIVADA ).empty() ) {
+      std::string otro;
+      if ( HayOtroIntermediario( ResolverBroadcasts( broadcast ), otro ) ) {
+         std::cerr << "Ya hay un intermediario en esta isla (" << otro << "). Solo se permite uno por isla; no se inicia este.\n";
+         return 1;
       }
    }
 

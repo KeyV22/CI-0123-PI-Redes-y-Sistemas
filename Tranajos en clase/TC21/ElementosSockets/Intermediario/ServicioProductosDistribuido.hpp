@@ -1,6 +1,8 @@
 #ifndef ServicioProductosDistribuido_hpp
 #define ServicioProductosDistribuido_hpp
 
+#include <mutex>
+#include <set>
 #include <string>
 #include <vector>
 #include "ServicioProductos.hpp"
@@ -33,12 +35,15 @@ class ServicioProductosDistribuido : public ServicioProductos {
    private:
       void Sondear() const;
       bool SondearServidor( const InfoServidor & s ) const;
+      bool HayConflicto( const std::string & host, int puerto, const std::string & nombre,const std::vector<std::string> & categorias, std::string & detalle ) const;
       bool ConsultarProductos( const InfoServidor & s, const std::string & categoria,std::vector<FilaProducto> & filas ) const;
       
       Mancomunado * mancomunado = nullptr;
       RegistroIslas * islasRemotas = nullptr;
 
       mutable RegistroServidores registro;     // tiene su propio mutex
+      mutable std::mutex mtxConflictos;
+      mutable std::set<std::string> conflictosAvisados;
 };
 
 #endif

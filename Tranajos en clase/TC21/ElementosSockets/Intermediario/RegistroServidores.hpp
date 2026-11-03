@@ -30,6 +30,10 @@ class RegistroServidores {
       // Devuelve true si estaba activo y paso a inactivo
       bool MarcarInactivo( const std::string & host, int puerto );
 
+      // Regla: dos servidores de productos ACTIVOS de la misma isla no pueden ofrecer la misma categoria.
+      // Devuelve "" si no hay problema, o un texto con la categoria repetida y quien ya la tiene.
+      std::string Conflicto( const std::string & host, int puerto, const std::vector<std::string> & categorias ) const;
+
       std::vector<InfoServidor> Todos() const;
       std::vector<InfoServidor> Activos() const;
       std::vector<InfoServidor> ServidoresDeCategoria( const std::string & categoria ) const;
