@@ -13,6 +13,7 @@
 #include "Mancomunado.hpp"
 #include "ServicioProductosDistribuido.hpp"
 #include "Bitacora.hpp"
+#include "Redes.hpp"
 
 // Expresiones regulares del protocolo (seccion "Expresiones regulares para validacion")
 static const std::regex RE_ID_MSG( "^[0-9]{4}$" );
@@ -95,7 +96,10 @@ bool Mancomunado::Iniciar() {
       udp.HabilitarBroadcast();
       udp.Bind( config.puertoUdp );
       udp.SetReadTimeout( 1 );
-      escuchaTcp.Bind( config.puertoTcp );
+      
+      // Con IP de la red privada, el TCP escucha solo en esa interfaz
+      if ( EmpiezaCon( config.ipPrivada, PREFIJO_RED_PRIVADA ) ) escuchaTcp.Bind( config.ipPrivada.c_str(), config.puertoTcp );
+      else escuchaTcp.Bind( config.puertoTcp );
       escuchaTcp.Listen( 16 );
    } catch ( const std::exception & e ) {
       Bitacora::Registrar( "ERROR", std::string( "Mancomunado: no se pudo iniciar: " ) + e.what(), "mancomunado" );
@@ -150,6 +154,7 @@ void Mancomunado::HiloUdp() {
       int puertoOrigen = 0;
       long n = udp.RecvFrom( buf, sizeof( buf ) - 1, ipOrigen, puertoOrigen );
       if ( n <= 0 ) continue;                      // timeout
+      if ( EmpiezaCon( config.ipPrivada, PREFIJO_RED_PRIVADA ) && !EmpiezaCon( ipOrigen, PREFIJO_RED_PRIVADA ) ) continue;   // solo islas
       std::string msg( buf, n );
       QuitarFinLinea( msg );
       std::vector<std::string> p = Partir( msg, '/' );

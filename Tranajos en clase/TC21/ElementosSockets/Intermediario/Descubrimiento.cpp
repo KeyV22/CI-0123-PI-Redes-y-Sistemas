@@ -6,6 +6,7 @@
 #include <vector>
 #include "Descubrimiento.hpp"
 #include "Bitacora.hpp"
+#include "Redes.hpp"
 #include <vector>
 
 static std::vector<std::string> Partir( const std::string & t, char sep ) {
@@ -22,6 +23,8 @@ Descubrimiento::Descubrimiento( ServicioProductosDistribuido & servicio, int pue
      puertoUdp( puertoUdp ), puertoProductosUdp( puertoProductosUdp ), udp( 'd', false ) {}
 
 bool Descubrimiento::Iniciar( int segundos ) {
+   soloPrivada = !IpConPrefijo( PREFIJO_RED_PRIVADA ).empty();
+
    try {
       udp.HabilitarBroadcast();
       udp.Bind( puertoUdp );
@@ -55,6 +58,8 @@ void Descubrimiento::HiloEscucha() {
          std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) );
          continue;
       }
+      if ( soloPrivada && !EmpiezaCon( ip, PREFIJO_RED_PRIVADA ) ) continue;   // la red publica no descubre
+      
       std::string msg( buf, n );
       while ( !msg.empty() && ( msg.back() == '\n' || msg.back() == '\r' ) ) msg.pop_back();
 

@@ -43,3 +43,18 @@ Detalle de argumentos en `Intermediario/readme`.
 
 ## Antes de entregar
 `make clean` en cada carpeta y borrar `servidor.txt`.
+
+## Dos redes y apagado ordenado
+
+El intermediario usa dos interfaces de red:
+- Publica (10.1.35.x): atiende a los clientes por HTTP (puerto 8080).
+- Privada (172.16.123.x): recibe el registro de los servidores de productos,
+  hace el descubrimiento por broadcast y habla con los intermediarios de otras islas.
+
+Por la interfaz privada solo se aceptan registro y desregistro de servidores
+de productos; cualquier otra peticion responde 403.
+
+Apagado ordenado:
+- Servidor de productos: con Ctrl+C o el boton Salir avisa al intermediario
+  (POST /TicAmazon/desregistrar) antes de cerrar.
+- Intermediario: con Ctrl+C envia el mensaje 61 (ANNOUNCE_BYE) a las otras islas.

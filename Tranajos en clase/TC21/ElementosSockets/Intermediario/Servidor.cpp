@@ -6,11 +6,12 @@
 // El constructor de Socket ya crea el descriptor (socket() se llama
 // dentro de VSocket::Init, invocado desde el constructor de Socket).
 // 's' = stream (TCP), false = IPv4.
-Servidor::Servidor( int puerto ) : puerto( puerto ), escucha( 's', false ), corriendo( false ) {}
+Servidor::Servidor( int puerto, const std::string & ip ) : puerto( puerto ), ip( ip ), escucha( 's', false ), corriendo( false ) {}
 
 bool Servidor::Iniciar() {
    try {
-      escucha.Bind( puerto );
+      if ( ip.empty() ) escucha.Bind( puerto );
+      else escucha.Bind( ip.c_str(), puerto );
       escucha.Listen( 16 );   // backlog de 16 conexiones pendientes
    } catch ( const std::exception & e ) {
       std::cerr << "No se pudo iniciar el servidor: " << e.what() << "\n";
@@ -18,7 +19,7 @@ bool Servidor::Iniciar() {
    }
 
    corriendo = true;
-   std::cout << "Servidor escuchando en el puerto " << puerto << "\n";
+   std::cout << "Servidor escuchando en " << ( ip.empty() ? std::string( "todas las interfaces" ) : ip ) << ":" << puerto << "\n";
    return true;
 }
 

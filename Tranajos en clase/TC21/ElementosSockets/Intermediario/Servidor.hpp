@@ -10,7 +10,8 @@
 // independiente.
 class Servidor {
    public:
-      explicit Servidor( int puerto );
+      // ip vacia = todas las interfaces; con ip = solo esa interfaz
+      explicit Servidor( int puerto, const std::string & ip = "" );
 
       // Hace Bind() y Listen() sobre el socket de escucha. Devuelve
       // false si algo falla (puerto ocupado, permisos, etc.).
@@ -25,6 +26,7 @@ class Servidor {
 
    private:
       int puerto;
+      std::string ip;
       Socket escucha;             // socket de tipo 's' (stream/TCP)
       std::atomic<bool> corriendo;
 };

@@ -11,6 +11,17 @@ Todo es opcional: `./intermediario` usa el puerto 8080 y detecta solo la red.
 - `broadcast`: dirección de broadcast de la isla para buscar servidores de productos.
 - `host:puerto`: servidor de productos conocido de antemano.
 
+## Las dos redes
+El intermediario usa dos interfaces de red y las detecta solo:
+
+- **Pública (10.1.35.x):** atiende a los clientes por HTTP.
+- **Privada (172.16.123.x):** servidores de productos, descubrimiento y otras islas.
+
+Por la interfaz privada solo se aceptan el registro y el desregistro de servidores de
+productos; cualquier otra petición responde `403 Forbidden`.
+
+Si no hay interfaz 10.1.35.x (pruebas en una sola compu), atiende en todas las interfaces.
+
 ## Opciones para hablar con otras islas
 Por defecto la isla y la IP se deducen de la interfaz 172.16.123.x. Solo hacen falta
 para forzarlas o para probar en una sola compu:
@@ -19,6 +30,7 @@ para forzarlas o para probar en una sola compu:
 |---|---|---|
 | `isla=3` | número de esta isla (1 a 6) | se deduce de la IP |
 | `ip=172.16.123.52` | IP privada que se anuncia | la de la interfaz 172.16.123.x |
+| `pub=10.1.35.20` | IP pública donde atiende a los clientes | la de la interfaz 10.1.35.x |
 | `tcp=9090` | puerto TCP mancomunado | 9090 |
 | `udp=9090` | puerto UDP propio | 9090 |
 | `udpislas=9090` | puerto UDP de las otras islas | igual a `udp` |
@@ -26,6 +38,12 @@ para forzarlas o para probar en una sola compu:
 | `seg=10` | segundos entre anuncios | 10 |
 
 Si no hay IP 172.16.123.x, muestra `Aviso: sin conexion con otras islas` y funciona solo con su isla.
+
+## Apagado ordenado
+- **Intermediario:** con Ctrl+C envía el mensaje 61 (ANNOUNCE_BYE) a las otras islas antes
+  de salir, para que lo saquen de su tabla de rutas.
+- **Servidores de productos:** al cerrarse (Ctrl+C o botón Salir) avisan al intermediario
+  con `POST /TicAmazon/desregistrar` y este los quita de su lista.
 
 ## Prueba con dos intermediarios en una sola compu
 ```bash

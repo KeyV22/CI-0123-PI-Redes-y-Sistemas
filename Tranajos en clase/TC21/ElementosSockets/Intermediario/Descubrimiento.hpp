@@ -18,10 +18,11 @@ class Descubrimiento {
 
       ServicioProductosDistribuido & servicio;
       int puertoHttp;
-    std::vector<std::string> broadcasts;     
-    int puertoUdp;
+      std::vector<std::string> broadcasts;     
+      int puertoUdp;
       int puertoProductosUdp;
       Socket udp;
+      bool soloPrivada = false;   // hay interfaz 172.16.123.x: se ignora lo que llegue de otras redes
 };
 
 #endif
