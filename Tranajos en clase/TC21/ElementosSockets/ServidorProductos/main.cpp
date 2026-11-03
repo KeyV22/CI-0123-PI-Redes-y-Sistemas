@@ -11,6 +11,9 @@
 #include "Descubrimiento.hpp"
 #include "Broadcasts.hpp"
 #include <csignal>
+#include <atomic>
+#include <chrono>
+#include <thread>
 
 // Valida el registro antes de insertarlo "bodega:categoria:producto:cantidad:precio")
 static bool Insertar( Almacenamiento & almacen, const std::string & bodega,const std::string & categoria, const std::string & producto,const std::string & cantidad, const std::string & precio ) {
@@ -52,8 +55,14 @@ static bool CrearYSembrar( Almacenamiento & almacen, const std::string & ruta ) 
    return true;
 }
 
+static std::atomic<bool> senalCierre( false );
+static void AlRecibirSenal( int ) { senalCierre = true; }
+
 int main( int argc, char * argv[] ) {
    signal( SIGPIPE, SIG_IGN );
+
+   signal( SIGINT, AlRecibirSenal );     // Ctrl+C: cierre ordenado (avisa al intermediario)
+   signal( SIGTERM, AlRecibirSenal );
    
    int puerto = ( argc > 1 ) ? std::atoi( argv[1] ) : 8080;
    std::string ruta = ( argc > 2 ) ? argv[2] : "bodegas.data";
@@ -97,7 +106,15 @@ int main( int argc, char * argv[] ) {
    registro.Iniciar( 10 );
    descubrimiento.Iniciar( 10 );
 
+   // Vigila Ctrl+C: despierta el Accept() para salir por la ruta normal de cierre
+   std::thread( []() {
+      while ( !senalCierre ) std::this_thread::sleep_for( std::chrono::milliseconds( 200 ) );
+      Servidor::SolicitarApagado();
+   } ).detach();
+
    servidor.Ejecutar( servicio );
+
+   registro.Despedirse();     // avisa al intermediario antes de cerrar
 
    descubrimiento.Detener();
    registro.Detener();

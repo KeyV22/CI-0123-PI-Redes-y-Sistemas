@@ -68,6 +68,35 @@ bool ClienteRegistro::EnviarRegistro() {
    }
 }
 
+void ClienteRegistro::Despedirse() {
+   std::string host;
+   int puerto;
+   {
+      std::lock_guard<std::mutex> lock( mtx );
+      host = hostIntermediario;
+      puerto = puertoIntermediario;
+   }
+   if ( host.empty() || puerto <= 0 || !conectado ) return;   // nunca estuvo registrado
+
+   try {
+      Socket s( 's', false );
+      s.SetReadTimeout( 3 );
+      s.Connect( host.c_str(), puerto );
+      // Mismo host y puerto con los que se registro
+      std::string cuerpo = "host=" + PaginasHtml::CodificarUrl( s.IpLocal() ) + "&puerto=" + std::to_string( miPuerto );
+
+      std::ostringstream peticion;
+      peticion << "POST /TicAmazon/desregistrar HTTP/1.1\r\n"<< "Host: " << host << "\r\n"<< "Connection: close\r\n"<< "Content-Type: application/x-www-form-urlencoded\r\n"<< "Content-Length: " << cuerpo.size() << "\r\n"<< "\r\n" << cuerpo;
+      std::string request = peticion.str();
+      s.Write( request.data(), request.size() );
+
+      char buf[512];
+      s.Read( buf, sizeof( buf ) );   // espera la respuesta para no cortar el aviso
+      Bitacora::Registrar( "Se aviso al intermediario que este servidor se apaga" );
+   } catch ( const std::exception & ) {
+      // el intermediario no esta: no hay a quien avisar
+   }
+}
 void ClienteRegistro::Iniciar( int segundos ) {
    corriendo = true;
    hilo = std::thread( [this, segundos]() {

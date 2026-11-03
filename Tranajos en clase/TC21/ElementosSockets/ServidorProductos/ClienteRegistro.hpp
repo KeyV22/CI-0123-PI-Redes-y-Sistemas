@@ -17,6 +17,8 @@ class ClienteRegistro {
       bool Conectado() const { return conectado; }   // ultimo registro exitoso
 
       void Iniciar( int segundos );
+      // Avisa al intermediario que este servidor se apaga (POST /TicAmazon/desregistrar)
+      void Despedirse();
       void Detener();
 
    private:
