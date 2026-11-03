@@ -5,6 +5,7 @@ std::string ServicioProductos::Frase( int codigo ) {
    switch ( codigo ) {
       case 200: return "OK";
       case 400: return "Bad Request";
+      case 403: return "Forbidden";
       case 404: return "Not Found";
       case 405: return "Method Not Allowed";
       case 422: return "Unprocessable Entity";

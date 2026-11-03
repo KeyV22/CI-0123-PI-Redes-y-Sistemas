@@ -7,6 +7,7 @@ const std::string Router::RUTA_PROFORMA = "/TicAmazon/proforma.php";
 const std::string Router::RUTA_SERVIDORES = "/TicAmazon/servidores";
 const std::string Router::RUTA_RUTAS = "/TicAmazon/rutas";
 const std::string Router::RUTA_REGISTRAR = "/TicAmazon/registrar";
+const std::string Router::RUTA_DESREGISTRAR = "/TicAmazon/desregistrar";
 const std::string Router::RUTA_BITACORA = "/TicAmazon/bitacora";
 
 static std::vector<std::string> Separar( const std::string & texto, char sep ) {
@@ -25,6 +26,17 @@ static std::vector<std::string> Separar( const std::string & texto, char sep ) {
 RespuestaServicio Router::Despachar( const HttpRequest & req, ServicioProductos & servicio ) {
    if ( !req.valido ) {
       return servicio.Error( 400, req.error );
+   }
+
+   if ( req.metodo == "POST" && req.ruta == RUTA_DESREGISTRAR ) {
+   std::map<std::string, std::string> campos = HttpRequest::ParsearFormUrlEncoded( req.cuerpo );
+   std::string host = campos["host"];
+   int puerto = 0;
+   try { puerto = std::stoi( campos["puerto"] ); } catch ( const std::exception & ) { puerto = 0; }
+   if ( host.empty() || puerto <= 0 || puerto > 65535 ) {
+      return servicio.Error( 400, "Aviso invalido: se requieren 'host' y 'puerto'" );
+   }
+   return servicio.DesregistrarServidor( host, puerto );
    }
 
    if ( req.metodo == "GET" && req.ruta == RUTA_LISTADO ) {
@@ -64,7 +76,7 @@ RespuestaServicio Router::Despachar( const HttpRequest & req, ServicioProductos 
       return servicio.RegistrarServidor( campos["nombre"], host, puerto, Separar( campos["categorias"], ';' ) );
    }
 
-   if ( req.ruta == RUTA_LISTADO || req.ruta == RUTA_PROFORMA || req.ruta == RUTA_SERVIDORES|| req.ruta == RUTA_RUTAS || req.ruta == RUTA_REGISTRAR || req.ruta == RUTA_BITACORA) {
+   if ( req.ruta == RUTA_DESREGISTRAR || req.ruta == RUTA_LISTADO || req.ruta == RUTA_PROFORMA || req.ruta == RUTA_SERVIDORES|| req.ruta == RUTA_RUTAS || req.ruta == RUTA_REGISTRAR || req.ruta == RUTA_BITACORA) {
       return servicio.Error( 405, "Metodo '" + req.metodo + "' no soportado en " + req.ruta );
    }
 

@@ -126,6 +126,13 @@ Bitacora::Registrar( "REGISTRO", "Servidor de productos registrado: " + ( nombre
    return Construir( 200, PaginasHtml::PaginaMensaje( "TicAmazon - Registro", "Servidor registrado correctamente" ) );
 }
 
+RespuestaServicio ServicioProductosDistribuido::DesregistrarServidor( const std::string & host, int puerto ) const {
+   if ( registro.MarcarInactivo( host, puerto ) ) {
+      Bitacora::Registrar( "INACTIVO", "Servidor de productos se despidio: " + host + ":" + std::to_string( puerto ), host + ":" + std::to_string( puerto ) );
+   }
+   return Construir( 200, PaginasHtml::PaginaMensaje( "TicAmazon - Desregistro", "Servidor desregistrado" ) );
+}
+
 RespuestaServicio ServicioProductosDistribuido::ListarServidores() const {
    return Construir( 200, PaginasHtml::PaginaServidores( registro.Todos() ) );
 }

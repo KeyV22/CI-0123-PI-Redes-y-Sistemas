@@ -25,6 +25,8 @@ class ServicioProductos {
       virtual RespuestaServicio RegistrarServidor( const std::string &, const std::string &, int,const std::vector<std::string> & ) const {
          return Error( 404, "No soportado" );
       }
+      // Un servidor de productos avisa que se apaga: su ruta se inhabilita
+      virtual RespuestaServicio DesregistrarServidor( const std::string &, int ) const { return Error( 404, "No soportado" ); }
       virtual RespuestaServicio ListarBitacora( const std::string & ) const { return Error( 404, "No soportado" ); }
 
       // Para rutas desconocidas, metodos no soportados, parametros mal formados, etc.

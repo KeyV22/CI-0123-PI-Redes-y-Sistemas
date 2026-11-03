@@ -21,6 +21,7 @@ class Router {
       static const std::string RUTA_SERVIDORES;
       static const std::string RUTA_RUTAS;
       static const std::string RUTA_REGISTRAR;
+      static const std::string RUTA_DESREGISTRAR;
       static const std::string RUTA_BITACORA;
 };
 
