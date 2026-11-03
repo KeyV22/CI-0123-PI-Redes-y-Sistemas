@@ -1,0 +1,68 @@
+# TicAmazon - Cliente
+
+Programa cliente de la tienda virtual TicAmazon (Isla 3). Se conecta al
+servidor de productos por HTTP: consulta categorías, permite armar un
+carrito de compras y al finalizar envía la proforma al servidor.
+
+## Requisitos
+
+- Linux (probado en Fedora/Ubuntu)
+- g++ con soporte para C++17
+- make
+- El servidor de productos corriendo y accesible por red
+
+
+## Compilar
+
+```bash
+make
+```
+
+Genera el binario `cliente`.
+
+## Limpiar
+
+```bash
+make clean
+```
+
+## Ejecutar
+
+```bash
+./cliente <IP-del-servidor> <puerto>
+```
+
+Ejemplo:
+
+```bash
+./cliente 10.84.166.62 8080
+```
+
+Si no se indican argumentos, por defecto intenta conectarse a
+`os.ecci.ucr.ac.cr` puerto `http` (valores heredados de la entrega
+anterior, no funcionan con el servidor propio).
+
+## Cómo funciona
+
+1. Pide al servidor la lista de categorías disponibles (`GET /TicAmazon/list.php`).
+2. El usuario elige una categoría por índice.
+3. El cliente pide los productos de esa categoría (`GET /TicAmazon/list.php?category=X`).
+4. El usuario elige un producto y una cantidad, y se agrega al carrito.
+5. Se puede repetir el proceso con otra categoría, o terminar la compra.
+6. Al terminar, se muestra la factura en pantalla y se envía la proforma
+   al servidor (`POST /TicAmazon/proforma.php`), que responde si el pedido
+   es válido según las existencias reales.
+
+## Otros comandos del Makefile
+
+```bash
+make objetos   
+make clean     
+```
+
+## Notas
+- El cliente valida el stock localmente antes de agregar al carrito
+  (con lo que el servidor reportó), pero la validación final y
+  definitiva la hace el servidor al recibir la proforma.
+- Todas las peticiones usan `Connection: close`: cada request abre y
+  cierra su propia conexión.

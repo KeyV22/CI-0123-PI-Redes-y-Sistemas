@@ -1,0 +1,922 @@
+[2026-10-06 16:27:56] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-06 16:50:50] GET / -> 404 Not Found
+[2026-10-06 16:50:50] GET /favicon.ico -> 404 Not Found
+[2026-10-06 16:50:54] GET / -> 404 Not Found
+[2026-10-06 16:51:04] Error atendiendo conexion: read error
+[2026-10-06 16:51:15] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-06 16:51:19] GET /TicAmazon/list.php | categoria: 'Alimentos y bebidas' -> 200 OK
+[2026-10-06 16:51:24] GET /TicAmazon/list.php | categoria: 'Salud y belleza' -> 200 OK
+[2026-10-06 16:51:35] Error atendiendo conexion: read error
+[2026-10-06 16:51:35] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-06 16:51:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-06 16:51:41] GET /TicAmazon/list.php | categoria: 'Salud y belleza' -> 200 OK
+[2026-10-06 16:51:45] Error atendiendo conexion: read error
+[2026-10-09 08:54:55] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 08:54:55] GET /favicon.ico -> 404 Not Found
+[2026-10-09 08:54:58] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 08:55:08] Error atendiendo conexion: read error
+[2026-10-09 08:55:15] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 08:55:18] GET /TicAmazon/list.php | categoria: 'Salud' -> 200 OK
+[2026-10-09 08:55:21] GET /TicAmazon/list.php | categoria: 'Electronica' -> 200 OK
+[2026-10-09 08:55:24] GET /TicAmazon/list.php | categoria: 'Hogar' -> 200 OK
+[2026-10-09 08:55:34] Error atendiendo conexion: read error
+[2026-10-09 08:55:53] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 08:56:03] Error atendiendo conexion: read error
+[2026-10-09 09:04:00] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:04:02] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 09:04:10] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:04:14] GET /TicAmazon/list.php | categoria: 'Salud' -> 200 OK
+[2026-10-09 09:04:24] Error atendiendo conexion: read error
+[2026-10-09 09:04:26] GET /TicAmazon/list.php | categoria: 'Hogar' -> 200 OK
+[2026-10-09 09:04:29] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 09:04:32] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:04:42] Error atendiendo conexion: read error
+[2026-10-09 09:21:16] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:21:21] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 09:21:26] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:21:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:21:31] GET /TicAmazon/list.php | categoria: 'Salud' -> 200 OK
+[2026-10-09 09:21:32] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:21:33] GET /TicAmazon/list.php | categoria: 'Electronica' -> 200 OK
+[2026-10-09 09:21:37] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:21:47] Error atendiendo conexion: read error
+[2026-10-09 09:22:25] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:22:30] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:22:40] Error atendiendo conexion: read error
+[2026-10-09 09:23:57] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:23:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:24:09] Error atendiendo conexion: read error
+[2026-10-09 09:24:23] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:24:33] Error atendiendo conexion: read error
+[2026-10-09 09:29:20] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:29:21] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:29:22] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:29:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:29:24] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:29:34] Error atendiendo conexion: read error
+[2026-10-09 09:30:11] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:30:21] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 09:30:26] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:30:30] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:38:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:38:24] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 09:38:34] Error atendiendo conexion: read error
+[2026-10-09 09:38:52] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 09:39:00] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:39:02] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:39:04] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:39:05] GET /TicAmazon/list.php | categoria: 'Salud' -> 200 OK
+[2026-10-09 09:39:06] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:39:16] Error atendiendo conexion: read error
+[2026-10-09 09:54:51] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:55:01] Error atendiendo conexion: read error
+[2026-10-09 09:55:13] POST /TicAmazon/salir -> 200 OK
+[2026-10-09 09:55:13] Cierre del servidor solicitado desde el navegador
+[2026-10-09 09:56:47] POST /TicAmazon/salir -> 200 OK
+[2026-10-09 09:56:47] Cierre del servidor solicitado desde el navegador
+[2026-10-09 09:57:16] GET /TicAmazon -> 404 Not Found
+[2026-10-09 09:57:26] GET /TicAmazon -> 404 Not Found
+[2026-10-09 09:57:36] Error atendiendo conexion: read error
+[2026-10-09 09:59:36] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:59:44] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-09 09:59:47] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:59:48] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-09 09:59:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:59:49] GET /TicAmazon/list.php | categoria: 'Salud' -> 200 OK
+[2026-10-09 09:59:51] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:59:52] GET /TicAmazon/list.php | categoria: 'Electronica' -> 200 OK
+[2026-10-09 09:59:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:59:54] GET /TicAmazon/list.php | categoria: 'Hogar' -> 200 OK
+[2026-10-09 09:59:55] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-09 09:59:59] POST /TicAmazon/salir -> 200 OK
+[2026-10-09 09:59:59] Cierre del servidor solicitado desde el navegador
+[2026-10-14 18:04:55] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:05:07] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:05:32] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:05:36] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:05:40] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-14 18:05:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:05:51] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-14 18:06:04] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-14 18:06:18] POST /TicAmazon/proforma.php | 1 item(s): Arroz x3 (Alimentos) -> 200 OK
+[2026-10-14 18:06:36] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-14 18:06:51] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:22:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:22:41] POST /TicAmazon/salir -> 200 OK
+[2026-10-14 18:22:41] Cierre del servidor solicitado desde el navegador
+[2026-10-14 18:24:17] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-14 18:24:27] Error atendiendo conexion: read error
+[2026-10-14 18:27:42] POST /TicAmazon/salir -> 200 OK
+[2026-10-14 18:27:42] Cierre del servidor solicitado desde el navegador
+[2026-10-27 01:23:03] Registrado en el intermediario 127.0.0.1:8080 como 'PC1'
+[2026-10-27 01:23:10] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:23:20] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:23:30] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:23:40] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:23:50] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:24:00] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:24:10] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:24:20] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:24:30] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:24:40] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:24:50] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:25:00] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:25:10] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:25:20] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:25:21] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-27 01:25:21] GET /favicon.ico -> 404 Not Found
+[2026-10-27 01:25:30] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:02:22] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:08:50] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:09:00] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:09:01] Intermediario encontrado en 10.0.2.15:8080
+[2026-10-28 01:09:02] Registrado en el intermediario como 'productos-9091'
+[2026-10-28 01:09:10] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:09:10] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:09:20] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:09:20] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:09:30] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:09:30] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:09:40] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:09:40] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:09:50] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:09:50] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:10:00] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:10:00] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:10:10] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:10:10] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:10:20] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:10:20] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:15:46] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:15:48] GET /favicon.ico -> 404 Not Found
+[2026-10-28 01:16:04] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-28 01:16:10] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-28 01:16:15] GET /TicAmazon/list.php | categoria: 'Salud' -> 200 OK
+[2026-10-28 01:16:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:17:25] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-28 01:19:29] GET /TicAmazon/servidores.php -> 404 Not Found
+[2026-10-28 01:19:40] GET /TicAmazon/rutas.php -> 404 Not Found
+[2026-10-28 01:19:52] GET /TicAmazon/bitacora.php -> 404 Not Found
+[2026-10-28 01:21:41] GET /TicAmazon/bitacora -> 404 Not Found
+[2026-10-28 01:21:49] GET /TicAmazon/rutas -> 404 Not Found
+[2026-10-28 01:21:54] GET /TicAmazon/servidores -> 404 Not Found
+[2026-10-28 01:30:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:30:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:30:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:30:24] Intermediario encontrado en 10.0.2.15:8080
+[2026-10-28 01:30:30] Registrado en el intermediario como 'productos-9092'
+[2026-10-28 01:30:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:30:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:30:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:30:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:30:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:30:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:31:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:31:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:31:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:31:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:31:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:31:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:31:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:31:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:31:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:31:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:31:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:31:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:32:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:32:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:32:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:32:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:32:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:32:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:32:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:32:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:32:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:32:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:32:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:32:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:33:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:33:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:33:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:33:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:33:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:33:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:33:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:33:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:33:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:33:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:33:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:33:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:34:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:34:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:34:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:34:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:34:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:34:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:34:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:34:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:34:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:34:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:34:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:34:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:35:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:35:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:35:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:35:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:35:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:35:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:35:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:35:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:35:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:35:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:35:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:35:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:36:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:36:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:36:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:36:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:36:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:36:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:36:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:36:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:36:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:36:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:36:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:36:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:37:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:37:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:37:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:37:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:37:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:37:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:37:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:37:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:37:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:37:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:37:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:37:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:38:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:38:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:38:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:38:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:38:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:38:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:38:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:38:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:38:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:38:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:38:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:38:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:39:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:39:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:39:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:39:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:39:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:39:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:39:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:39:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:39:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:39:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:39:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:39:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:40:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:40:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:40:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:40:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:40:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:40:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:40:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:40:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:40:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:40:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:40:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:40:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:41:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:41:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:41:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:41:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:41:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:41:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:41:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:41:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:41:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:41:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:41:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:41:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:42:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:42:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:42:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:42:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:42:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:42:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:42:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:42:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:42:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:42:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:42:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:42:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:43:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:43:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:43:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:43:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:43:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:43:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:43:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:43:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:43:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:43:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:43:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:43:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:44:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:44:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:44:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:44:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:44:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:44:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:44:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:44:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:44:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:44:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:44:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:44:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:45:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:45:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:45:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:45:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:45:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:45:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:45:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:45:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:45:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:45:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:45:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:45:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:46:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:46:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:46:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:46:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:46:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:46:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:46:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:46:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:46:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:46:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:46:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:46:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:47:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:47:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:47:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:47:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:47:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:47:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:47:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:47:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:47:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:47:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:47:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:47:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:48:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:48:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:48:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:48:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:48:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:48:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:48:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:48:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:48:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:48:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:48:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:48:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:49:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:49:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:49:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:49:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:49:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:49:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:49:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:49:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:49:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:49:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:49:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:49:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:50:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:50:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:50:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:50:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:50:18] GET /TicAmazon/list.php | categoria: 'Hogar' -> 200 OK
+[2026-10-28 01:50:18] GET /TicAmazon/list.php | categoria: 'Hogar' -> 200 OK
+[2026-10-28 01:50:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:50:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:50:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:50:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:50:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:50:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:50:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:50:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:51:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:51:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:51:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:51:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:51:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:51:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:51:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:51:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:51:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:51:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:51:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:51:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:52:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:52:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:52:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:52:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:52:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:52:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:52:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:52:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:52:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:52:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:52:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:52:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:53:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:53:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:53:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:53:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:53:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:53:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:53:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:53:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:53:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:53:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:53:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:53:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:54:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:54:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:54:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:54:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:54:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:54:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:54:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:54:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:54:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:54:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:54:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:54:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:55:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:55:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:55:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:55:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:55:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:55:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:55:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:55:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:55:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:55:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:55:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:55:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:56:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:56:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:56:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:56:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:56:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:56:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:56:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:56:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:56:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:56:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:56:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:56:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:57:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:57:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:57:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:57:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:57:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:57:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:57:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:57:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:57:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:57:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:57:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:57:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:58:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:58:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:58:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:58:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:58:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:58:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:58:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:58:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:58:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:58:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:58:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:58:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:59:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:59:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:59:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:59:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:59:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:59:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:59:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:59:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:59:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:59:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:59:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 01:59:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:00:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:00:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:00:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:00:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:00:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:00:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:00:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:00:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:00:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:00:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:00:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:00:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:01:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:01:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:01:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:01:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:01:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:01:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:01:27] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-28 02:01:27] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-28 02:01:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:01:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:01:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:01:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:01:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:01:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:02:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:02:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:02:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:02:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:02:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:02:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:02:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:02:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:02:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:02:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:02:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:02:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:03:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:03:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:03:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:03:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:03:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:03:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:03:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:03:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:03:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:03:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:03:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:03:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:04:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:04:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:04:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:04:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:04:20] GET /TicAmazon/bitacora -> 404 Not Found
+[2026-10-28 02:04:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:04:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:04:32] GET /TicAmazon/rutas -> 404 Not Found
+[2026-10-28 02:04:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:04:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:04:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:04:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:04:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:04:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:05:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:05:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:05:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:05:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:05:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:05:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:05:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:05:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:05:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:05:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:05:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:05:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:06:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:06:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:06:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:06:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:06:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:06:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:06:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:06:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:06:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:06:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:06:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:06:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:07:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:07:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:07:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:07:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:07:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:07:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:07:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:07:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:07:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:07:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:07:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:07:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:08:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:08:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:08:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:08:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:08:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:08:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:08:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:08:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:08:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:08:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:08:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:08:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:09:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:09:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:09:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:09:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:09:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:09:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:09:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:09:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:09:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:09:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:09:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:09:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:10:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:10:03] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:10:10] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-28 02:10:10] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-10-28 02:10:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:10:13] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:10:19] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-28 02:10:19] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-28 02:10:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:10:23] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:10:28] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-28 02:10:28] POST /TicAmazon/proforma.php | 1 item(s): Yogurt-Bebible x10 (Bebidas) -> 200 OK
+[2026-10-28 02:10:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:10:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:10:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:10:43] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:10:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 02:10:53] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 21:18:07] Intermediario encontrado en 192.168.2.116:8080
+[2026-10-28 22:00:11] Intermediario encontrado en 192.168.2.116:8080
+[2026-10-28 22:00:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:00:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:00:21] Registrado en el intermediario como 'PC1'
+[2026-10-28 22:00:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:00:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:00:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:00:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:00:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:00:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:00:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:00:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:01:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:01:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:01:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:01:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:01:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:01:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:01:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:01:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:01:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:01:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:01:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:01:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:02:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:02:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:02:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:02:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:02:20] GET /TicAmazon/list.php | categoria: 'Alimentos y bebidas' -> 200 OK
+[2026-10-28 22:02:20] GET /TicAmazon/list.php | categoria: 'Alimentos y bebidas' -> 200 OK
+[2026-10-28 22:02:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:02:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:02:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:02:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:02:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:02:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:02:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:02:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:03:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:03:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:03:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:03:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:03:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:03:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:03:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:03:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:03:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:03:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:03:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:03:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:04:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:04:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:04:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:04:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:04:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:04:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:04:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:04:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:04:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:04:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:04:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:04:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:05:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:05:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:05:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:05:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:05:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:05:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:05:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:05:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:05:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:05:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:05:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:05:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:06:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:06:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:06:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:06:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:06:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:06:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:06:39] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:06:39] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:06:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:06:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:06:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:06:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:07:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:07:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:07:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:07:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:07:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:07:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:07:39] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:07:39] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:07:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:07:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:07:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:07:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:08:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:08:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:08:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:08:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:08:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:08:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:08:39] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:08:39] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:08:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:08:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:08:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:08:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:09:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:09:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:09:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:09:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:09:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:09:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:09:39] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:09:39] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:09:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:09:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:09:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:09:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:10:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:10:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:10:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:10:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:10:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:10:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:10:39] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:10:39] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:10:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:10:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:10:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:10:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:11:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:11:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:11:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:11:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:11:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:11:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:11:39] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:11:39] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:11:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:11:49] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:11:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:11:59] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:12:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:12:09] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:12:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:12:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:12:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:12:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 22:43:53] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:43:53] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:44:08] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:44:08] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:44:08] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:46:36] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:46:36] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:47:25] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:47:25] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:47:25] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:51:27] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:51:27] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:52:09] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:52:29] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:53:43] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:56:19] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:56:19] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 22:56:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:00:12] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:12] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:12] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:00:13] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:13] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:13] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:13] GET /TicAmazon/list.php | categoria: 'Electronica' -> 200 OK
+[2026-10-28 23:00:16] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:16] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:16] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:16] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:00:17] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:17] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:17] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:17] GET /TicAmazon/list.php | categoria: 'Salud y belleza' -> 200 OK
+[2026-10-28 23:00:18] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:18] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:18] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:00:18] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:19] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:19] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:19] GET /TicAmazon/list.php | categoria: 'Alimentos y bebidas' -> 200 OK
+[2026-10-28 23:00:21] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:21] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:21] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:00:21] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:19:38] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:38] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:19:40] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:40] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:40] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:40] GET /TicAmazon/list.php | categoria: 'Salud y belleza' -> 200 OK
+[2026-10-28 23:19:42] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:42] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:42] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:42] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:19:42] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:42] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:42] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:42] GET /TicAmazon/list.php | categoria: 'Alimentos y bebidas' -> 200 OK
+[2026-10-28 23:19:44] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:44] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:44] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:44] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:19:45] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:45] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:45] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:45] GET /TicAmazon/list.php | categoria: 'Electronica' -> 200 OK
+[2026-10-28 23:19:45] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:46] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:46] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:19:46] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:37:05] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:05] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:05] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:37:20] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:20] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:20] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:20] GET /TicAmazon/list.php | categoria: 'Salud' -> 200 OK
+[2026-10-28 23:37:30] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:31] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:31] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:31] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:37:32] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:32] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:32] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:32] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-10-28 23:37:33] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:33] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:33] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:33] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:37:34] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:34] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:34] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:34] GET /TicAmazon/list.php | categoria: 'Hogar' -> 200 OK
+[2026-10-28 23:37:42] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:42] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:42] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:42] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:42] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-10-28 23:37:54] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:54] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-10-28 23:37:54] POST /TicAmazon/salir -> 200 OK
+[2026-10-28 23:37:54] Cierre del servidor solicitado desde el navegador
