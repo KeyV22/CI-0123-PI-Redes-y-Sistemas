@@ -7,6 +7,7 @@
 #include "HttpCliente.hpp"
 #include "Bitacora.hpp"
 #include "Texto.hpp"
+#include "Mancomunado.hpp"
 
 static std::string Desescapar( std::string t ) {
    const char * de[] = { "&lt;", "&gt;", "&quot;", "&amp;" };
@@ -130,7 +131,22 @@ RespuestaServicio ServicioProductosDistribuido::ListarServidores() const {
 }
 
 RespuestaServicio ServicioProductosDistribuido::ListarRutas() const {
-   return Construir( 200, PaginasHtml::PaginaRutas( registro.Rutas() ) );
+   auto rutas = registro.Rutas();
+   // Rutas hacia otras islas: categoria -> "INT_xx (ip:puerto)"
+   if ( islasRemotas != nullptr ) {
+      for ( const InfoIsla & isla : islasRemotas->Todas() ) {
+         if ( !isla.activa ) continue;
+         for ( const std::string & c : isla.categorias ) {
+            size_t idx = rutas.size();
+            for ( size_t i = 0; i < rutas.size(); i++ ) {
+               if ( Mancomunado::NombreProtocolo( rutas[i].first ) == Mancomunado::NombreProtocolo( c ) ) { idx = i; break; }
+            }
+            if ( idx == rutas.size() ) rutas.push_back( { c, {} } );
+            rutas[idx].second.push_back( isla.id + " (" + isla.host + ":" + std::to_string( isla.puerto ) + ")" );
+         }
+      }
+   }
+   return Construir( 200, PaginasHtml::PaginaRutas( rutas ) );
 }
 
 RespuestaServicio ServicioProductosDistribuido::ListarBitacora( const std::string & filtroTipo ) const {
@@ -162,7 +178,12 @@ bool ServicioProductosDistribuido::ConsultarProductos( const InfoServidor & s, c
    return true;
 }
 
-RespuestaServicio ServicioProductosDistribuido::ListarCategorias() const {
+void ServicioProductosDistribuido::FijarMancomunado( Mancomunado * m, RegistroIslas * islas ) {
+   mancomunado = m;
+   islasRemotas = islas;
+}
+
+std::vector<std::string> ServicioProductosDistribuido::CategoriasLocales() const {
    std::vector<std::string> cats;
    for ( const InfoServidor & s : registro.Activos() ) {
       for ( const std::string & c : s.categorias ) {
@@ -173,6 +194,30 @@ RespuestaServicio ServicioProductosDistribuido::ListarCategorias() const {
          if ( !existe ) cats.push_back( c );
       }
    }
+   return cats;
+}
+
+void ServicioProductosDistribuido::ProductosLocales( const std::string & categoria, std::vector<FilaProducto> & filas ) const {
+   for ( const InfoServidor & s : registro.ServidoresDeCategoria( categoria ) ) {
+      ConsultarProductos( s, categoria, filas );
+   }
+}
+
+RespuestaServicio ServicioProductosDistribuido::ListarCategorias() const {
+   std::vector<std::string> cats = CategoriasLocales();
+   // Categorias de otras islas (tabla de rutas hacia las islas), sin repetir las que ya hay aqui
+   if ( islasRemotas != nullptr ) {
+      for ( const InfoIsla & isla : islasRemotas->Todas() ) {
+         if ( !isla.activa ) continue;
+         for ( const std::string & c : isla.categorias ) {
+            bool existe = false;
+            for ( const std::string & x : cats ) {
+               if ( Mancomunado::NombreProtocolo( x ) == Mancomunado::NombreProtocolo( c ) ) { existe = true; break; }
+            }
+            if ( !existe ) cats.push_back( c );
+         }
+      }
+   }
    return Construir( 200, PaginasHtml::PaginaCategorias( cats ) );
 }
 
@@ -181,8 +226,17 @@ RespuestaServicio ServicioProductosDistribuido::ListarProductos( const std::stri
       return Error( 400, "Falta el parametro 'category'" );
    }
    std::vector<FilaProducto> filas;
-   for ( const InfoServidor & s : registro.ServidoresDeCategoria( categoria ) ) {
-      ConsultarProductos( s, categoria, filas );
+   ProductosLocales( categoria, filas );
+   // Si otra isla tiene la categoria, se le pide con GET_PRODUCTS (20)
+   if ( islasRemotas != nullptr && mancomunado != nullptr ) {
+      std::string nombre = Mancomunado::NombreProtocolo( categoria );
+      for ( const InfoIsla & isla : islasRemotas->IslasDeCategoria( nombre ) ) {
+         if ( !mancomunado->ConsultarProductos( isla, nombre, filas ) ) {
+            if ( islasRemotas->MarcarInactiva( isla.id ) ) {
+               Bitacora::Registrar( "INACTIVO", "Intermediario inactivo (ruta inhabilitada): " + isla.id, isla.id );
+            }
+         }
+      }
    }
    return Construir( 200, PaginasHtml::PaginaProductosDistribuidos( categoria, filas ) );
 }

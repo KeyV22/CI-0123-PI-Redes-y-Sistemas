@@ -1,37 +1,45 @@
-# TicAmazon - Programación de elementos
+# TicAmazon – Programación de elementos
 
-## Carpetas
+Carpetas: `ClienteServidor/`, `Intermediario/`, `ServidorProductos/`.
+Requisitos: g++ (C++17), make y OpenSSL (`libssl-dev` / `openssl-devel`).
 
-- `ClienteServidor/`: cliente de consola (conecta al Intermediario).
-- `Intermediario/`: atiende al cliente y reenvía al servidor de productos.
-- `ServidorProductos/`: atiende al intermediario y usa el almacenamiento.
-- `ModeloAlmacenamiento/`: sistema de archivos y programas para agregar/extraer bodegas.
-- `Simulador/`: simulación del protocolo intragrupo con buzones.
-- `PacketTracer/`: laboratorio de red (no se compila).
-
-Cada carpeta tiene su propio `Makefile`: entrar a la carpeta y correr `make`.
-
-## Ejecutar el sistema completo (tres terminales, en este orden)
-
+## Compilar
 ```bash
-cd ServidorProductos && make && ./servidor 9091 bodegas.data
-cd Intermediario     && make && ./intermediario 8080 127.0.0.1 9091
-cd ClienteServidor   && make && ./cliente 127.0.0.1 8080
+cd ServidorProductos && make clean && make && cd ..
+cd Intermediario     && make clean && make && cd ..
+cd ClienteServidor   && make clean && make && cd ..
 ```
 
-"https://<IP-del-servidor>:9090/TicAmazon/list.php"
-
-En computadoras distintas: el intermediario apunta a la IP del servidor de
-productos, y el cliente a la IP del intermediario (`ip addr show` muestra la IP).
-
-## Programas independientes
-
+## Puertos (abrir en el firewall)
 ```bash
-cd ModeloAlmacenamiento && make
-./agregar_bodega bodegas.data Bodega-3
-./extraer_bodega bodegas.data Bodega-3
+sudo firewall-cmd --add-port=7071/udp --add-port=7072/udp --add-port=9090/udp \
+                  --add-port=9090/tcp --add-port=8080/tcp --add-port=9091/tcp
 ```
+- 7071/7072 UDP: descubrimiento dentro de la isla (intermediario <-> servidor de productos).
+- 9090 UDP y TCP: protocolo mancomunado entre intermediarios de distintas islas.
+- 8080 TCP: HTTP del intermediario (clientes).
+- 9091 TCP: HTTPS del servidor de productos.
+No usar 9090 para el servidor de productos si corre en la misma compu que el intermediario.
 
+## Ejecutar (en este orden, una terminal cada uno)
 ```bash
-cd Simulador && make && ./Simulador.out
+cd ServidorProductos && ./servidor 9091 bodegas.data PC1
+cd Intermediario     && ./intermediario 8080
+cd ClienteServidor   && ./cliente IP_DEL_INTERMEDIARIO 8080
 ```
+Los servidores y el intermediario se descubren solos por broadcast, en cualquier orden.
+El servidor necesita `ci0123.pem` en su carpeta.
+
+## Comprobar
+- Servidores registrados: `http://IP_INTERMEDIARIO:8080/TicAmazon/servidores`
+- Tabla de rutas (locales y de otras islas): `http://IP_INTERMEDIARIO:8080/TicAmazon/rutas`
+- Bitácora: `http://IP_INTERMEDIARIO:8080/TicAmazon/bitacora`
+
+## Varias islas
+Cada intermediario usa su IP 172.16.123.x para saber su isla (por ejemplo .50 = isla 3)
+y anuncia (60) a las otras islas. Al cerrarlo con Ctrl+C avisa (61).
+Entre islas distintas el L3 necesita `ip directed-broadcast` en las `interface Vlan`.
+Detalle de argumentos en `Intermediario/readme`.
+
+## Antes de entregar
+`make clean` en cada carpeta y borrar `servidor.txt`.

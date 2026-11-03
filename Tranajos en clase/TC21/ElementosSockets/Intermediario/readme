@@ -1,36 +1,35 @@
-# TicAmazon - Intermediario
-
-Atiende al Cliente por HTTP y reenvía cada solicitud a su propio Servidor de
-Productos. No toca el almacenamiento.
+# Intermediario
 
 ## Compilar
-
-```bash
-make
-```
-
-Genera el binario `intermediario`. Requiere g++ (C++17) y make.
+make clean && make
 
 ## Ejecutar
+./intermediario [puerto] [broadcast] [host:puerto ...] [opciones]
 
+Todo es opcional: `./intermediario` usa el puerto 8080 y detecta solo la red.
+
+- `broadcast`: dirección de broadcast de la isla para buscar servidores de productos.
+- `host:puerto`: servidor de productos conocido de antemano.
+
+## Opciones para hablar con otras islas
+Por defecto la isla y la IP se deducen de la interfaz 172.16.123.x. Solo hacen falta
+para forzarlas o para probar en una sola compu:
+
+| Opción | Qué hace | Por defecto |
+|---|---|---|
+| `isla=3` | número de esta isla (1 a 6) | se deduce de la IP |
+| `ip=172.16.123.52` | IP privada que se anuncia | la de la interfaz 172.16.123.x |
+| `tcp=9090` | puerto TCP mancomunado | 9090 |
+| `udp=9090` | puerto UDP propio | 9090 |
+| `udpislas=9090` | puerto UDP de las otras islas | igual a `udp` |
+| `bc=127.255.255.255` | usar esta dirección en lugar del broadcast de cada isla (pruebas) | broadcast dirigido de cada isla |
+| `seg=10` | segundos entre anuncios | 10 |
+
+Si no hay IP 172.16.123.x, muestra `Aviso: sin conexion con otras islas` y funciona solo con su isla.
+
+## Prueba con dos intermediarios en una sola compu
 ```bash
-./intermediario [puerto] [host_productos] [puerto_productos]
+./intermediario 8080 isla=1 ip=127.0.0.1 tcp=9090 udp=9090 udpislas=9190 bc=127.255.255.255 seg=3
+./intermediario 8081 isla=2 ip=127.0.0.1 tcp=9190 udp=9190 udpislas=9090 bc=127.255.255.255 seg=3
 ```
-
-- `puerto`: puerto donde escucha al cliente (por defecto 8080).
-- `host_productos`: IP del servidor de productos (por defecto 127.0.0.1).
-- `puerto_productos`: puerto del servidor de productos (por defecto 9090).
-
-Ejemplo (todo en la misma computadora):
-
-```bash
-./intermediario 8080 127.0.0.1 9090
-```
-
-Primero debe estar corriendo el servidor de productos.
-
-## Limpiar
-
-```bash
-make clean
-```
+Cada uno debe mostrar en `/TicAmazon/rutas` las categorías del otro.

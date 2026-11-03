@@ -6,11 +6,19 @@
 #include "ServicioProductos.hpp"
 #include "RegistroServidores.hpp"
 #include "PaginasHtml.hpp"
+#include "RegistroIslas.hpp"
 
+class Mancomunado;
 class ServicioProductosDistribuido : public ServicioProductos {
    public:
       void AgregarSemilla( const std::string & host, int puerto );
       void IniciarMonitor( int segundos );     // hilo que sondea a todos cada N segundos
+      // Conecta el servicio con la comunicacion entre islas
+      void FijarMancomunado( Mancomunado * m, RegistroIslas * islas );
+
+      // Solo lo que hay en los servidores de productos de ESTA isla (lo usa el protocolo mancomunado)
+      std::vector<std::string> CategoriasLocales() const;
+      void ProductosLocales( const std::string & categoria, std::vector<FilaProducto> & filas ) const;
       void DescubrirServidor( const std::string & host, int puerto, const std::string & nombre );
 
       RespuestaServicio ListarCategorias() const override;
@@ -25,6 +33,8 @@ class ServicioProductosDistribuido : public ServicioProductos {
       void Sondear() const;
       bool SondearServidor( const InfoServidor & s ) const;
       bool ConsultarProductos( const InfoServidor & s, const std::string & categoria,std::vector<FilaProducto> & filas ) const;
+      Mancomunado * mancomunado = nullptr;
+      RegistroIslas * islasRemotas = nullptr;
 
       mutable RegistroServidores registro;     // tiene su propio mutex
 };

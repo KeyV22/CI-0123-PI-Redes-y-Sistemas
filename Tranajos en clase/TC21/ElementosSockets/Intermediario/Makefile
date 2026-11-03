@@ -11,7 +11,7 @@ FUENTES := main.cpp \
            Servidor.cpp Manejadorconexion.cpp Router.cpp \
            Httprequest.cpp Httpresponse.cpp Parserproforma.cpp \
            ServicioProductos.cpp PaginasHtml.cpp \
-           Vsocket.cpp Socket.cpp SSLSocket.cpp HttpCliente.cpp RegistroServidores.cpp ServicioProductosDistribuido.cpp Descubrimiento.cpp
+           Vsocket.cpp Socket.cpp SSLSocket.cpp HttpCliente.cpp RegistroServidores.cpp ServicioProductosDistribuido.cpp Descubrimiento.cpp RegistroIslas.cpp Mancomunado.cpp
 
 OBJETOS := $(patsubst %.cpp,$(BUILDDIR)/%.o,$(FUENTES))
 
