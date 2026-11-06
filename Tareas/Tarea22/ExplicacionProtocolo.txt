@@ -323,6 +323,12 @@ activa y la hora del último contacto.
   - Con ANNOUNCE_BYE (61) la isla se marca inactiva.
   - Las categorías de rutas inactivas no se muestran.
 
+Estructura de datos: el intermediario guarda en memoria una tabla de servidores de productos.
+Cada entrada tiene: nombre, ip, puerto, lista de categorías, si está activo y la hora del último
+contacto. Se identifica por ip+puerto. Una segunda tabla guarda lo mismo para las otras islas
+(id INT_0X, ip, puerto TCP, categorías, activa, último contacto). Ambas se protegen con un mutex
+porque las consultan varios hilos. La ruta de una categoría se calcula recorriendo las entradas
+activas que la tienen, y se muestra en /TicAmazon/rutas.
 
 ======================================================================
 10. CUMPLIMIENTO DE LOS REQUISITOS Y LIMITACIONES
