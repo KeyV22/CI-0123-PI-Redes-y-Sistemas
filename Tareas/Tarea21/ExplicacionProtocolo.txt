@@ -1,0 +1,355 @@
+TICAMAZON - EXPLICACIÓN DEL PROTOCOLO Y DE LAS INTERACCIONES
+Trabajo en clase #21 - CI0123 Proyecto Integrador de Redes y Sistemas Operativos
+Grupo de matrícula 2
+
+======================================================================
+1. VISIÓN GENERAL
+======================================================================
+
+El sistema TicAmazon tiene tres tipos de elementos:
+
+  - Cliente: navegador (Firefox, Chrome), curl, o el programa ClienteServidor.
+  - Intermediario: uno por isla. Es lo único que ven los clientes.
+  - Servidor de productos: uno o más por isla. Guardan los productos
+    en su sistema de archivos y los entregan al intermediario.
+
+Hay dos redes:
+
+  Red pública  10.1.35.x       Cliente <-> Intermediario (HTTP).
+  Red privada  172.16.123.x    Servidores de productos <-> Intermediario de
+                               su isla, y Intermediario <-> Intermediarios de
+                               las otras islas. Cada isla es una subred /28.
+
+  Isla 1: 172.16.123.16/28  BC .31      Isla 4: 172.16.123.64/28  BC .79
+  Isla 2: 172.16.123.32/28  BC .47      Isla 5: 172.16.123.80/28  BC .95
+  Isla 3: 172.16.123.48/28  BC .63      Isla 6: 172.16.123.96/28  BC .111
+
+Cada intermediario corre en una máquina con dos interfaces de red:
+una pública (10.1.35.x), por la que atiende a los clientes, y una privada
+(172.16.123.x). Por la interfaz privada el intermediario solo acepta
+el registro y el desregistro de servidores de productos; cualquier otra
+petición recibe 403 Forbidden. Los clientes no hablan con los servidores de
+productos: solo con los intermediarios.
+
+El protocolo se divide en tres niveles. Cada uno usa el transporte que más le
+conviene:
+
+  Nivel A  Cliente <-> Intermediario                      HTTP sobre TCP
+  Nivel B  Servidor de productos <-> Intermediario        UDP (descubrimiento)
+           (misma isla, protocolo propio)                 + HTTP sobre TCP
+  Nivel C  Intermediario <-> Intermediario (otras islas)  UDP (anuncios)
+           ProtocoloMancomunadoG02                        + TCP 9090 (consultas)
+
+El ProtocoloMancomunadoG02 se usa SOLO entre islas. Dentro de la isla se
+usa el protocolo propio del nivel B.
+
+
+======================================================================
+2. NIVEL A: CLIENTE <-> INTERMEDIARIO (HTTP, red pública)
+======================================================================
+
+Puerto por defecto del intermediario: 8080.
+
+  GET  /TicAmazon/list.php
+       Devuelve la lista de categorías disponibles: las de los servidores de
+       la isla más las de las otras islas, sin repetir.
+
+  GET  /TicAmazon/list.php?category=<categoria>
+       Devuelve los productos de esa categoría. El intermediario los obtiene
+       de sus servidores de productos y, si otra isla tiene la categoría,
+       también se los pide a esa isla (mensaje 20 del nivel C). Cada fila indica
+       qué intermediario la aporta (columna "Intermediario").
+
+  POST /TicAmazon/proforma.php
+       Cuerpo (application/x-www-form-urlencoded):
+         item0_categoria=...&item0_producto=...&item0_cantidad=...
+         &item1_categoria=...&item1_producto=...&item1_cantidad=...
+       Genera una proforma con los productos pedidos.
+
+  GET  /TicAmazon/servidores   Servidores de productos conocidos y su estado.
+  GET  /TicAmazon/rutas        Tabla de rutas (categoría -> quién la atiende).
+  GET  /TicAmazon/bitacora     Bitácora de eventos del intermediario.
+
+Comportamiento del cliente:
+  - Solicita la lista de categorías, escoge una, pide sus productos, arma el
+    carrito y envía la solicitud de proforma al intermediario.
+  - Ya no tiene acceso a los servidores de productos.
+  - Si recibe un código de error HTTP, lo reporta al usuario (sección 6).
+
+
+======================================================================
+3. NIVEL B: SERVIDOR DE PRODUCTOS <-> INTERMEDIARIO (misma isla)
+======================================================================
+El servidor de productos escucha únicamente en su interfaz privada (172.16.123.x),
+de modo que los clientes no pueden alcanzarlo directamente: solo hablan con el
+intermediario por la red pública.
+
+3.1 Descubrimiento por UDP broadcast (sin 255.255.255.255)
+
+Todos los broadcast van a la dirección de broadcast de la propia isla
+(172.16.123.x). Nunca a 255.255.255.255. En la red real, el intermediario
+y los servidores de productos ignoran los datagramas que no vengan de la red
+172.16.123.x.
+
+  Puertos UDP: 7071 (escucha el intermediario)
+               7072 (escuchan los servidores de productos)
+
+  Servidor de productos -> broadcast, puerto 7071:
+      BUSCAR_INTERMEDIARIO
+  Intermediario -> responde al servidor que preguntó:
+      INTERMEDIARIO|<puertoHTTP>
+
+  Intermediario -> broadcast, puerto 7072 (cada 10 s):
+      BUSCAR_PRODUCTOS
+  Servidor de productos -> responde al intermediario:
+      PRODUCTOS|<nombre>|<puertoHTTP>
+
+Así se encuentran en cualquier orden de arranque:
+  - Si el intermediario arranca primero, sigue preguntando cada 10 s y
+    reconoce al servidor de productos cuando este arranca.
+  - Si el servidor de productos arranca primero, repite BUSCAR_INTERMEDIARIO
+    hasta que el intermediario le contesta.
+
+3.2 Registro por HTTP (red privada)
+
+  POST /TicAmazon/registrar
+       nombre=<nombre>&host=<ip>&puerto=<puerto>&categorias=<cat1;cat2;...>
+  POST /TicAmazon/desregistrar
+       host=<ip>&puerto=<puerto>
+
+El intermediario también consulta al servidor de productos:
+
+  GET /TicAmazon/list.php                    categorías del servidor
+  GET /TicAmazon/list.php?category=<cat>     productos de esa categoría
+
+3.3 Reglas de la isla
+
+  - Solo un intermediario por isla. Al arrancar, el intermediario envía
+    BUSCAR_INTERMEDIARIO por broadcast y espera unos 3 segundos. Si alguien
+    contesta, muestra "Ya hay un intermediario en esta isla" y no arranca.
+  - Los servidores de productos de una misma isla deben tener categorías
+    distintas. Si un servidor intenta registrarse con una categoría que ya
+    ofrece otro servidor activo de la isla, el intermediario lo rechaza con
+    409 Conflict y lo anota como RECHAZADO en la bitácora.
+
+3.4 Detección de caída y aviso de apagado
+
+  - Aviso al apagarse: el servidor de productos envía
+    POST /TicAmazon/desregistrar al cerrarse (Ctrl+C o botón Salir). El
+    intermediario lo marca inactivo de inmediato.
+  - Si un servidor cae sin avisar, el intermediario lo detecta porque:
+      * un hilo monitor le hace GET /TicAmazon/list.php cada 10 s, con
+        tiempo de espera de 3 s; si no responde, lo marca inactivo;
+      * o porque falla una consulta de productos.
+    No hay "heartbeat" entre los servidores. El monitor es una verificación
+    que hace el intermediario.
+  - Cuando el servidor vuelve a responder, vuelve a quedar activo.
+
+
+======================================================================
+4. NIVEL C: INTERMEDIARIO <-> INTERMEDIARIO (ProtocoloMancomunadoG02)
+======================================================================
+
+Solo para la comunicación entre islas. Identificador de isla: INT_01 a INT_06
+(se deduce de la IP privada: último octeto dividido entre 16).
+
+4.1 UDP (anuncios, al broadcast dirigido de cada otra isla, puerto 9090)
+
+  60/ID_MSG/id_isla/ip/puerto     ANNOUNCE
+        "aquí estoy, atiendo consultas TCP en ip:puerto"
+  61/id_isla                      ANNOUNCE_BYE
+        "me apago". Se envía por UDP y también por TCP a las islas
+        conocidas (el documento del protocolo es ambiguo sobre cuál de los
+        dos se debe usar).
+
+  - ID_MSG son 4 dígitos. Se empieza en un valor aleatorio y se incrementa
+    con cada anuncio. Un mensaje con el mismo ID_MSG recibido otra vez en
+    los siguientes 60 s se descarta como duplicado.
+  - Para que el broadcast llegue a otra isla, el switch capa 3 tiene
+    "ip directed-broadcast" en cada interfaz VLAN de destino.
+
+4.2 TCP, puerto 9090 (una conexión por consulta)
+
+  Mensaje            Significado
+  10                 GET_CATEGORIES: lista de categorías de la isla
+  20/categoria       GET_PRODUCTS: productos de esa categoría
+  61/id_isla         ANNOUNCE_BYE por TCP
+  50/producto/cant.  RESERVE   (pendiente, ver sección 10)
+  40/n/prod,cant;... BUY       (pendiente, ver sección 10)
+
+  Respuesta          Significado
+  01 ó 01/datos      Correcto. Con las categorías separadas por coma, o
+                     "cantidad/producto,precio,cantidad;producto,..."
+  02/codigo          Error. Códigos del protocolo: 100 a 104.
+                     Esta versión usa 100 (mensaje mal formado),
+                     101 (tipo de mensaje no soportado) y
+                     102 (nombre de categoría inválido).
+  03/valor           Categoría que esta isla no tiene.
+
+Los nombres en el protocolo van en minúsculas y con guion bajo en lugar de
+espacios (por ejemplo "Salud y belleza" viaja como salud_y_belleza). Se
+validan con las expresiones regulares:
+  id_isla            ^INT_[0-9]{2}$
+  ID_MSG             ^[0-9]{4}$
+  categoria/producto ^[a-zA-Z0-9_\-]{1,50}$
+
+
+======================================================================
+5. COMPORTAMIENTO DE CADA ELEMENTO
+======================================================================
+
+5.1 Cliente
+  - Pide categorías y productos por HTTP al intermediario (red pública).
+  - Arma el carrito y pide la proforma.
+  - Reporta los errores HTTP que reciba (sección 6).
+
+5.2 Servidor de productos
+  - Al arrancar abre su archivo de bodegas (bodegas.data) y atiende HTTP.
+  - Busca a su intermediario por broadcast y se registra (3.1 y 3.2).
+  - Responde a las consultas de categorías y de productos que le hace el
+    intermediario.
+  - Responde BUSCAR_PRODUCTOS cuando un intermediario arranca después.
+  - Al cerrarse se desregistra.
+  - Debe tener al menos una categoría, distinta de las de los otros servidores
+    de la misma isla.
+
+5.3 Intermediario
+  - Atiende a los clientes por la red pública y a los servidores por la
+    privada (sección 1).
+  - Descubre a los servidores de productos levantados antes o después
+    (3.1), y se entera cuando dejan de operar (3.4).
+  - Mantiene la tabla de rutas (sección 9).
+  - Responde al cliente con la categoría pedida: combina lo que tienen
+    sus servidores locales con lo que le devuelven las otras islas.
+  - Se anuncia a las otras islas, atiende sus consultas y las consulta
+    a ellas (nivel C).
+  - Al cerrarse con Ctrl+C envía ANNOUNCE_BYE (61) a las otras islas.
+
+
+======================================================================
+6. ERRORES
+======================================================================
+
+HTTP (clientes e intermediario, y servidores de productos):
+
+  200 OK                     Solicitud atendida.
+  400 Bad Request            Falta un parámetro (por ejemplo "category").
+  403 Forbidden              Petición no permitida en la interfaz privada
+                             del intermediario (solo se acepta el registro).
+  404 Not Found              Ruta o categoría inexistente.
+  405 Method Not Allowed     Método incorrecto para esa ruta.
+  409 Conflict               Registro rechazado: categoría repetida en la
+                             isla.
+  422 Unprocessable Entity   Solicitud de proforma inválida.
+  500 Internal Server Error  Error interno.
+
+Entre islas (nivel C): respuestas 02/codigo (sección 4.2).
+
+Reacción ante fallos:
+  - Servidor de productos no responde: el intermediario lo marca inactivo
+    y deja de enviarle consultas; sus categorías salen de la tabla.
+  - Otro intermediario no responde o devuelve error al consultarlo: la
+    entrada de esa isla se inhabilita en la tabla de rutas (activa = no).
+    Se reactiva cuando vuelve a anunciarse (60).
+  - Mensaje malformado entre islas: se responde 02/100 y se anota en
+    la bitácora.
+  - Datagramas UDP de fuera de la red 172.16.123.x: se ignoran.
+
+
+======================================================================
+7. HILOS
+======================================================================
+
+Intermediario:
+  - Hilo principal: acepta conexiones HTTP de los clientes (red pública).
+    Cada conexión se atiende en su propio hilo.
+  - Hilo para la interfaz privada: acepta los registros de los servidores
+    de productos.
+  - Hilo monitor: sondea cada 10 s a los servidores de productos.
+  - Hilo de descubrimiento (escucha UDP): recibe las respuestas de los
+    servidores de productos y las preguntas de BUSCAR_INTERMEDIARIO.
+  - Hilo de búsqueda (UDP): envía BUSCAR_PRODUCTOS cada 10 s.
+  - Entre islas:
+      * un hilo por cada una de las otras islas (5): envía el anuncio
+        periódico y refresca sus categorías por TCP;
+      * un hilo que escucha los anuncios UDP (60 y 61) de las otras islas;
+      * un hilo que escucha las consultas TCP en el puerto 9090.
+  - Hilo de cierre: espera Ctrl+C, envía ANNOUNCE_BYE y termina.
+
+Servidor de productos:
+  - Hilo principal: acepta conexiones HTTP (un hilo por conexión).
+  - Hilo de descubrimiento: busca al intermediario por UDP y se registra.
+  - Hilo que escucha BUSCAR_PRODUCTOS.
+  - Hilo de cierre: avisa al intermediario al recibir Ctrl+C.
+
+Las estructuras compartidas (tabla de servidores, tabla de islas, cache de
+mensajes ya vistos) están protegidas con mutex.
+
+
+======================================================================
+8. ¿TCP O UDP?
+======================================================================
+
+  UDP, para lo que es corto, sin conexión y se repite:
+    - Descubrimiento por broadcast: TCP no soporta broadcast.
+    - Anuncios entre islas (60/61): los mensajes se repiten cada pocos
+      segundos, así que perder uno no es grave.
+
+  TCP, para lo que necesita llegar completo y con respuesta:
+    - HTTP entre cliente e intermediario, y entre intermediario y servidor.
+    - Consultas entre islas (10, 20, y los pendientes 50 y 40): cada una
+      espera una respuesta y no se debe perder.
+
+
+======================================================================
+9. TABLA DE RUTAS
+======================================================================
+
+Sí hay tabla de rutas. Se ve en GET /TicAmazon/rutas.
+
+  Categoría -> quién la atiende
+    - Servidores de la isla: aparecen por su nombre (por ejemplo "pa").
+    - Otras islas: aparecen como INT_0X (ip:puerto).
+
+  Una categoría puede tener varios destinos, por ejemplo
+  "Electronica -> pa, INT_04 (172.16.123.67:9090)".
+
+Para cada isla remota se guarda: id, ip, puerto TCP, categorías, si está
+activa y la hora del último contacto.
+
+  - Se llena con los anuncios (60) y se completa con GET_CATEGORIES (10).
+  - Al descubrir otro intermediario se actualiza la tabla.
+  - Si hay un error al consultarlo, la entrada se inhabilita.
+  - Con ANNOUNCE_BYE (61) la isla se marca inactiva.
+  - Las categorías de rutas inactivas no se muestran.
+
+
+======================================================================
+10. CUMPLIMIENTO DE LOS REQUISITOS Y LIMITACIONES
+======================================================================
+
+Cumple:
+  - Clientes sin acceso a servidores de productos: los clientes solo piden
+    al intermediario, por la red pública.
+  - Intermediario con dos interfaces (pública y privada).
+  - Mapa con la localización de las categorías (tabla de rutas).
+  - Descubrimiento de servidores levantados antes o después, y detección de
+    cuando dejan de operar.
+  - Solo un intermediario por isla.
+  - Servidores de productos descubren a su intermediario, en cualquier
+    orden de arranque.
+  - Más de un servidor de productos por isla, con categorías distintas.
+  - Aviso de apagado de los servidores y de los intermediarios.
+  - Error al consultar -> entrada inhabilitada.
+  - Un hilo por cada otra isla.
+  - Al descubrir otro intermediario se actualiza la tabla de rutas.
+
+Limitaciones conocidas:
+  - Reservar (50) y comprar (40) entre islas todavía no están
+    implementados: se responde 02/101. Las proformas se generan con
+    los servidores de la propia isla.
+  - El mensaje ANNOUNCE_BYE (61) se envía por UDP y por TCP porque
+    el documento del protocolo no aclara cuál usar.
+  - El descubrimiento de la isla propia usa el broadcast de su interfaz
+    172.16.123.x. En pruebas fuera del laboratorio (sin esa interfaz) se
+    usa 127.255.255.255.

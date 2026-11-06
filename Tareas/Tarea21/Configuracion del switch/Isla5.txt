@@ -1,0 +1,28 @@
+enable
+configure terminal
+hostname ISLA5-L2
+vlan 250
+ name VLAN250
+ exit
+interface vlan 250
+ ip address 172.16.123.82 255.255.255.240
+ no shutdown
+ exit
+ip default-gateway 172.16.123.81
+ip dhcp excluded-address 172.16.123.81 172.16.123.82
+ip dhcp pool ISLA5
+ network 172.16.123.80 255.255.255.240
+ default-router 172.16.123.81
+ dns-server 8.8.8.8
+ exit
+interface range fastEthernet 0/1 - 24
+ switchport mode access
+ switchport access vlan 250
+ spanning-tree portfast
+ exit
+interface gigabitEthernet 0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 250
+ no shutdown
+end
+write memory

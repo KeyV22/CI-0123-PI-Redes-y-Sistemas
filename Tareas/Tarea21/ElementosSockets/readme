@@ -1,0 +1,55 @@
+# TicAmazon – Programación de elementos
+
+Carpetas: `ClienteServidor/`, `Intermediario/`, `ServidorProductos/`.
+Requisitos: g++ (C++17), make y OpenSSL (`libssl-dev` / `openssl-devel`).
+
+## Compilar
+```bash
+cd ServidorProductos && make clean && make && cd ..
+cd Intermediario     && make clean && make && cd ..
+cd ClienteServidor   && make clean && make && cd ..
+```
+
+## Ejecutar (en este orden, una terminal cada uno)
+```bash
+cd ServidorProductos && ./servidor 9091 bodegas.data PC1
+cd Intermediario     && ./intermediario 8080
+cd ClienteServidor   && ./cliente IP_PUBLICA_DEL_INTERMEDIARIO 8080
+```
+Los servidores y el intermediario se descubren solos por broadcast, en cualquier orden.
+El servidor necesita `ci0123.pem` en su carpeta.
+
+## Comprobar
+Usar la IP PUBLICA del intermediario (10.1.35.x). Por la IP privada responde 403.
+- Servidores registrados: `http://IP_INTERMEDIARIO:8080/TicAmazon/servidores`
+- Tabla de rutas (locales y de otras islas): `http://IP_INTERMEDIARIO:8080/TicAmazon/rutas`
+- Bitácora: `http://IP_INTERMEDIARIO:8080/TicAmazon/bitacora`
+
+## Varias islas
+Cada intermediario usa su IP 172.16.123.x para saber su isla (por ejemplo .50 = isla 3)
+y anuncia (60) a las otras islas. Al cerrarlo con Ctrl+C avisa (61).
+Entre islas distintas el L3 necesita `ip directed-broadcast` en las `interface Vlan`.
+Detalle de argumentos en `Intermediario/readme`.
+
+## Dos redes y apagado ordenado
+
+El intermediario usa dos interfaces de red:
+- Publica (10.1.35.x): atiende a los clientes por HTTP (puerto 8080).
+- Privada (172.16.123.x): recibe el registro de los servidores de productos,
+  hace el descubrimiento por broadcast y habla con los intermediarios de otras islas.
+
+Por la interfaz privada solo se aceptan registro y desregistro de servidores
+de productos; cualquier otra peticion responde 403.
+
+El servidor de productos escucha solo en su interfaz privada (172.16.123.x), para que los
+clientes no lleguen directo a él. Sin esa interfaz (pruebas locales) escucha en todas y lo avisa.
+
+Reglas de la isla:
+- Solo puede haber un intermediario por isla: el segundo que arranque se niega.
+- Los servidores de productos de una misma isla deben tener categorías distintas;
+  si repiten una, el intermediario los rechaza (409).
+
+Apagado ordenado:
+- Servidor de productos: con Ctrl+C o el boton Salir avisa al intermediario
+  (POST /TicAmazon/desregistrar) antes de cerrar.
+- Intermediario: con Ctrl+C envia el mensaje 61 (ANNOUNCE_BYE) a las otras islas.
