@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
 #include "almacenamiento.hpp"
 #include "Inventario.hpp"
 #include "ServicioProductosLocal.hpp"
@@ -10,6 +11,7 @@
 #include "ClienteRegistro.hpp"
 #include "Descubrimiento.hpp"
 #include "Broadcasts.hpp"
+#include "Redes.hpp"
 #include <csignal>
 #include <atomic>
 #include <chrono>
@@ -64,8 +66,19 @@ int main( int argc, char * argv[] ) {
    signal( SIGINT, AlRecibirSenal );     // Ctrl+C: cierre ordenado (avisa al intermediario)
    signal( SIGTERM, AlRecibirSenal );
    
-   int puerto = ( argc > 1 ) ? std::atoi( argv[1] ) : 8080;
-   std::string ruta = ( argc > 2 ) ? argv[2] : "bodegas.data";
+   // Argumentos: [puerto] [archivo] [nombre] [broadcast] [host_intermediario] [puerto_intermediario] [ip=A.B.C.D]
+   // 'ip=' (opcional, en cualquier posicion) fuerza la IP donde escucha este servidor.
+   std::vector<std::string> args;
+   std::string ipEscucha;
+   for ( int i = 0; i < argc; i++ ) {
+      std::string a = argv[i];
+      if ( i > 0 && a.compare( 0, 3, "ip=" ) == 0 ) ipEscucha = a.substr( 3 );
+      else args.push_back( a );
+   }
+   argc = (int)args.size();
+
+   int puerto = ( argc > 1 ) ? std::atoi( args[1].c_str() ) : 8080;
+   std::string ruta = ( argc > 2 ) ? args[2] : "bodegas.data";
 
    Almacenamiento almacen;
 
@@ -89,19 +102,25 @@ int main( int argc, char * argv[] ) {
    }
    pem.close();
 
-   Servidor servidor( puerto, certificado, certificado );
+   // Los clientes no deben llegar a los servidores de productos: se escucha SOLO en la
+   // interfaz privada (172.16.123.x). Sin esa interfaz (pruebas locales) se escucha en todas.
+   if ( ipEscucha.empty() ) ipEscucha = IpConPrefijo( PREFIJO_RED_PRIVADA );
+   if ( ipEscucha.empty() ) {
+      std::cout << "Aviso: no hay interfaz 172.16.123.x; se escucha en todas las interfaces (solo para pruebas)\n";
+   }
+   Servidor servidor( puerto, certificado, certificado, ipEscucha );
    if ( !servidor.Iniciar() ) {
       return 1;
    }
 
-   std::string nombre = ( argc > 3 ) ? argv[3] : "productos-" + std::to_string( puerto );
-   std::string broadcast = ( argc > 4 ) ? argv[4] : "";
+   std::string nombre = ( argc > 3 ) ? args[3] : "productos-" + std::to_string( puerto );
+   std::string broadcast = ( argc > 4 ) ? args[4] : "";
 
    ClienteRegistro registro( inventario, nombre, puerto );
    Descubrimiento descubrimiento( registro, nombre, puerto, ResolverBroadcasts( broadcast ) );
 
    if ( argc > 5 ) {
-      registro.FijarIntermediario( argv[5], ( argc > 6 ) ? std::atoi( argv[6] ) : 8080 );
+      registro.FijarIntermediario( args[5], ( argc > 6 ) ? std::atoi( args[6].c_str() ) : 8080 );
    }
    registro.Iniciar( 10 );
    descubrimiento.Iniciar( 10 );

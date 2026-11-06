@@ -10,7 +10,7 @@ vlan 200
 interface vlan 200
  ip address 172.16.123.1 255.255.255.240
  no shutdown
-interface gigabitEthernet 0/X
+interface fastEthernet 0/6
  switchport trunk encapsulation dot1q
  switchport mode trunk
  switchport trunk allowed vlan 200
@@ -22,7 +22,7 @@ vlan 210
 interface vlan 210
  ip address 172.16.123.17 255.255.255.240
  no shutdown
-interface gigabitEthernet 0/1
+interface fastEthernet 0/1
  switchport trunk encapsulation dot1q
  switchport mode trunk
  switchport trunk allowed vlan 210
@@ -34,7 +34,7 @@ vlan 220
 interface vlan 220
  ip address 172.16.123.33 255.255.255.240
  no shutdown
-interface gigabitEthernet 0/2
+interface fastEthernet 0/2
  switchport trunk encapsulation dot1q
  switchport mode trunk
  switchport trunk allowed vlan 220
@@ -46,7 +46,7 @@ vlan 230
 interface vlan 230
  ip address 172.16.123.49 255.255.255.240
  no shutdown
-interface gigabitEthernet 0/3
+interface fastEthernet 0/3
  switchport trunk encapsulation dot1q
  switchport mode trunk
  switchport trunk allowed vlan 230
@@ -58,7 +58,7 @@ vlan 240
 interface vlan 240
  ip address 172.16.123.65 255.255.255.240
  no shutdown
-interface gigabitEthernet 0/4
+interface fastEthernet 0/4
  switchport trunk encapsulation dot1q
  switchport mode trunk
  switchport trunk allowed vlan 240
@@ -70,23 +70,20 @@ vlan 250
 interface vlan 250
  ip address 172.16.123.81 255.255.255.240
  no shutdown
-interface gigabitEthernet 0/5
+interface fastEthernet 0/5
  switchport trunk encapsulation dot1q
  switchport mode trunk
  switchport trunk allowed vlan 250
  no shutdown
 
-! ---- Isla 6 ----
-vlan 260
- name VLAN260
-interface vlan 260
- ip address 172.16.123.97 255.255.255.240
- no shutdown
-interface gigabitEthernet 0/6
- switchport trunk encapsulation dot1q
- switchport mode trunk
- switchport trunk allowed vlan 260
- no shutdown
+end
+write memory
 
+
+!---Para el broadcast----
+enable
+configure terminal
+interface range vlan 200 - 250
+ ip directed-broadcast
 end
 write memory

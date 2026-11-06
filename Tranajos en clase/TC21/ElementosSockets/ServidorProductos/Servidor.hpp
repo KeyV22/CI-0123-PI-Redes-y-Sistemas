@@ -2,6 +2,7 @@
 #define Servidor_hpp
 
 #include <atomic>
+#include <string>
 #include "SSLSocket.hpp"
 #include "ServicioProductos.hpp"
 
@@ -10,7 +11,9 @@
 // independiente.
 class Servidor {
    public:
-      Servidor( int puerto, const char * certificado, const char * llave );
+      // 'ip' (opcional): si se da, el servidor escucha SOLO en esa interfaz (la red privada);
+      // vacia = en todas las interfaces.
+      Servidor( int puerto, const char * certificado, const char * llave, const std::string & ip = "" );
 
       // Hace Bind() y Listen() sobre el socket de escucha. Devuelve
       // false si algo falla (puerto ocupado, permisos, etc.).
@@ -29,10 +32,12 @@ class Servidor {
       static void SolicitarApagado();
    private:
       int puerto;
+      std::string ip;
       SSLSocket escucha;             // socket de tipo 's' (stream/TCP)
       std::atomic<bool> corriendo;
       static std::atomic<bool> apagar;
       static int puertoEscucha;
+      static std::string ipEscucha;
 };
 
 #endif

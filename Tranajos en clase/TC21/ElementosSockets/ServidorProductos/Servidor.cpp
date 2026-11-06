@@ -6,15 +6,17 @@
 
 std::atomic<bool> Servidor::apagar( false );
 int Servidor::puertoEscucha = 0;
+std::string Servidor::ipEscucha;
 // El constructor de Socket ya crea el descriptor (socket() se llama
 // dentro de VSocket::Init, invocado desde el constructor de Socket).
 // 's' = stream (TCP), false = IPv4.
-Servidor::Servidor( int puerto, const char * certificado, const char * llave )
-   : puerto( puerto ), escucha( certificado, llave ), corriendo( false ) {}
+Servidor::Servidor( int puerto, const char * certificado, const char * llave, const std::string & ip )
+   : puerto( puerto ), ip( ip ), escucha( certificado, llave ), corriendo( false ) {}
 
 bool Servidor::Iniciar() {
    try {
-      escucha.Bind( puerto );
+      if ( ip.empty() ) escucha.Bind( puerto );
+      else escucha.Bind( ip.c_str(), puerto );
       escucha.Listen( 16 );   // backlog de 16 conexiones pendientes
    } catch ( const std::exception & e ) {
       std::cerr << "No se pudo iniciar el servidor: " << e.what() << "\n";
@@ -23,7 +25,8 @@ bool Servidor::Iniciar() {
 
    corriendo = true;
    puertoEscucha = puerto;
-   std::cout << "Servidor escuchando en el puerto " << puerto << "\n";
+   ipEscucha = ip;
+   std::cout << "Servidor escuchando en " << ( ip.empty() ? "todas las interfaces" : ip ) << ":" << puerto << "\n";
    return true;
 }
 
@@ -47,7 +50,7 @@ void Servidor::SolicitarApagado() {
    apagar = true;
    try {
       Socket despertar( 's', false );
-      despertar.Connect( "127.0.0.1", puertoEscucha );
+      despertar.Connect( ipEscucha.empty() ? "127.0.0.1" : ipEscucha.c_str(), puertoEscucha );
    } catch ( const std::exception & ) {
       // si no conecta, el servidor termina en el proximo Accept()
    }
