@@ -25,6 +25,8 @@ class VSocket {
       int TryToConnect( const char *, const char * );
       int TryToBind( int port );
 
+      int TryToBind( const char * ip, int port );   // solo IPv4: escucha unicamente en esa interfaz
+
       // Util para no dejar hilos colgados esperando datos que nunca
       // llegan.
       void SetReadTimeout( int segundos );
