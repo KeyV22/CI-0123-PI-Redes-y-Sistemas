@@ -928,3 +928,199 @@
 [2026-11-03 14:32:04] GET /TicAmazon/list.php | listar categorias -> 200 OK
 [2026-11-03 14:32:14] GET /TicAmazon/list.php | listar categorias -> 200 OK
 [2026-11-03 14:32:16] Se aviso al intermediario que este servidor se apaga
+[2026-11-06 21:30:27] Intermediario encontrado en 192.168.100.143:8080
+[2026-11-06 21:30:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:30:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:30:37] Registrado en el intermediario como 'PCA'
+[2026-11-06 21:30:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:30:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:30:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:30:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:30:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:30:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:30:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:30:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:30:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:34] Se aviso al intermediario que este servidor se apaga
+[2026-11-06 21:31:39] Intermediario encontrado en 192.168.100.143:8080
+[2026-11-06 21:31:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:49] Registrado en el intermediario como 'PCA'
+[2026-11-06 21:31:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:31:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:32:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:33:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:22] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:34:23] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:34:23] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:34:23] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:34:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:28] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:34:28] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:34:28] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:34:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:29] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:34:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:40] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:34:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:34:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:35:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:32] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:36:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:40] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:36:40] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:36:42] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:36:44] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:36:44] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:36:44] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:45] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:36:45] GET /favicon.ico -> 404 Not Found
+[2026-11-06 21:36:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:36:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:27] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:27] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:27] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:27] GET /TicAmazon/list.php | categoria: 'Alimentos' -> 200 OK
+[2026-11-06 21:37:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:29] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:29] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:29] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:30] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:30] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:30] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:30] GET /TicAmazon/list.php | categoria: 'Bebidas' -> 200 OK
+[2026-11-06 21:37:32] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:32] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:32] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:32] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:33] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:33] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:33] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:33] GET /TicAmazon/list.php | categoria: 'Salud' -> 200 OK
+[2026-11-06 21:37:35] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:35] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:35] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:37:35] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:38] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:48] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:37:58] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:38:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:38:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:38:08] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:38:18] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:38:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:38:19] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:38:28] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:38:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:38:29] GET /TicAmazon/list.php | listar categorias -> 200 OK
+[2026-11-06 21:38:30] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:38:30] Error atendiendo conexion: SSLSocket::Accept, SSL_accept
+[2026-11-06 21:38:30] POST /TicAmazon/salir -> 200 OK
+[2026-11-06 21:38:30] Cierre del servidor solicitado desde el navegador
+[2026-11-06 21:38:30] Se aviso al intermediario que este servidor se apaga

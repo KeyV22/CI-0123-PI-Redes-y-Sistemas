@@ -59494,3 +59494,15 @@
 [2026-11-03 14:32:16] [CONSULTA] [cliente] POST /TicAmazon/desregistrar -> 200 OK
 [2026-11-03 14:32:26] [CONSULTA] [cliente] GET /TicAmazon/servidores -> 200 OK
 [2026-11-03 14:32:36] [ERROR] [intermediario] Error atendiendo conexion: read error
+[2026-11-06 21:30:18] [INFO] [intermediario] Descubrimiento UDP activo: escucha en 7071, broadcast a 192.168.100.255, 127.255.255.255
+[2026-11-06 21:30:28] [REGISTRO] [PCA] Servidor de productos descubierto por broadcast: PCA (192.168.100.143:9091)
+[2026-11-06 21:30:28] [RECHAZADO] [PCA] Servidor de productos rechazado (PCA): la categoria 'Alimentos' ya la ofrece PCA
+[2026-11-06 21:31:34] [INACTIVO] [192.168.100.143:9091] Servidor de productos se despidio: 192.168.100.143:9091
+[2026-11-06 21:31:34] [CONSULTA] [cliente] POST /TicAmazon/desregistrar -> 200 OK
+[2026-11-06 21:31:48] [REGISTRO] [PCA] Servidor de productos descubierto por broadcast: PCA (192.168.100.143:9091)
+[2026-11-06 21:32:00] [CONSULTA] [cliente] GET /TicAmazon/servidores -> 200 OK
+[2026-11-06 21:32:00] [ERROR] [cliente] GET /favicon.ico -> 404 Not Found
+[2026-11-06 21:32:45] [CONSULTA] [cliente] GET /TicAmazon/rutas -> 200 OK
+[2026-11-06 21:32:55] [ERROR] [intermediario] Error atendiendo conexion: read error
+[2026-11-06 21:38:30] [INACTIVO] [192.168.100.143:9091] Servidor de productos se despidio: 192.168.100.143:9091
+[2026-11-06 21:38:30] [CONSULTA] [cliente] POST /TicAmazon/desregistrar -> 200 OK

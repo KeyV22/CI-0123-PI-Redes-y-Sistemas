@@ -28,6 +28,7 @@ class Socket : public VSocket {
 
       // --- Extension para funcionalidad de SERVIDOR ---
       int Bind( int port );
+      int Bind( const char * ip, int port );
       int Listen( int backlog );
       Socket Accept();            // bloquea hasta que llegue una conexion
 
@@ -41,8 +42,7 @@ class Socket : public VSocket {
       Socket & operator=( const Socket & ) = delete;
       Socket( Socket && otro ) noexcept;
       Socket & operator=( Socket && otro ) noexcept;
-      
-      
+
       void HabilitarBroadcast();
       bool SendTo( const void * datos, size_t largo, const std::string & ip, int puerto );
       bool SendTo( const std::string & texto, const std::string & ip, int puerto );

@@ -24,6 +24,7 @@ Usar la IP PUBLICA del intermediario (10.1.35.x). Por la IP privada responde 403
 - Servidores registrados: `http://IP_INTERMEDIARIO:8080/TicAmazon/servidores`
 - Tabla de rutas (locales y de otras islas): `http://IP_INTERMEDIARIO:8080/TicAmazon/rutas`
 - Bitácora: `http://IP_INTERMEDIARIO:8080/TicAmazon/bitacora`
+- Servidor `https://<IP-del-servidor>:9091/TicAmazon/list.php`
 
 ## Varias islas
 Cada intermediario usa su IP 172.16.123.x para saber su isla (por ejemplo .50 = isla 3)
