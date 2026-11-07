@@ -189,6 +189,10 @@ int Socket::Bind( int port ) {
    return this->TryToBind( port );
 }
 
+int Socket::Bind( const char * ip, int port ) {
+   return this->TryToBind( ip, port );
+}
+
 /**
   * Listen method 
   *   use "listen" Unix system call (man 2 listen), solo tiene sentido
