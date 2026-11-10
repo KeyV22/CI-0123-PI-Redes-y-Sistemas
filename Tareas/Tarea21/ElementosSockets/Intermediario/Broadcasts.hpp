@@ -32,7 +32,6 @@ inline std::vector<std::string> DetectarBroadcasts() {
       freeifaddrs( lista );
    }
    if ( !privadas.empty() ) return privadas;
-   todas.push_back( "127.255.255.255" );  // misma PC
    return todas;
 }
 

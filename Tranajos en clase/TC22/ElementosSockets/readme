@@ -13,7 +13,7 @@ cd ClienteServidor   && make clean && make && cd ..
 ## Ejecutar (en este orden, una terminal cada uno)
 ```bash
 cd ServidorProductos && ./servidor 9091 bodegas.data PC1
-cd Intermediario     && ./intermediario 8080
+cd Intermediario     && ./intermediario 8080 #para probar en casa ./intermdiario 8080 127.255.255.255
 cd ClienteServidor   && ./cliente IP_PUBLICA_DEL_INTERMEDIARIO 8080
 ```
 Los servidores y el intermediario se descubren solos por broadcast, en cualquier orden.
