@@ -96,7 +96,7 @@ void ServicioProductosDistribuido::DescubrirServidor( const std::string & host, 
 }
 
 bool ServicioProductosDistribuido::HayConflicto( const std::string & host, int puerto, const std::string & nombre,const std::vector<std::string> & categorias, std::string & detalle ) const {
-   detalle = registro.Conflicto( host, puerto, categorias );
+   detalle = registro.Conflicto( host, puerto, categorias, nombre );
    if ( detalle.empty() ) return false;
    std::string clave = host + ":" + std::to_string( puerto ) + "|" + detalle;
    bool nuevo;

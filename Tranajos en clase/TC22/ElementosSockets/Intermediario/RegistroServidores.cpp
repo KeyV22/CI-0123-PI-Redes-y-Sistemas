@@ -49,10 +49,11 @@ bool RegistroServidores::MarcarInactivo( const std::string & host, int puerto ) 
    return true;
 }
 
-std::string RegistroServidores::Conflicto( const std::string & host, int puerto, const std::vector<std::string> & categorias ) const {
+std::string RegistroServidores::Conflicto( const std::string & host, int puerto, const std::vector<std::string> & categorias, const std::string & nombre ) const {
    std::lock_guard<std::mutex> lock( mtx );
    for ( const InfoServidor & s : servidores ) {
       if ( !s.activo || ( s.host == host && s.puerto == puerto ) ) continue;
+      if ( !nombre.empty() && s.nombre == nombre && s.puerto == puerto ) continue; // mismo servidor visto con otra IP
       for ( const std::string & nueva : categorias ) {
          for ( const std::string & existente : s.categorias ) {
             if ( IgualesSinMayusculas( nueva, existente ) ) {
