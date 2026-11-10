@@ -35,6 +35,13 @@ make run
 Al ejecutarse, el programa crea el archivo `bodegas.data`
 en el mismo directorio, y ahi guarda toda la informacion.
 
+## Listar productos por categoría
+
+`./listar [archivo] [categoria]` abre un archivo de almacenamiento (por defecto `bodegas.data`)
+y muestra todos los productos agrupados por categoría, con su bodega, cantidad y precio, más un
+resumen de en qué bodegas está cada categoría. Con el segundo argumento muestra solo esa categoría.
+No modifica el archivo.
+
 ## Limpiar
 
 ```
