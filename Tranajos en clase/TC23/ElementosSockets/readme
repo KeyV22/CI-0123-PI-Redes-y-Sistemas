@@ -12,7 +12,7 @@ cd ClienteServidor   && make clean && make && cd ..
 
 ## Ejecutar (en este orden, una terminal cada uno)
 ```bash
-cd ServidorProductos && ./servidor 9091 bodegas.data PC1
+cd ServidorProductos && ./servidor 9091 bodegas.data productos-isla3 
 cd Intermediario     && ./intermediario 8080
 cd ClienteServidor   && ./cliente IP_PUBLICA_DEL_INTERMEDIARIO 8080
 ```
