@@ -41,4 +41,8 @@ en el mismo directorio, y ahi guarda toda la informacion.
 make clean
 ```
 
-Borra los archivos objeto, el ejecutable y `bodegas.data`.
+make
+./listar                                     lista todo, agrupado por categoría
+./listar Hogar                               lista solo esa categoría
+./listar bodegas.data --extraer Hogar        copia la categoría a Hogar.txt, sin tocar bodegas.data
+./listar bodegas.data --extraer Hogar --quitar   además la quita del archivo (pide confirmación y hace bodegas.data.bak antes)
