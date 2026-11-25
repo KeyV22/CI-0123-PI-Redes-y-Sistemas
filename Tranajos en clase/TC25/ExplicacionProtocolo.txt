@@ -328,6 +328,11 @@ contacto. Se identifica por ip+puerto. Una segunda tabla guarda lo mismo para la
 porque las consultan varios hilos. La ruta de una categoría se calcula recorriendo las entradas
 activas que la tienen, y se muestra en /TicAmazon/rutas.
 
+Cómo se obtienen los datos: de los servidores de productos de la isla, el intermediario los recibe
+cuando se registran por HTTP (POST /TicAmazon/registrar) o los descubre por broadcast UDP (BUSCAR_PRODUCTOS), 
+y cada 10 segundos los vuelve a consultar con GET /TicAmazon/list.php. De las otras islas, los recibe por 
+anuncio UDP (60), pide sus categorías por TCP con GET_CATEGORIES (10) y repite la consulta cada cierto tiempo
+si no hay respuesta, la ruta se inhabilita.
 ==============================================================
 10. FLUJO DE INFORMACIÓN: CÓMO EL CLIENTE OBTIENE UNA CATEGORÍA
 ===============================================================
