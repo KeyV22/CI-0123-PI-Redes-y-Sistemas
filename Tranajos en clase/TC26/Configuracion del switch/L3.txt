@@ -1,0 +1,89 @@
+enable
+configure terminal
+hostname SW-L3
+no ip domain-lookup
+ip routing
+
+!---Profes----
+vlan 200
+ name VLAN200
+interface vlan 200
+ ip address 172.16.123.1 255.255.255.240
+ no shutdown
+interface fastEthernet 0/6
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 200
+ no shutdown
+
+! ---- Isla 1 ----
+vlan 210
+ name VLAN210
+interface vlan 210
+ ip address 172.16.123.17 255.255.255.240
+ no shutdown
+interface fastEthernet 0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 210
+ no shutdown
+
+! ---- Isla 2 ----
+vlan 220
+ name VLAN220
+interface vlan 220
+ ip address 172.16.123.33 255.255.255.240
+ no shutdown
+interface fastEthernet 0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 220
+ no shutdown
+
+! ---- Isla 3 ----
+vlan 230
+ name VLAN230
+interface vlan 230
+ ip address 172.16.123.49 255.255.255.240
+ no shutdown
+interface fastEthernet 0/3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 230
+ no shutdown
+
+! ---- Isla 4 ----
+vlan 240
+ name VLAN240
+interface vlan 240
+ ip address 172.16.123.65 255.255.255.240
+ no shutdown
+interface fastEthernet 0/4
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 240
+ no shutdown
+
+! ---- Isla 5 ----
+vlan 250
+ name VLAN250
+interface vlan 250
+ ip address 172.16.123.81 255.255.255.240
+ no shutdown
+interface fastEthernet 0/5
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 250
+ no shutdown
+
+end
+write memory
+
+
+!---Para el broadcast----
+enable
+configure terminal
+interface range vlan 200 - 250
+ ip directed-broadcast
+end
+write memory

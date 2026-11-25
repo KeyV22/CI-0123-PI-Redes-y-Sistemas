@@ -1,0 +1,28 @@
+enable
+configure terminal
+hostname ISLA1-L2
+vlan 210
+ name VLAN210
+ exit
+interface vlan 210
+ ip address 172.16.123.18 255.255.255.240
+ no shutdown
+ exit
+ip default-gateway 172.16.123.17
+ip dhcp excluded-address 172.16.123.17 172.16.123.18
+ip dhcp pool ISLA1
+ network 172.16.123.16 255.255.255.240
+ default-router 172.16.123.17
+ dns-server 8.8.8.8
+ exit
+interface range fastEthernet 0/1 - 24
+ switchport mode access
+ switchport access vlan 210
+ spanning-tree portfast
+ exit
+interface gigabitEthernet 0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 210
+ no shutdown
+end
+write memory
