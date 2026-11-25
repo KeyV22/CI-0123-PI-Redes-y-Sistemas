@@ -359,6 +359,17 @@ Caso 2: la categoría la ofrece otra isla.
 Si la categoría no existe en ninguna isla, o la isla no responde, el
 intermediario devuelve un error HTTP al cliente.
 
+ELEMENTOS DEL PROTOCOLO PARA LA INTEGRACIÓN Y EL DESCUBRIMIENTO
+
+Integración de servidores de la isla: UDP BUSCAR_INTERMEDIARIO / 
+INTERMEDIARIO|puerto y BUSCAR_PRODUCTOS / PRODUCTOS|nombre|puerto (puertos 
+7071/7072); registro por HTTP POST /TicAmazon/registrar y /TicAmazon/desregistrar
+consulta de categorías y productos con GET /TicAmazon/list.php[?category=X] por HTTPS.
+
+Descubrimiento de otras islas (ProtocoloMancomunadoG02): ANNOUNCE UDP 60/ID_MSG/id_isla/ip/puerto, 
+BYE 61/id_isla, y por TCP 9090 GET_CATEGORIES (10), GET_PRODUCTS (20/categoria) con respuestas 01 (categorías), 
+02/codigo (error) y 03/valor (productos).
+
 ======================================================================
 11. CUMPLIMIENTO DE LOS REQUISITOS Y LIMITACIONES
 ======================================================================
