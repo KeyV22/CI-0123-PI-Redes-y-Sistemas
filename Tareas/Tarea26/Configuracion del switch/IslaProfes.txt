@@ -1,0 +1,28 @@
+enable
+configure terminal
+hostname PROFES-L2
+vlan 200
+ name VLAN200
+ exit
+interface vlan 200
+ ip address 172.16.123.2 255.255.255.240
+ no shutdown
+ exit
+ip default-gateway 172.16.123.1
+ip dhcp excluded-address 172.16.123.1 172.16.123.2
+ip dhcp pool PROFES
+ network 172.16.123.0 255.255.255.240
+ default-router 172.16.123.1
+ dns-server 8.8.8.8
+ exit
+interface range fastEthernet 0/1 - 24
+ switchport mode access
+ switchport access vlan 200
+ spanning-tree portfast
+ exit
+interface gigabitEthernet 0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 200
+ no shutdown
+end
+write memory
